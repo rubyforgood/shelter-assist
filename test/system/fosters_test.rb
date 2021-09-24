@@ -8,6 +8,8 @@ class FostersTest < ApplicationSystemTestCase
     assert_selector "label", text: "Email"
 
     fill_in "Email", with: "peter@github.com"
+    fill_in "Street", with: "123 Sesame Street"
+    fill_in "Apt", with: "Unit A"
     click_on "Fetch!"
 
     assert_selector "h1", text: "Woof."
