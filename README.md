@@ -1,24 +1,13 @@
-# README
+# Shelter Assist
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Set up
 
-Things you may want to cover:
+* `git clone `
+* `rvm install 3.0.2`
+* `bundle install`
 
-* Ruby version
+## Running the app
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+rails s
+```
