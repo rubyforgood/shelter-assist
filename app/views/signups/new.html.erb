@@ -2,9 +2,15 @@
 <%= form_for :signup do |f| %>  
     <%= f.label :email %> <%= f.text_field :email %>
 
-    <%= f.submit "Fetch!" %>
-  <!-- form_for @object, html: { multipart: true }, do |f| -->
-  <!-- form_for @object, html: { class: "classname" }, do |f| -->
+    <h2>HOME INFORMATION</h2>
 
+    <%= f.label "Are you or another adult home during the day?" %>
+    <br>
+    <%= f.radio_button :home_during_day?, true %> Yes / working from home
+    <br>
+    <%= f.radio_button :home_during_day?, false %> No
+    <br>
+    
+    <%= f.submit "Fetch!" %>
   
 <% end %>
