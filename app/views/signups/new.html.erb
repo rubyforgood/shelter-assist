@@ -1,0 +1,10 @@
+<h1>Sign Up</h1>
+<%= form_for :signup do |f| %>  
+    <%= f.label :email %> <%= f.text_field :email %>
+
+    <%= f.submit "Fetch!" %>
+  <!-- form_for @object, html: { multipart: true }, do |f| -->
+  <!-- form_for @object, html: { class: "classname" }, do |f| -->
+
+  
+<% end %>

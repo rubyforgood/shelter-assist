@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<%= render @foster %>
+
+<div>
+  <%= link_to "Edit this foster", edit_foster_path(@foster) %> |
+  <%= link_to "Back to fosters", fosters_path %>
+
+  <%= button_to "Destroy this foster", foster_path(@foster), method: :delete %>
+</div>

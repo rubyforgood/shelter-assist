@@ -1,0 +1,17 @@
+<%= form_with(model: foster) do |form| %>
+  <% if foster.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(foster.errors.count, "error") %> prohibited this foster from being saved:</h2>
+
+      <ul>
+        <% foster.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
