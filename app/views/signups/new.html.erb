@@ -4,12 +4,14 @@
 
     <h2>HOME INFORMATION</h2>
 
-    <%= f.label "Are you or another adult home during the day?" %>
-    <br>
-    <%= f.radio_button :is_home_during_day, true %> Yes
-    <br>
-    <%= f.radio_button :is_home_during_day, false %> No
-    <p>
+    <div class="home-during-day-field">
+      <%= f.label "Are you or another adult home during the day?" %>
+      <br>
+      <%= f.radio_button :is_home_during_day, true %> Yes
+      <br>
+      <%= f.radio_button :is_home_during_day, false %> No
+      <p>
+    </div>
     
     <%= f.submit "Fetch!" %>
   
