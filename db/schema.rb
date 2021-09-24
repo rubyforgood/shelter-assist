@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_193054) do
+ActiveRecord::Schema.define(version: 2021_09_24_175316) do
 
   create_table "fosters", force: :cascade do |t|
     t.string "email", null: false
+    t.string "street", null: false
+    t.string "apt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "street"
-    t.string "apt"
   end
 
 end
