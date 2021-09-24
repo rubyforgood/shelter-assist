@@ -6,10 +6,10 @@
 
     <%= f.label "Are you or another adult home during the day?" %>
     <br>
-    <%= f.radio_button :home_during_day?, true %> Yes / working from home
+    <%= f.radio_button :is_home_during_day, true %> Yes
     <br>
-    <%= f.radio_button :home_during_day?, false %> No
-    <br>
+    <%= f.radio_button :is_home_during_day, false %> No
+    <p>
     
     <%= f.submit "Fetch!" %>
   
