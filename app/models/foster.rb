@@ -19,4 +19,8 @@ class Foster < ApplicationRecord
   def prep_phone
     self.phone = self.phone.gsub(/[^0-9A-Za-z]/, '')
   end
+
+  def self.fetch_resource_for_passwordless(email)
+    find_or_create_by(email: email)
+  end
 end

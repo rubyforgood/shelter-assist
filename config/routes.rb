@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
   devise_for :fosters
+  passwordless_for :fosters, at: '/', as: :auth
+
   post 'signups', to: 'signups#create', as: :signup
   get 'signups', to: 'signups#new', as: :new_signup
   resources :fosters
