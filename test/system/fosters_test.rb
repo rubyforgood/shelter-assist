@@ -11,6 +11,7 @@ class FostersTest < ApplicationSystemTestCase
     assert_selector "h3", text: "Are you or another adult home during the day?"
     assert_selector "h3", text: "Transportation"
 
+    fill_in "Full name", with: "Cookie Monster"
     fill_in "Email", with: "peter@github.com"
     fill_in "Street", with: "123 Sesame Street"
     fill_in "Apt", with: "Unit A"

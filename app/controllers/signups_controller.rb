@@ -21,6 +21,8 @@ class SignupsController < ApplicationController
 
   def foster_params
     params.fetch(:foster, {}).permit(
+      :full_name,
+      :nick_name,
       :email, 
       :phone,
       :street,

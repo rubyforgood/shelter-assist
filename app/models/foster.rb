@@ -17,7 +17,7 @@ class Foster < ApplicationRecord
   before_validation :prep_phone
 
   def prep_phone
-    self.phone = self.phone.gsub(/[^0-9A-Za-z]/, '')
+    self.phone = self.phone.to_s.gsub(/[^0-9A-Za-z]/, '')
   end
 
   def self.fetch_resource_for_passwordless(email)
