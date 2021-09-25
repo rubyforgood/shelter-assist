@@ -1,20 +1,20 @@
 class SignupsController < ApplicationController
+  include Devise::Controllers::SignInOut
   def create
-    inputs = params['foster']
-
     @foster = Foster.new(foster_params)
-    @foster.full_name = inputs['full_name']
-    @foster.nick_name = inputs['nick_name']
-    @foster.phone = inputs['phone']
-    @foster.email = inputs['email']
-    @foster.street = inputs['street']
-    @foster.apt = inputs['apt']
-    @foster.is_home_during_day = inputs['is_home_during_day']
-    @foster.transportation = inputs['transportation']
-    @foster.save
+
+    if @foster.save
+      session = build_passwordless_session(@foster)
+      session.token = Passwordless.token_generator.call(session)
+      Passwordless::Mailer.magic_link(session).deliver_now
+      redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
+    else
+      render :new
+    end
   end
 
   def new
+    @foster = Foster.new
   end
 
   private

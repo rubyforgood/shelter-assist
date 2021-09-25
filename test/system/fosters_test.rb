@@ -29,6 +29,12 @@ class FostersTest < ApplicationSystemTestCase
 
     click_on "Fetch!"
     
-    assert_selector "h1", text: "Woof."
+    assert_selector "p", text: "Check your email for a login link" # change to personal status page
+
+    mail = ActionMailer::Base.deliveries.last
+    body = Nokogiri::HTML(mail.body.raw_source)
+
+    assert_equal "peter@github.com", mail.to.first
+    assert_match /your login link/, body.to_s
   end
 end
