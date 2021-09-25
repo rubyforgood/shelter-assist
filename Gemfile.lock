@@ -98,10 +98,6 @@ GEM
       reline (>= 0.2.7)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
-    launchy (2.5.0)
-      addressable (~> 2.7)
-    letter_opener (1.7.0)
-      launchy (~> 2.2)
     loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -216,7 +212,6 @@ DEPENDENCIES
   devise
   importmap-rails (>= 0.3.4)
   jbuilder (~> 2.7)
-  letter_opener (~> 1.7)
   passwordless (~> 0.10.0)
   phonelib (~> 0.6.53)
   pg (~> 1.2)

@@ -8,7 +8,5 @@ Rails.application.routes.draw do
   post 'signup', to: 'signups#create', as: :signup
   get 'signup', to: 'signups#new', as: :new_signup
 
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-
   root "fosters#index" # CHANGE THIS
 end
