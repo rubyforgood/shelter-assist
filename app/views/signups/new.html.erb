@@ -1,7 +1,17 @@
 <h1>Sign Up</h1>
-<%= form_for :signup do |f| %>  
-    <%= f.label :email %> <%= f.text_field :email %>
 
+<%= form_for :foster do |f| %>
+    <div class = "Email Field">
+      <%= f.label :email %> <%= f.text_field :email %>
+    </div>
+    <div class = "Street Field">
+      <%= f.label :street %> <%= f.text_field :street %>
+    </div> 
+    <div class = "Apt Field">
+      <%= f.label :apt %> <%= f.text_field :apt %>
+    </div>
+
+    <%= f.label :phone %> <%= f.text_field :phone %>
     <h2>HOME INFORMATION</h2>
 
     <div class="home-during-day-field">
@@ -12,7 +22,5 @@
       <%= f.radio_button :is_home_during_day, false %> No
       <p>
     </div>
-    
     <%= f.submit "Fetch!" %>
-  
 <% end %>

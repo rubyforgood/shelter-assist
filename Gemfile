@@ -66,3 +66,5 @@ group :test do
 end
 
 gem 'devise', github: 'ghiculescu/devise', branch: 'patch-2'
+
+gem "phonelib", "~> 0.6.53"
