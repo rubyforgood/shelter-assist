@@ -24,7 +24,7 @@ class FostersControllerTest < ActionDispatch::IntegrationTest
           phone: '5714128473',
           street: 'Yo',
           apt: 'unit A',
-          is_home_during_day: true
+          is_home_during_day: true,
           transportation: "car"
         } 
       }
