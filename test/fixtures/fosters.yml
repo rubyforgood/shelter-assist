@@ -6,3 +6,4 @@
 #
 one: 
   email: "peter@gihub.com"
+  is_working_from_home: true
