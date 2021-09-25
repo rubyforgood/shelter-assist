@@ -62,7 +62,8 @@ group :test do
   gem "webdrivers"
 end
 
-gem 'devise', github: 'ghiculescu/devise', branch: 'patch-2'
+gem 'devise'
+gem "passwordless", "~> 0.10.0"
 
 gem "phonelib", "~> 0.6.53"
 gem "pg", "~> 1.2"
