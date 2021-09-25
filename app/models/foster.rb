@@ -1,4 +1,10 @@
 class Foster < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  passwordless_with :email
+  
   enum transportation: [ :access_to_car, :car, :no_car ]
 
   validates :full_name, presence: true
