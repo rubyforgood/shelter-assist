@@ -18,21 +18,9 @@
     </div>
 
   <%= f.label :phone %> <%= f.text_field :phone %>
-  <h2 class="home_info">HOME INFORMATION</h2>
 
-  <div class="foster_is_home_container">
-    <%= f.label "Are you or another adult home during the day?" %>
-    <br>
-    <%= f.radio_button :is_home_during_day, true, :checked => true %> Yes
-    <br>
-    <%= f.radio_button :is_home_during_day, false %> No
-
-  </div>
-    <%= f.label :phone %> <%= f.text_field :phone %>
-    <%= render "home_section", f: f %>
-    <%= render "application_section", f: f %>
+  <%= render "home_section", f: f %>
+  <%= render "application_section", f: f %>
   
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>
-  <!-- form_for @object, html: { multipart: true }, do |f| -->
-  <!-- form_for @object, html: { class: "classname" }, do |f| -->
 <% end %>

@@ -1,3 +1,14 @@
+<h2 class="home_info">HOME INFORMATION</h2>
+
+<div class="foster_is_home_container">
+  <%= f.label "Are you or another adult home during the day?" %>
+  <br>
+  <%= f.radio_button :is_home_during_day, true, :checked => true %> Yes
+  <br>
+  <%= f.radio_button :is_home_during_day, false %> No
+
+</div>
+
 <h4>Tell us about your household</h4>
 
 <%= f.fields_for :homes do |home| %>
@@ -16,7 +27,5 @@
   <%= home.check_box :has_other_cat, :value => true  %>
   <%= home.label :has_other_cat, "Cat(s)" %>
 <% end %>
-
-
 
 <br />
