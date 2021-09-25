@@ -23,6 +23,8 @@ class SignupsController < ApplicationController
     params.fetch(:foster, {}).permit(
       :email, 
       :phone,
+      :street,
+      :apt,
       :is_home_during_day,
       :transportation
     )
