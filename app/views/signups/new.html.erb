@@ -1,5 +1,6 @@
 <h1>Sign Up</h1>
-<%= form_for :signup do |f| %>  
+
+<%= form_for :foster do |f| %>
     <div class = "Email Field">
       <%= f.label :email %> <%= f.text_field :email %>
     </div>
@@ -9,12 +10,10 @@
     <div class = "Apt Field">
       <%= f.label :apt %> <%= f.text_field :apt %>
     </div>
-    
 
+    <%= f.label :phone %> <%= f.text_field :phone %>
     <%= f.submit "Fetch!" %>
   
   <!-- form_for @object, html: { multipart: true }, do |f| -->
   <!-- form_for @object, html: { class: "classname" }, do |f| -->
-
-  
 <% end %>
