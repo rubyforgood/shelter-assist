@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<%= render @animal_application %>
+<div>
+  <%= link_to "Edit this animal application", edit_animal_application_path(@animal_application) %> |
+  <%= link_to "Back to animal applications", animal_applications_path %>
+
+  <%= button_to "Destroy", animal_application_path(@animal_application), method: :delete %>
+</div>
