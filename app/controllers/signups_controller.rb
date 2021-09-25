@@ -1,4 +1,6 @@
 class SignupsController < ApplicationController
+  prepend_before_action :require_no_foster, only: [:new]
+
   def create
     @foster = Foster.new(foster_params)
 
@@ -30,5 +32,9 @@ class SignupsController < ApplicationController
       :is_home_during_day,
       :transportation
     )
+  end
+
+  def require_no_foster
+    redirect_to foster_root_path if current_foster.logged_in?
   end
 end

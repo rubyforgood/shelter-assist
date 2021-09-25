@@ -5,15 +5,10 @@ Rails.application.routes.draw do
   devise_for :fosters, only: [:sessions, :registrations]
   passwordless_for :fosters, at: '/', as: :auth
 
-  unauthenticated :foster do
-    post 'signup', to: 'signups#create', as: :signup
-    get 'signup', to: 'signups#new', as: :new_signup
-    root to: 'signups#new', as: :unauthenticated_root
-  end
+  post 'signup', to: 'signups#create', as: :signup
+  get 'signup', to: 'signups#new', as: :new_signup
 
-  authenticated :foster do
-    get '/', to: 'status#show', as: :foster_root
-  end
+  get '/status', to: 'status#show', as: :foster_root
 
   authenticated :admin do
     resources :fosters
