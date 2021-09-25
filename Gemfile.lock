@@ -125,6 +125,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     phonelib (0.6.53)
+    pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.5.0)
       nio4r (~> 2.0)
@@ -177,7 +178,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     stimulus-rails (0.5.4)
       rails (>= 6.0.0)
     thor (1.1.0)
@@ -216,10 +216,10 @@ DEPENDENCIES
   importmap-rails (>= 0.3.4)
   jbuilder (~> 2.7)
   phonelib (~> 0.6.53)
+  pg (~> 1.2)
   puma (~> 5.0)
   rails (~> 7.0.0.alpha2)
   selenium-webdriver
-  sqlite3 (~> 1.4)
   stimulus-rails (>= 0.4.0)
   turbo-rails (>= 0.7.11)
   tzinfo-data
