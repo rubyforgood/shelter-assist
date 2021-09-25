@@ -4,6 +4,7 @@ class CreateFosters < ActiveRecord::Migration[7.0]
       t.string :email, null: false
       t.string :street, null: false
       t.string :apt
+      t.string :phone, null: false
       
       t.timestamps
     end
