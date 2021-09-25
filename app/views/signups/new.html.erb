@@ -31,9 +31,17 @@
   <div class="home-during-day-field">
     <%= f.label "Are you or another adult home during the day?" %>
     <br>
-    <%= f.radio_button :is_home_during_day, true %> Yes
+    <%= f.radio_button :is_home_during_day, true, id: "is_home_during_day_true" %> 
+    <%= f.label :is_home_during_day, "Yes" %>
     <br>
-    <%= f.radio_button :is_home_during_day, false %> No
+    <%= f.radio_button :is_home_during_day, false, id: "is_home_during_day_false" %>
+    <%= f.label :is_home_during_day, "No" %>
+    <p>
+  </div>
+  <div class="transportation-field">
+    <%= f.label "Transportation" %>
+    <br>
+    <%= select_tag :transportation, options_for_select(Foster.transportations.map {|k, v| [k.humanize.capitalize, v]}) %>
     <p>
   </div>
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>
