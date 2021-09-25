@@ -41,20 +41,26 @@ class FosterTest < ActiveSupport::TestCase
     assert foster.valid?
   end
 
+  test 'a foster can be added with a phone number with special characters' do
+    valid_parameters = @valid_parameters
+    valid_parameters['phone'] = '401-782-5678'
+    foster = Foster.new(valid_parameters)
+
+    assert foster.valid?
+    assert_equal foster.phone, '4017825678'
+  end
+
   test "a foster can be rejected for bad entries" do
     bad_parameters = @valid_parameters
     bad_parameters['phone'] = '1234567890'
     bad_foster_1 = Foster.new(bad_parameters)
-    bad_parameters['phone'] = '401-789-4567'
-    bad_foster_2 = Foster.new(bad_parameters)
     bad_parameters['phone'] = '401-789-4567asdf'
-    bad_foster_3 = Foster.new(bad_parameters)
+    bad_foster_2 = Foster.new(bad_parameters)
     bad_parameters['phone'] = 'ruby for bad'
-    bad_foster_4 = Foster.new(bad_parameters)
+    bad_foster_3 = Foster.new(bad_parameters)
 
     assert bad_foster_1.invalid?
     assert bad_foster_2.invalid?
     assert bad_foster_3.invalid?
-    assert bad_foster_4.invalid?
   end
 end
