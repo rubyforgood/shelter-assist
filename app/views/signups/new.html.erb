@@ -1,9 +1,21 @@
 <h1 class="sign_up_title">Sign Up</h1>
 
-<%= form_for :foster, html: { class: "sign_up_form" } do |f| %>
-  <%= f.label :email %> <%= f.text_field :email %>
-  <%= f.label :street %> <%= f.text_field :street %>
-  <%= f.label :apt %> <%= f.text_field :apt %>
+<%= form_for :foster do |f| %>
+    <div class="field">
+      <%= f.label :full_name %> <%= f.text_field :full_name %>
+    </div>
+    <div class="field">
+      <%= f.label :nick_name %> <%= f.text_field :nick_name %>
+    </div>
+    <div class="field">
+      <%= f.label :email %> <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :street %> <%= f.text_field :street %>
+    </div> 
+    <div class="field">
+      <%= f.label :apt %> <%= f.text_field :apt %>
+    </div>
 
   <%= f.label :phone %> <%= f.text_field :phone %>
   <h2 class="home_info">HOME INFORMATION</h2>
