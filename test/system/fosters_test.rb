@@ -26,7 +26,7 @@ class FostersTest < ApplicationSystemTestCase
     fill_in "inspiration", with: "I am the perfect foster"
 
     choose "is_home_during_day_true"
-    select "No car", from: "transportation"
+    select "No car", from: "Can you drive?"
 
     click_on "Fetch!"
     
