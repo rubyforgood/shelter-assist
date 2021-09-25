@@ -12,8 +12,15 @@
     </div>
 
     <%= f.label :phone %> <%= f.text_field :phone %>
+    <h2>HOME INFORMATION</h2>
+
+    <div class="home-during-day-field">
+      <%= f.label "Are you or another adult home during the day?" %>
+      <br>
+      <%= f.radio_button :is_home_during_day, true, :checked => true %> Yes
+      <br>
+      <%= f.radio_button :is_home_during_day, false %> No
+      <p>
+    </div>
     <%= f.submit "Fetch!" %>
-  
-  <!-- form_for @object, html: { multipart: true }, do |f| -->
-  <!-- form_for @object, html: { class: "classname" }, do |f| -->
 <% end %>

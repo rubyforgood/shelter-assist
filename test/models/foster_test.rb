@@ -2,27 +2,27 @@ require "test_helper"
 
 class FosterTest < ActiveSupport::TestCase
   test 'valid foster' do
-    foster = Foster.new(email: 'johndoe@mail.com', phone: '4017824567', street: '123')
+    foster = Foster.new(email: 'johndoe@mail.com', phone: '4017824567', street: '123', is_home_during_day: true)
     assert foster.valid?
   end
 
   test 'does not add a foster with an empty street' do
-    foster = Foster.new(email: 'johncena@mail.com', phone: '4017824567', street: '')
+    foster = Foster.new(email: 'johncena@mail.com', phone: '4017824567', street: '', is_home_during_day: true)
     assert foster.invalid?
   end
 
   test 'does add a foster without apt' do
-    foster = Foster.new(email: 'johnwick@mail.com', phone: '4017824567', street: '987 street', apt: '')
+    foster = Foster.new(email: 'johnwick@mail.com', phone: '4017824567', street: '987 street', apt: '', is_home_during_day: true)
     assert foster.valid?
   end
 
   test 'does add a foster with apt' do
-    foster = Foster.new(email: 'johnwick@mail.com', phone: '4017824567', street: '987 street', apt: '#123')
+    foster = Foster.new(email: 'johnwick@mail.com', phone: '4017824567', street: '987 street', apt: '#123', is_home_during_day: true)
     assert foster.valid?
   end
   
   test "a foster can be added with valid entries" do
-    foster = Foster.create(email: 'chuck.norris@jetli.com', phone: '4017824567', street: '123')
+    foster = Foster.create(email: 'chuck.norris@jetli.com', phone: '4017824567', street: '123', is_home_during_day: true)
 
     assert foster.valid?
   end

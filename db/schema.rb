@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_175316) do
+ActiveRecord::Schema.define(version: 2021_09_24_210119) do
 
   create_table "fosters", force: :cascade do |t|
     t.string "email", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_175316) do
     t.string "phone", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_home_during_day"
   end
 
 end

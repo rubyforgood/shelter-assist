@@ -5,6 +5,7 @@ class SignupsController < ApplicationController
     @foster = Foster.new(foster_params)
     @foster.phone = inputs['phone']
     @foster.email = inputs['email']
+    @foster.is_home_during_day = inputs['is_home_during_day']
     @foster.save
   end
 
@@ -14,6 +15,6 @@ class SignupsController < ApplicationController
   private
 
   def foster_params
-    params.fetch(:foster, {}).permit(:email, :phone)
+    params.fetch(:foster, {}).permit(:email, :phone, :is_home_during_day)
   end
 end

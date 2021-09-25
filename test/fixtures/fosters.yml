@@ -7,4 +7,5 @@
 one: 
   email: "peter@gihub.com"
   street: "123 Sesame street"
+  is_home_during_day: true
   phone: 571-412-4958
