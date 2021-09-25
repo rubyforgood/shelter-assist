@@ -17,7 +17,16 @@ class FostersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create foster" do
     assert_difference("Foster.count") do
-      post fosters_url, params: { foster: { email: "hi@hi.com", phone: '5714128473', street: 'Yo', apt: 'unit A', is_home_during_day: true } }
+      post fosters_url, params: {
+        foster: {
+          full_name: 'Chuck Norris',
+          email: "hi@hi.com",
+          phone: '5714128473',
+          street: 'Yo',
+          apt: 'unit A',
+          is_home_during_day: true
+        }
+      }
     end
 
     assert_redirected_to foster_url(Foster.last)
@@ -34,7 +43,16 @@ class FostersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update foster" do
-    patch foster_url(@foster), params: { foster: { email: "hi@hi.com", phone: '5714128473', street: 'Yo', apt: 'unit A', is_home_during_day: true } }
+    patch foster_url(@foster), params: {
+      foster: {
+        full_name: 'Chuck Norris',
+        email: "hi@hi.com",
+        phone: '5714128473',
+        street: 'Yo',
+        apt: 'unit A',
+        is_home_during_day: true
+      }
+    }
     assert_redirected_to foster_url(@foster)
   end
 

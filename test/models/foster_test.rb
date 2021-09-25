@@ -3,6 +3,7 @@ require "test_helper"
 class FosterTest < ActiveSupport::TestCase
   def setup
     @valid_parameters = {
+      full_name: 'Chuck Norris',
       email: 'johndoe@mail.com',
       phone: '4017824567',
       street: '123 Coconut Ave',
