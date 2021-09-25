@@ -1,0 +1,22 @@
+<h4>Tell us about your household</h4>
+
+<%= f.fields_for :homes do |home| %>
+  <%= home.check_box :has_fenced_yard, :value => true %>
+  <%= home.label :has_fenced_yard, "Fenced Yard" %>
+
+  <%= home.check_box :has_children, :value => true  %>
+  <%= home.label :has_children, "Kids" %>
+
+  <%= home.check_box :has_other_adults, :value => true  %>
+  <%= home.label :has_other_adults, "Other Adults" %>
+
+  <%= home.check_box :has_other_dog, :value => true  %>
+  <%= home.label :has_other_dog, "Dog(s)" %>
+
+  <%= home.check_box :has_other_cat, :value => true  %>
+  <%= home.label :has_other_cat, "Cat(s)" %>
+<% end %>
+
+
+
+<br />
