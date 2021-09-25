@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_175316) do
     t.string "phone", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "transportation", null: false
   end
 
 end

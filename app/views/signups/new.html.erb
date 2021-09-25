@@ -20,13 +20,18 @@
   <%= f.label :phone %> <%= f.text_field :phone %>
   <h2 class="home_info">HOME INFORMATION</h2>
 
-  <div class="foster_is_home_container">
-    <%= f.label "Are you or another adult home during the day?" %>
+    <div class="home-during-day-field">
+      <h3>Are you or another adult home during the day?</h3>
+      <%= f.radio_button :is_home_during_day, true, id: "is_home_during_day_true" %> 
+      <%= f.label :is_home_during_day, "Yes" %>
+      <br>
+      <%= f.radio_button :is_home_during_day, false, id: "is_home_during_day_false" %>
+      <%= f.label :is_home_during_day, "No" %>
+    </div>
+    <div class="transportation-field">
+      <h3>Transportation</h3>
+      <%= select_tag :transportation, options_for_select(Foster.transportations.map {|k, v| [k.humanize.capitalize, v]}) %>
+    </div>
     <br>
-    <%= f.radio_button :is_home_during_day, true, :checked => true %> Yes
-    <br>
-    <%= f.radio_button :is_home_during_day, false %> No
-
-  </div>
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>
 <% end %>

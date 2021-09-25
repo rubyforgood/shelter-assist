@@ -64,6 +64,6 @@ class FostersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def foster_params
-      params.fetch(:foster, {}).permit(:full_name, :email, :street, :apt, :phone, :is_home_during_day)
+      params.fetch(:foster, {}).permit(:full_name, :email, :street, :apt, :phone, :is_home_during_day, :transportation)
     end
 end

@@ -10,6 +10,7 @@ class SignupsController < ApplicationController
     @foster.street = inputs['street']
     @foster.apt = inputs['apt']
     @foster.is_home_during_day = inputs['is_home_during_day']
+    @foster.transportation = inputs['transportation']
     @foster.save
   end
 
@@ -19,6 +20,11 @@ class SignupsController < ApplicationController
   private
 
   def foster_params
-    params.fetch(:foster, {}).permit(:email, :phone, :is_home_during_day)
+    params.fetch(:foster, {}).permit(
+      :email, 
+      :phone,
+      :is_home_during_day,
+      :transportation
+    )
   end
 end
