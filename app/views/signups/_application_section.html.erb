@@ -1,0 +1,6 @@
+<h3>Application</h3>
+<h4>Tell us things we might want to know about your home and your experience with pets.</h4>
+<%= f.fields_for :animal_application do |app| %>
+  <%= app.text_area(:inspiration, id: "inspiration") %>
+<% end %>
+<br />

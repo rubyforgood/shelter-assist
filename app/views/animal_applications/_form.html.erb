@@ -1,0 +1,19 @@
+<%= form_with(model: animal_application) do |form| %>
+  <%= form.text_area(:inspiration, id: "inspiration") %>
+  <%= form.text_field(:start_date, id: "start_date") %>
+  <% if animal_application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(animal_application.errors.count, "error") %> prohibited this animal_application from being saved:</h2>
+
+      <ul>
+        <% animal_application.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

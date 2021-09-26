@@ -15,6 +15,14 @@ class FostersTest < ApplicationSystemTestCase
     fill_in "Street", with: "123 Sesame Street"
     fill_in "Apt", with: "Unit A"
     fill_in "Phone", with: "401-791-7482"
+    
+    check("Fenced Yard")
+    check("Kids")
+    assert_checked_field("Fenced Yard")
+    assert_checked_field("Kids")
+    
+    assert_selector "h4", text: "Tell us things we might want to know about your home and your experience with pets."
+    fill_in "inspiration", with: "I am the perfect foster"
 
     choose "is_home_during_day_true"
     select "No car", from: "transportation"

@@ -18,8 +18,10 @@
     </div>
 
   <%= f.label :phone %> <%= f.text_field :phone %>
-  <h2 class="home_info">HOME INFORMATION</h2>
 
+  <%= render "home_section", f: f %>
+  <%= render "application_section", f: f %>
+  
     <div class="home-during-day-field">
       <h3>Are you or another adult home during the day?</h3>
       <%= f.radio_button :is_home_during_day, true, id: "is_home_during_day_true" %> 

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :animal_applications
+  resources :homes
   post 'signups', to: 'signups#create', as: :signup
   get 'signups', to: 'signups#new', as: :new_signup
   resources :fosters

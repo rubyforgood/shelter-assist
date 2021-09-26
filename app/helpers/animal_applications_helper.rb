@@ -1,0 +1,2 @@
+module AnimalApplicationsHelper
+end
