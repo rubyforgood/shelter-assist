@@ -1,4 +1,4 @@
-class FostersController < ApplicationController
+class FostersController < PasswordProtectedController
   before_action :set_foster, only: %i[ show edit update destroy ]
 
   # GET /fosters or /fosters.json

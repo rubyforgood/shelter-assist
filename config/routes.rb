@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
-  resources :fosters
+  devise_scope :foster do
+    resources :fosters
+  end
 
   # admin
   devise_for :fosters, only: [:sessions, :passwords], module: :admin, path_prefix: :admin

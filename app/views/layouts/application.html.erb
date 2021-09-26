@@ -11,6 +11,9 @@
   <body>
     <% if current_foster.logged_in? %>
       <%= render 'layouts/foster_menu' %>
+      <% if current_foster.admin? %>
+        <%= render 'layouts/admin_menu' %>
+      <% end %>
     <% end %>
     <% if !current_foster.logged_in? %>
       <%= render 'layouts/visitor_menu' %>
@@ -22,7 +25,7 @@
     <% end %>
     <%= yield %>
     <% if !current_foster.logged_in? %>
-      <%= render 'layouts/admin_menu' %>
+      <%= render 'layouts/admin_login_menu' %>
     <% end %>
   </body>
 </html>

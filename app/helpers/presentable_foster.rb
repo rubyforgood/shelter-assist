@@ -25,5 +25,8 @@ class PresentableFoster < DelegateClass(Foster)
 
   class Visitor < self
     def name; end
+    def admin?
+      false
+    end
   end
 end
