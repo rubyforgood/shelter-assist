@@ -65,5 +65,4 @@ end
 gem 'devise'
 gem "passwordless", "~> 0.10.0"
 
-gem "phonelib", "~> 0.6.53"
 gem "pg", "~> 1.2"
