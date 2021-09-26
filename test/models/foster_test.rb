@@ -7,7 +7,8 @@ class FosterTest < ActiveSupport::TestCase
       email: 'johndoe@mail.com',
       phone: '4017824567',
       street: '123 Coconut Ave',
-      is_home_during_day: true
+      is_home_during_day: true,
+      transportation: 1
     }
   end
 
