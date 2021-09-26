@@ -20,7 +20,7 @@ on:
 jobs:
   test:
 
-    runs-on: [macos-latest]
+    runs-on: [macos-latest, ubuntu-latest]
     services:
       postgres:
         image: postgres:latest
