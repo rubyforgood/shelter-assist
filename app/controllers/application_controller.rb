@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_foster
-    @current_foster ||= PresentableFoster.new(authenticate_by_session(Foster), view_context)
+    @current_foster ||= PresentableFoster.build(authenticate_by_session(Foster), view_context)
   end
 
   def require_foster!

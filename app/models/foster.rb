@@ -21,7 +21,7 @@ class Foster < ApplicationRecord
   end
 
   def self.fetch_resource_for_passwordless(email)
-    find_or_create_by(email: email)
+    find_by(email: email)
   end
 
   def password_required?

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
   resources :fosters
-  devise_for :fosters, only: [:sessions, :registrations]
+  devise_for :fosters, only: :sessions, module: :admin
   passwordless_for :fosters, at: '/', as: :auth
 
   post 'signup', to: 'signups#create', as: :signup
