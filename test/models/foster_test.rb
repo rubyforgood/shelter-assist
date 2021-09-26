@@ -8,7 +8,7 @@ class FosterTest < ActiveSupport::TestCase
       phone: '4017824567',
       street: '123 Coconut Ave',
       is_home_during_day: true,
-      transportation: 1
+      transportation: :access_to_car,
     }
   end
 
@@ -53,15 +53,12 @@ class FosterTest < ActiveSupport::TestCase
 
   test "a foster can be rejected for bad entries" do
     bad_parameters = @valid_parameters
-    bad_parameters['phone'] = '1234567890'
-    bad_foster_1 = Foster.new(bad_parameters)
     bad_parameters['phone'] = '401-789-4567asdf'
-    bad_foster_2 = Foster.new(bad_parameters)
+    bad_foster_1 = Foster.new(bad_parameters)
     bad_parameters['phone'] = 'ruby for bad'
-    bad_foster_3 = Foster.new(bad_parameters)
+    bad_foster_2 = Foster.new(bad_parameters)
 
     assert bad_foster_1.invalid?
     assert bad_foster_2.invalid?
-    assert bad_foster_3.invalid?
   end
 end
