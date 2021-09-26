@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_09_26_130241) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_130241) do
 
   create_table "passwordless_sessions", force: :cascade do |t|
     t.string "authenticatable_type"
-    t.integer "authenticatable_id"
+    t.bigint "authenticatable_id"
     t.datetime "timeout_at", null: false
     t.datetime "expires_at", null: false
     t.datetime "claimed_at"
