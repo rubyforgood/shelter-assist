@@ -1,4 +1,4 @@
-class SignupsController < ApplicationController
+class SignupsController < PasswordlessController
   prepend_before_action :require_no_foster, only: [:new]
 
   def create
