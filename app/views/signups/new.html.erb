@@ -8,10 +8,10 @@
 
 <%= form_for @foster, url: signup_path do |f| %>
     <div class="field">
-      <%= f.label :full_name %> <%= f.text_field :full_name %>
+      <%= f.label :full_name, "Full Name" %> <%= f.text_field :full_name %>
     </div>
     <div class="field">
-      <%= f.label :nick_name %> <%= f.text_field :nick_name %>
+      <%= f.label :nick_name, "Nick Name" %> <%= f.text_field :nick_name %>
     </div>
     <div class="field">
       <%= f.label :email %> <%= f.text_field :email %>
@@ -42,5 +42,15 @@
       <%= f.select :transportation, options_for_select(Foster.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></p>
     </div>
     <br>
+
+    <h2 class="home_info">HOME INFORMATION</h2>
+  <div class="foster_pet_preference">
+    <%= f.label "Animal Kind?" %>
+    <br>
+    <%= f.radio_button :animal_kind, 'dog' %> <%= f.label :animal_kind, 'Dog', value: 'dog' %>
+    <br>
+    <%= f.radio_button :animal_kind, 'cat', disabled: true %> <%= f.label :animal_kind, 'Cat', value: 'cat' %>
+  </div>
+    
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>
 <% end %>
