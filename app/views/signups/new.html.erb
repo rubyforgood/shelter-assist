@@ -1,6 +1,12 @@
 <h1 class="sign_up_title">Sign Up</h1>
 
-<%= form_for :foster do |f| %>
+<% if @foster.errors.any? %>
+  <% @foster.errors.full_messages.each do |message| %>
+     <h3><%= message %> </h3>
+  <% end %>
+<% end %>
+
+<%= form_for @foster, url: signup_path do |f| %>
     <div class="field">
       <%= f.label :full_name %> <%= f.text_field :full_name %>
     </div>
@@ -32,7 +38,8 @@
     </div>
     <div class="transportation-field">
       <h3>Transportation</h3>
-      <%= select_tag :transportation, options_for_select(Foster.transportations.map {|k, v| [k.humanize.capitalize, v]}) %>
+      <p><%= f.label :transportation, 'Can you drive?' %>
+      <%= f.select :transportation, options_for_select(Foster.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></p>
     </div>
     <br>
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>

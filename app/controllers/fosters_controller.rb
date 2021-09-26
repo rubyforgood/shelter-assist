@@ -22,7 +22,6 @@ class FostersController < ApplicationController
   # POST /fosters or /fosters.json
   def create
     @foster = Foster.new(foster_params)
-
     respond_to do |format|
       if @foster.save
         format.html { redirect_to @foster, notice: "Foster was successfully created." }

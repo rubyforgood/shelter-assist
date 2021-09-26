@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
-  post 'signups', to: 'signups#create', as: :signup
-  get 'signups', to: 'signups#new', as: :new_signup
   resources :fosters
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :fosters, only: :sessions, module: :admin
+  passwordless_for :fosters, at: '/', as: :auth
 
-  # Almost every application defines a route for the root path ("/") at the top of this file.
-  # root "articles#index"
+  post 'signup', to: 'signups#create', as: :signup
+  get 'signup', to: 'signups#new', as: :new_signup
+
+  get '/status', to: 'status#show', as: :foster_root
+
+  authenticated :admin do
+    resources :fosters
+    root "fosters#index", as: :admin_root
+  end
+
+  root to: 'signups#new'
 end

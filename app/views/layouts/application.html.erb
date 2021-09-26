@@ -9,6 +9,17 @@
   </head>
 
   <body>
+    <% if current_foster.logged_in? %>
+      <%= render 'layouts/foster_menu' %>
+    <% end %>
+    <% if !current_foster.logged_in? %>
+      <%= render 'layouts/visitor_menu' %>
+    <% end %>
+    <% if flash.keys.any? %>
+      <% flash.keys.each do |key| %>
+      <p class="flash flash_<%= key %>"><%= flash[key] %></p>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

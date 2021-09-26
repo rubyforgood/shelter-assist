@@ -1,0 +1,7 @@
+.flash {
+  background: #999;
+  border: 1px solid darkgray;
+  color: #000;
+  display: block
+  font-weight: bold;
+}

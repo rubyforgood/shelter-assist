@@ -11,6 +11,7 @@ class FostersTest < ApplicationSystemTestCase
     assert_selector "h3", text: "Are you or another adult home during the day?"
     assert_selector "h3", text: "Transportation"
 
+    fill_in "Full name", with: "Cookie Monster"
     fill_in "Email", with: "peter@github.com"
     fill_in "Street", with: "123 Sesame Street"
     fill_in "Apt", with: "Unit A"
@@ -25,10 +26,16 @@ class FostersTest < ApplicationSystemTestCase
     fill_in "inspiration", with: "I am the perfect foster"
 
     choose "is_home_during_day_true"
-    select "No car", from: "transportation"
+    select "No car", from: "Can you drive?"
 
     click_on "Fetch!"
     
-    assert_selector "h1", text: "Woof."
+    assert_selector "p", text: "Check your email for a login link" # change to personal status page
+
+    mail = ActionMailer::Base.deliveries.last
+    body = Nokogiri::HTML(mail.body.raw_source)
+
+    assert_equal "peter@github.com", mail.to.first
+    assert_match /your login link/, body.to_s
   end
 end

@@ -1,8 +1,10 @@
 require "test_helper"
 
 class FostersControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   setup do
     @foster = fosters(:one)
+    sign_in(@foster, scope: :admin)
   end
 
   test "should get index" do
