@@ -3,29 +3,23 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-env:
-  POSTGRES_PASSWORD: postgres
-  POSTGRES_USER: postgres
-  POSTGRES_HOST: localhost
-  RAILS_ENV: test
-
 name: ruby-ci
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches:
+      - 'main'
+  push:
+    branches:
+      - 'main'
 
 jobs:
-  test:
+  build:
+    runs-on: ubuntu-latest
 
-    runs-on: [macos-latest, ubuntu-latest]
     services:
       postgres:
-        image: postgres:latest
-        ports:
-          - 5432:5432
+        image: postgres
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -34,15 +28,34 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@477b21f02be01bcb8030d50f37cfec92bfa615b6
-        with:
-        #   ruby-version: 2.6 // because we have .ruby-version
-          bundler-cache: true
-      - name: Install dependencies
-        run: bundle install
-      - name: Run tests
-        run: bundle exec rails test:all
+    - uses: actions/checkout@v2
+
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: Install PostgreSQL client
+      run: |
+        sudo apt-get -yqq install libpq-dev
+
+    - name: Build App
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bin/rails db:setup
+
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rails test:all
