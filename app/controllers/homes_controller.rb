@@ -19,21 +19,6 @@ class HomesController < ApplicationController
   def edit
   end
 
-  # POST /homes or /homes.json
-  def create
-    @home = Home.new(home_params)
-
-    respond_to do |format|
-      if @home.save
-        format.html { redirect_to @home, notice: "Home was successfully created." }
-        format.json { render :show, status: :created, location: @home }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @home.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /homes/1 or /homes/1.json
   def update
     respond_to do |format|
@@ -64,6 +49,6 @@ class HomesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def home_params
-      params.fetch(:home, {}).permit(:foster_id)
+      params.fetch(:home, {})
     end
 end
