@@ -163,6 +163,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.5)
     rubyzip (2.3.2)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -215,6 +216,7 @@ DEPENDENCIES
   pg (~> 1.2)
   puma (~> 5.0)
   rails (~> 7.0.0.alpha2)
+  rexml (~> 3.2.5)
   selenium-webdriver
   stimulus-rails (>= 0.4.0)
   turbo-rails (>= 0.7.11)

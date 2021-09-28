@@ -48,6 +48,8 @@ class FostersController < PasswordProtectedController
 
   # DELETE /fosters/1 or /fosters/1.json
   def destroy
+    @home = Home.find_by(foster_id: params[:id])
+    @home.destroy
     @foster.destroy
     respond_to do |format|
       format.html { redirect_to fosters_url, notice: "Foster was successfully destroyed." }

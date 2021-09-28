@@ -10,3 +10,4 @@ one:
   has_other_adults: true
   has_other_dog: false
   has_other_cat: false
+  foster_id: 1

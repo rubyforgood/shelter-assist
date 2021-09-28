@@ -1,31 +1,31 @@
 <h2 class="home_info">HOME INFORMATION</h2>
 
 <div class="foster_is_home_container">
-  <%= f.label "Are you or another adult home during the day?" %>
-  <br>
-  <%= f.radio_button :is_home_during_day, true, :checked => true %> Yes
-  <br>
-  <%= f.radio_button :is_home_during_day, false %> No
-
+      <h3>Are you or another adult home during the day?</h3>
+      <%= f.radio_button :is_home_during_day, true, id: "is_home_during_day_true" %> 
+      <%= f.label :is_home_during_day, "Yes" %>
+      <br>
+      <%= f.radio_button :is_home_during_day, false, id: "is_home_during_day_false" %>
+      <%= f.label :is_home_during_day, "No" %>
 </div>
 
 <h4>Tell us about your household</h4>
 
-<%= f.fields_for :homes do |home| %>
-  <%= home.check_box :has_fenced_yard, :value => true %>
-  <%= home.label :has_fenced_yard, "Fenced Yard" %>
+<%= f.fields_for :home, Home.new() do |home_attributes| %>
+  <%= home_attributes.check_box :has_fenced_yard, :value => true %>
+  <%= home_attributes.label :has_fenced_yard, "Fenced Yard" %>
 
-  <%= home.check_box :has_children, :value => true  %>
-  <%= home.label :has_children, "Kids" %>
+  <%= home_attributes.check_box :has_children, :value => true  %>
+  <%= home_attributes.label :has_children, "Kids" %>
 
-  <%= home.check_box :has_other_adults, :value => true  %>
-  <%= home.label :has_other_adults, "Other Adults" %>
+  <%= home_attributes.check_box :has_other_adults, :value => true  %>
+  <%= home_attributes.label :has_other_adults, "Other Adults" %>
 
-  <%= home.check_box :has_other_dog, :value => true  %>
-  <%= home.label :has_other_dog, "Dog(s)" %>
+  <%= home_attributes.check_box :has_other_dog, :value => true  %>
+  <%= home_attributes.label :has_other_dog, "Dog(s)" %>
 
-  <%= home.check_box :has_other_cat, :value => true  %>
-  <%= home.label :has_other_cat, "Cat(s)" %>
+  <%= home_attributes.check_box :has_other_cat, :value => true  %>
+  <%= home_attributes.label :has_other_cat, "Cat(s)" %>
 <% end %>
 
 <br />

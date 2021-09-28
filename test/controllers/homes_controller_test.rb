@@ -17,7 +17,7 @@ class HomesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create home" do
     assert_difference("Home.count") do
-      post homes_url, params: { home: {  } }
+      post homes_url, params: { home: { foster_id: 1 } }
     end
 
     assert_redirected_to home_url(Home.last)

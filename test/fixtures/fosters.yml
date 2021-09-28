@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   full_name: "Chuck Norris"
   email: "peter@gihub.com"
   street: "123 Sesame street"
