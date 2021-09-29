@@ -216,13 +216,8 @@ DEPENDENCIES
   pg (~> 1.2)
   puma (~> 5.0)
   rails (~> 7.0.0.alpha2)
-<<<<<<< HEAD
   rexml (~> 3.2.5)
   selenium-webdriver
-=======
-  rexml
-  selenium-webdriver (~> 3.142, >= 3.142.7)
->>>>>>> Gem selenium change for github actions
   stimulus-rails (>= 0.4.0)
   turbo-rails (>= 0.7.11)
   tzinfo-data
