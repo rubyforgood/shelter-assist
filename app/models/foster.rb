@@ -7,8 +7,8 @@ class Foster < ApplicationRecord
   
   enum transportation: [ :access_to_car, :car, :no_car ]
 
-  has_one :home
-  accepts_nested_attributes_for :home
+  has_many :foster_homes
+  has_many :homes, through: :foster_homes
 
   validates :full_name, presence: true
   validates :street, presence: true

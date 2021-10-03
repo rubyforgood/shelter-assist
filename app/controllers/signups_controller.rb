@@ -3,7 +3,8 @@ class SignupsController < PasswordlessController
 
   def create
     @foster = Foster.new(foster_params)
-    @home = foster_params['home']
+    @home = Home.new(foster_params['home'])
+    @foster.homes << @home
 
     if @foster.save
       session = build_passwordless_session(@foster)
@@ -32,7 +33,7 @@ class SignupsController < PasswordlessController
       :apt,
       :is_home_during_day,
       :transportation,
-      home_attributes: [
+      homes_attributes: [
         :id,
         :has_children,
         :has_fenced_yard,

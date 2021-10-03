@@ -49,7 +49,7 @@ class FostersController < PasswordProtectedController
   # DELETE /fosters/1 or /fosters/1.json
   def destroy
     Foster.transaction do
-      Home.find_by(foster_id: params[:id]).destroy
+      FosterHome.where(foster_id: params[:id]).destroy_all
       @foster.destroy
     end
 

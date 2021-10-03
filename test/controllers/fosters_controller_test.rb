@@ -60,7 +60,7 @@ class FostersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to foster_url(@foster)
   end
 
-  test "should destroy foster" do
+  test "should destroy foster and associated foster_homes" do
     assert_difference("Foster.count", -1) do
       delete foster_url(@foster)
     end

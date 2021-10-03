@@ -34,7 +34,11 @@ class HomesController < ApplicationController
 
   # DELETE /homes/1 or /homes/1.json
   def destroy
-    @home.destroy
+    Home.transaction do
+      FosterHome.where(home_id: params[:id]).destroy_all
+      @home.destroy
+    end
+    
     respond_to do |format|
       format.html { redirect_to homes_url, notice: "Home was successfully destroyed." }
       format.json { head :no_content }

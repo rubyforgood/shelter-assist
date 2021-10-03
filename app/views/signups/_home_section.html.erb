@@ -11,7 +11,7 @@
 
 <h4>Tell us about your household</h4>
 
-<%= f.fields_for :home, Home.new() do |home_attributes| %>
+<%= f.fields_for :homes, Home.new() do |home_attributes| %>
   <%= home_attributes.check_box :has_fenced_yard, :value => true %>
   <%= home_attributes.label :has_fenced_yard, "Fenced Yard" %>
 

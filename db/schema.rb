@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_225655) do
+ActiveRecord::Schema.define(version: 2021_10_03_205905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2021_09_27_225655) do
     t.datetime "end_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "foster_homes", force: :cascade do |t|
+    t.bigint "foster_id", null: false
+    t.bigint "home_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["foster_id"], name: "index_foster_homes_on_foster_id"
+    t.index ["home_id"], name: "index_foster_homes_on_home_id"
   end
 
   create_table "fosters", force: :cascade do |t|
@@ -51,8 +60,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_225655) do
     t.boolean "has_other_cat", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "foster_id", null: false
-    t.index ["foster_id"], name: "index_homes_on_foster_id"
   end
 
   create_table "passwordless_sessions", force: :cascade do |t|
@@ -69,5 +76,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_225655) do
     t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
   end
 
-  add_foreign_key "homes", "fosters"
+  add_foreign_key "foster_homes", "fosters"
+  add_foreign_key "foster_homes", "homes"
 end
