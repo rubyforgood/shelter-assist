@@ -18,3 +18,10 @@ foster = Foster.create!(
   phone: '123-555-1212',
   transportation: 'car'
 )
+
+#   Rescue.create!(
+#   file_name: "cutepic.png",
+#   email: "rescue@gmail.com",
+#   name: "Jon smith",
+#   phone_number: "123-456-7892"
+# )
