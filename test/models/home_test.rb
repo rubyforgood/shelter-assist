@@ -1,7 +1,7 @@
 require "test_helper"
 
 class HomeTest < ActiveSupport::TestCase
-  test 'valid home' do
+  test 'valid home has foster_id' do
     attrs = create_home_attributes({ has_fenced_yard: true })
     home = Home.new(attrs)
 
@@ -10,7 +10,7 @@ class HomeTest < ActiveSupport::TestCase
   end
 
   test 'defaults all attrs to false' do
-    home = Home.new
+    home = Home.new()
     assert home.valid?
   end
 
@@ -20,7 +20,7 @@ class HomeTest < ActiveSupport::TestCase
       has_fenced_yard: opts[:has_fenced_yard] || false,
       has_other_adults: opts[:has_other_adults] || false,
       has_other_dog: opts[:has_other_dog] || false,
-      has_other_cat: opts[:has_other_cat] || false
+      has_other_cat: opts[:has_other_cat] || false,
     }
   end
 end
