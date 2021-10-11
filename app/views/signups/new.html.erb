@@ -28,9 +28,8 @@
   <%= render "home_section", f: f %>
   <%= render "application_section", f: f %>
     <div class="transportation-field">
-      <h3>Transportation</h3>
-      <p><%= f.label :transportation, 'Can you drive?' %>
-      <%= f.select :transportation, options_for_select(Foster.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></p>
+      <h4><%= f.label :transportation, 'Transportation' %></h4>
+      <%= f.select :transportation, options_for_select(Foster.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></h4>
     </div>
     <br>
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>
