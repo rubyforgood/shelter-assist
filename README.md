@@ -50,7 +50,7 @@ Fosters currently have a boolean `admin` column. It's likely this should instead
 
 Records like a Person who is a Foster and Application will likely need a way of tracking _status_ (approved, rejected, etc.).
 
-**Multitenancy** should be added ASAP. There are currently 2 organizations looking to use this software. Data for one Rescue should not be visible to other Rescue's.
+**Multitenancy** should be added ASAP. There are currently 2 organizations looking to use this software. Data for one Rescue should not be visible to other Rescues.
 
 ## Set up
 
