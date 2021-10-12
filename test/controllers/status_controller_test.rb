@@ -5,9 +5,9 @@ class StatusControllerTest < ActionDispatch::IntegrationTest
   include PasswordlessTestHelper
 
   test "should get show" do
-    foster = fosters(:one)
-    sign_in(foster, scope: :foster)
-    get foster_root_url
+    person = people(:one)
+    sign_in(person, scope: :person)
+    get person_root_url
     assert_response :success
   end
 end

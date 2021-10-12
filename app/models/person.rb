@@ -1,4 +1,5 @@
-class Foster < ApplicationRecord
+class Person < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -7,8 +8,9 @@ class Foster < ApplicationRecord
   
   enum transportation: [ :access_to_car, :car, :no_car ]
 
-  has_many :foster_homes
-  has_many :homes, through: :foster_homes
+  has_many :person_homes, inverse_of: :person
+  has_many :homes, through: :person_homes
+  accepts_nested_attributes_for :homes
 
   validates :full_name, presence: true
   validates :street, presence: true
@@ -17,6 +19,7 @@ class Foster < ApplicationRecord
   validates :phone, format: { with: /\A\d+\z/, message: "Numbers only, please." }
 
   before_validation :prep_phone
+  after_create :assign_default_role
 
   def prep_phone
     self.phone = self.phone.to_s.gsub(/[^0-9A-Za-z]/, '')
@@ -28,5 +31,11 @@ class Foster < ApplicationRecord
 
   def password_required?
     false
+  end
+
+private
+
+  def assign_default_role
+    self.add_role(:foster) if self.roles.blank?
   end
 end

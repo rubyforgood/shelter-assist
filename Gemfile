@@ -77,6 +77,7 @@ end
 
 gem 'devise'
 gem "passwordless", "~> 0.10.0"
+gem "rolify"
 
 gem 'sass-rails'
 

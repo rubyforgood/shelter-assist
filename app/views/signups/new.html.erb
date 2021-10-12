@@ -1,7 +1,7 @@
 <%= javascript_include_tag "components/SignUpForm", "data-turbo-track": "reload", defer: true %>
 
-<% if @foster.errors.any? %>
-  <% @foster.errors.full_messages.each do |message| %>
+<% if @person.errors.any? %>
+  <% @person.errors.full_messages.each do |message| %>
      <h3><%= message %></h3>
   <% end %>
 <% end %>
