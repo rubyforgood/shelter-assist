@@ -7,8 +7,9 @@ class Person < ApplicationRecord
   
   enum transportation: [ :access_to_car, :car, :no_car ]
 
-  has_many :person_homes
+  has_many :person_homes, inverse_of: :person
   has_many :homes, through: :person_homes
+  accepts_nested_attributes_for :homes
 
   validates :full_name, presence: true
   validates :street, presence: true
