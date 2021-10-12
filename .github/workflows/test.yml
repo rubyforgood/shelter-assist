@@ -1,0 +1,46 @@
+name: Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:10
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.0.2
+      - name: Install Bundler
+        run: gem install bundler:2.2.27
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.11.0
+      - name: Setup the Rails application
+        env:
+          RAILS_ENV: test
+        run: |
+          sudo apt-get -yqq install libpq-dev
+          bundle install --without development --jobs 4 --retry 3
+          cp config/database.github.yml config/database.yml
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+          yarn --frozen-lockfile
+      - name: Run unit tests
+        run: bundle exec rails test
