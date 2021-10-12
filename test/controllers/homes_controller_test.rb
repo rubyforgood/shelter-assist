@@ -15,14 +15,6 @@ class HomesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create home" do
-    assert_difference("Home.count") do
-      post homes_url, params: { home: {  } }
-    end
-
-    assert_redirected_to home_url(Home.last)
-  end
-
   test "should show home" do
     get home_url(@home)
     assert_response :success
@@ -38,7 +30,7 @@ class HomesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to home_url(@home)
   end
 
-  test "should destroy home" do
+  test "should destroy home and associated foster_homes" do
     assert_difference("Home.count", -1) do
       delete home_url(@home)
     end

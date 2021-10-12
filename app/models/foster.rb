@@ -7,6 +7,9 @@ class Foster < ApplicationRecord
   
   enum transportation: [ :access_to_car, :car, :no_car ]
 
+  has_many :foster_homes
+  has_many :homes, through: :foster_homes
+
   validates :full_name, presence: true
   validates :street, presence: true
   validates :is_home_during_day, presence: true

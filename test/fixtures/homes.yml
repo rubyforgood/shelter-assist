@@ -4,9 +4,17 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: 
+one:
+  id: 1
   has_children: true
   has_fenced_yard: true
   has_other_adults: true
+  has_other_dog: false
+  has_other_cat: false
+two:
+  id: 2
+  has_children: true
+  has_fenced_yard: false
+  has_other_adults: false
   has_other_dog: false
   has_other_cat: false

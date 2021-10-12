@@ -19,21 +19,6 @@ class HomesController < ApplicationController
   def edit
   end
 
-  # POST /homes or /homes.json
-  def create
-    @home = Home.new(home_params)
-
-    respond_to do |format|
-      if @home.save
-        format.html { redirect_to @home, notice: "Home was successfully created." }
-        format.json { render :show, status: :created, location: @home }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @home.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /homes/1 or /homes/1.json
   def update
     respond_to do |format|
@@ -49,7 +34,11 @@ class HomesController < ApplicationController
 
   # DELETE /homes/1 or /homes/1.json
   def destroy
-    @home.destroy
+    Home.transaction do
+      FosterHome.where(home_id: params[:id]).destroy_all
+      @home.destroy
+    end
+    
     respond_to do |format|
       format.html { redirect_to homes_url, notice: "Home was successfully destroyed." }
       format.json { head :no_content }
