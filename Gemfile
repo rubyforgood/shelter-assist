@@ -67,4 +67,3 @@ gem 'devise'
 gem "passwordless", "~> 0.10.0"
 
 gem "pg", "~> 1.2"
-gem 'rexml' # LoadError: cannot load such file -- rexml/document for github actions
