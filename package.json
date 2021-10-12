@@ -5,6 +5,7 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
+    "antd": "^4.16.13",
     "tailwindcss": "^2.2.16",
     "turbolinks": "^5.2.0"
   },
