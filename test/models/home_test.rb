@@ -10,7 +10,7 @@ class HomeTest < ActiveSupport::TestCase
   end
 
   test 'defaults all attrs to false' do
-    home = Home.new()
+    home = Home.new({ home_type: "House" })
     assert home.valid?
   end
 
@@ -21,6 +21,7 @@ class HomeTest < ActiveSupport::TestCase
       has_other_adults: opts[:has_other_adults] || false,
       has_other_dog: opts[:has_other_dog] || false,
       has_other_cat: opts[:has_other_cat] || false,
+      home_type: opts[:home_type] || "House",
     }
   end
 end
