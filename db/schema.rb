@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_145930) do
+ActiveRecord::Schema.define(version: 2021_10_12_191129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,14 @@ ActiveRecord::Schema.define(version: 2021_10_12_145930) do
   create_table "passwordless_sessions", force: :cascade do |t|
     t.string "authenticatable_type"
     t.bigint "authenticatable_id"
-    t.datetime "timeout_at", null: false
-    t.datetime "expires_at", null: false
-    t.datetime "claimed_at"
+    t.datetime "timeout_at", precision: 6, null: false
+    t.datetime "expires_at", precision: 6, null: false
+    t.datetime "claimed_at", precision: 6
     t.text "user_agent", null: false
     t.string "remote_addr", null: false
     t.string "token", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
   end
 
@@ -68,9 +68,16 @@ ActiveRecord::Schema.define(version: 2021_10_12_145930) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: 6
     t.datetime "remember_created_at", precision: 6
-    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
+  end
+
+  create_table "people_roles", id: false, force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "role_id"
+    t.index ["person_id", "role_id"], name: "index_people_roles_on_person_id_and_role_id"
+    t.index ["person_id"], name: "index_people_roles_on_person_id"
+    t.index ["role_id"], name: "index_people_roles_on_role_id"
   end
 
   create_table "person_homes", force: :cascade do |t|
@@ -89,6 +96,16 @@ ActiveRecord::Schema.define(version: 2021_10_12_145930) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
   add_foreign_key "person_homes", "homes"

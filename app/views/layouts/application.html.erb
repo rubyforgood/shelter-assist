@@ -11,7 +11,7 @@
   <body>
     <% if current_person.logged_in? %>
       <%= render 'layouts/person_menu' %>
-      <% if current_person.admin? %>
+      <% if current_person.has_role?(:admin) %>
         <%= render 'layouts/admin_menu' %>
       <% end %>
     <% end %>

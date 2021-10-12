@@ -3,12 +3,13 @@ admin = Person.create!(
   nick_name: "Admin",
   email: 'admin@test.com',
   password: 'password',
-  admin: true,
   street: "123 main st.",
   is_home_during_day: true,
   phone: '123-555-1212',
   transportation: 'car'
 )
+
+admin.add_role(:admin)
 
 person = Person.create!(
   full_name: "Person",
