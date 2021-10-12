@@ -13,12 +13,19 @@ class SignupsController < PasswordlessController
       Passwordless::Mailer.magic_link(session).deliver_now
       redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: json_form(nil, signup_path, @foster.errors) }
+      end
     end
   end
 
   def new
     @foster = Foster.new
+    respond_to do |format|
+      format.html {}
+      format.json { render json: json_form(@foster, signup_path) }
+    end
   end
 
   private
@@ -27,7 +34,7 @@ class SignupsController < PasswordlessController
     params.fetch(:foster, {}).permit(
       :full_name,
       :nick_name,
-      :email, 
+      :email,
       :phone,
       :street,
       :apt,
