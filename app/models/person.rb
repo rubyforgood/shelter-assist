@@ -1,14 +1,15 @@
-class Foster < ApplicationRecord
+class Person < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :homes
-  accepts_nested_attributes_for :homes, allow_destroy: true
-
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   passwordless_with :email
   
   enum transportation: [ :access_to_car, :car, :no_car ]
+
+  has_many :person_homes
+  has_many :homes, through: :person_homes
+  accepts_nested_attributes_for :homes
 
   validates :full_name, presence: true
   validates :street, presence: true

@@ -9,13 +9,13 @@
   </head>
 
   <body>
-    <% if current_foster.logged_in? %>
-      <%= render 'layouts/foster_menu' %>
-      <% if current_foster.admin? %>
+    <% if current_person.logged_in? %>
+      <%= render 'layouts/person_menu' %>
+      <% if current_person.admin? %>
         <%= render 'layouts/admin_menu' %>
       <% end %>
     <% end %>
-    <% if !current_foster.logged_in? %>
+    <% if !current_person.logged_in? %>
       <%= render 'layouts/visitor_menu' %>
     <% end %>
     <% if flash.keys.any? %>
@@ -24,7 +24,7 @@
       <% end %>
     <% end %>
     <%= yield %>
-    <% if !current_foster.logged_in? %>
+    <% if !current_person.logged_in? %>
       <%= render 'layouts/admin_login_menu' %>
     <% end %>
   </body>

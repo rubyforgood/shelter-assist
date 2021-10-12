@@ -5,6 +5,5 @@ class AddAddressFieldsToHomes < ActiveRecord::Migration[7.0]
     add_column :homes, :state, :string
     add_column :homes, :city, :string
     add_column :homes, :zip_code, :string
-    add_column :homes, :foster_id, :integer
   end
 end

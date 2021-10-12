@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class FostersTest < ApplicationSystemTestCase
+class PeopleTest < ApplicationSystemTestCase
   test "signing up" do
     visit new_signup_url
 
@@ -9,7 +9,6 @@ class FostersTest < ApplicationSystemTestCase
     assert_selector "label", text: "Phone"
     assert_selector "h2", text: "HOME INFORMATION"
     assert_selector "h3", text: "Are you or another adult home during the day?"
-    assert_selector "h3", text: "Transportation"
 
     fill_in "Full name", with: "Cookie Monster"
     fill_in "Email", with: "peter@github.com"
@@ -26,7 +25,7 @@ class FostersTest < ApplicationSystemTestCase
     fill_in "inspiration", with: "I am the perfect foster"
 
     choose "is_home_during_day_true"
-    select "No car", from: "Can you drive?"
+    select "No car", from: "Transportation"
 
     click_on "Fetch!"
     

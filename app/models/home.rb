@@ -1,3 +1,4 @@
 class Home < ApplicationRecord
-  belongs_to :foster
+  has_many :person_homes
+  has_many :people, through: :person_homes
 end
