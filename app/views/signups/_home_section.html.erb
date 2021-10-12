@@ -12,6 +12,32 @@
 <h4>Tell us about your household</h4>
 
 <%= f.fields_for :homes, Home.new() do |home_attributes| %>
+  <h1>Address</h1>
+  <div>          
+  <%= home_attributes.label :street %>
+  <%= home_attributes.text_field :street%>
+  </div>
+
+  <div>
+  <%= home_attributes.label :apt %>
+  <%= home_attributes.text_field :apt%>   
+  </div>
+
+  <div> 
+  <%= home_attributes.label :state %>
+  <%= home_attributes.text_field :state%>    
+  </div>
+
+  <div>      
+  <%= home_attributes.label :city %>
+  <%= home_attributes.text_field :city%>   
+  </div>    
+
+  <div>
+  <%= home_attributes.label :zip_code %>
+  <%= home_attributes.text_field :zip_code%>
+  </div>
+        
   <%= home_attributes.check_box :has_fenced_yard, :value => true %>
   <%= home_attributes.label :has_fenced_yard, "Fenced Yard" %>
 

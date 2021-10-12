@@ -9,6 +9,7 @@ class Person < ApplicationRecord
 
   has_many :person_homes
   has_many :homes, through: :person_homes
+  accepts_nested_attributes_for :homes
 
   validates :full_name, presence: true
   validates :street, presence: true

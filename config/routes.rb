@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :rescues
   resources :animal_applications
   resources :homes
   devise_scope :person do
