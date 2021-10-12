@@ -3,7 +3,7 @@ class PasswordlessMailerPreview < ActionMailer::Preview
     Passwordless::Mailer.magic_link(
       Passwordless::Session.new(
         token: '1234',
-        authenticatable: Foster.new
+        authenticatable: Person.new
       )
     )
   end

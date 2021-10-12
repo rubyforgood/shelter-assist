@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_194446) do
+ActiveRecord::Schema.define(version: 2021_10_12_143507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,35 +21,6 @@ ActiveRecord::Schema.define(version: 2021_10_11_194446) do
     t.datetime "end_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "foster_homes", force: :cascade do |t|
-    t.bigint "foster_id", null: false
-    t.bigint "home_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["foster_id"], name: "index_foster_homes_on_foster_id"
-    t.index ["home_id"], name: "index_foster_homes_on_home_id"
-  end
-
-  create_table "fosters", force: :cascade do |t|
-    t.string "full_name", null: false
-    t.string "nick_name"
-    t.string "email", default: "", null: false
-    t.boolean "is_home_during_day", null: false
-    t.integer "transportation", null: false
-    t.string "street", null: false
-    t.string "apt"
-    t.string "phone", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: 6
-    t.datetime "remember_created_at", precision: 6
-    t.boolean "admin", default: false, null: false
-    t.index ["email"], name: "index_fosters_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_fosters_on_reset_password_token", unique: true
   end
 
   create_table "homes", force: :cascade do |t|
@@ -76,6 +47,35 @@ ActiveRecord::Schema.define(version: 2021_10_11_194446) do
     t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "nick_name"
+    t.string "email", default: "", null: false
+    t.boolean "is_home_during_day", null: false
+    t.integer "transportation", null: false
+    t.string "street", null: false
+    t.string "apt"
+    t.string "phone", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.boolean "admin", default: false, null: false
+    t.index ["email"], name: "index_people_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
+  end
+
+  create_table "person_homes", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "home_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["home_id"], name: "index_person_homes_on_home_id"
+    t.index ["person_id"], name: "index_person_homes_on_person_id"
+  end
+
   create_table "rescues", force: :cascade do |t|
     t.string "file_name"
     t.string "email"
@@ -85,6 +85,6 @@ ActiveRecord::Schema.define(version: 2021_10_11_194446) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "foster_homes", "fosters"
-  add_foreign_key "foster_homes", "homes"
+  add_foreign_key "person_homes", "homes"
+  add_foreign_key "person_homes", "people"
 end

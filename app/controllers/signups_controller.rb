@@ -1,13 +1,13 @@
 class SignupsController < PasswordlessController
-  prepend_before_action :require_no_foster, only: [:new]
+  prepend_before_action :require_no_person, only: [:new]
 
   def create
-    @foster = Foster.new(foster_params)
-    @home = Home.new(foster_params['home'])
-    @foster.homes << @home
+    @person = Person.new(person_params)
+    @home = Home.new(person_params['home'])
+    @person.homes << @home
 
-    if @foster.save
-      session = build_passwordless_session(@foster)
+    if @person.save
+      session = build_passwordless_session(@person)
       session.token = Passwordless.token_generator.call(session)
       session.save!
       Passwordless::Mailer.magic_link(session).deliver_now
@@ -18,13 +18,13 @@ class SignupsController < PasswordlessController
   end
 
   def new
-    @foster = Foster.new
+    @person = Person.new
   end
 
   private
 
-  def foster_params
-    params.fetch(:foster, {}).permit(
+  def person_params
+    params.fetch(:person, {}).permit(
       :full_name,
       :nick_name,
       :email, 
@@ -44,7 +44,7 @@ class SignupsController < PasswordlessController
     )
   end
 
-  def require_no_foster
-    redirect_to foster_root_path if current_foster.logged_in?
+  def require_no_person
+    redirect_to person_root_path if current_person.logged_in?
   end
 end

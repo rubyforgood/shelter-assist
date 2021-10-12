@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  foster_id: 1
+  person_id: 1
   home_id: 1
 two:
-  foster_id: 2
+  person_id: 2
   home_id: 2
 three:
-  foster_id: 1
+  person_id: 1
   home_id: 2
 four:
-  foster_id: 2
+  person_id: 2
   home_id: 1

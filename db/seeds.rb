@@ -1,4 +1,4 @@
-admin = Foster.create!(
+admin = Person.create!(
   full_name: "Ad Ministrator",
   nick_name: "Admin",
   email: 'admin@test.com',
@@ -10,8 +10,8 @@ admin = Foster.create!(
   transportation: 'car'
 )
 
-foster = Foster.create!(
-  full_name: "Foster",
+person = Person.create!(
+  full_name: "Person",
   email: "foster@test.com",
   street: "123 main st.",
   is_home_during_day: true,

@@ -3,7 +3,7 @@ require "test_helper"
 class SignupsControllerTest < ActionDispatch::IntegrationTest
   test "should get create" do
     post signup_url, params: { 
-      foster: { 
+      person: { 
         full_name: 'Chuck Norris',
         email: "hi@hi.com", 
         phone: '571-412-8473', 

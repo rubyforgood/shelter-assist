@@ -1,7 +1,7 @@
 require "test_helper"
 
 class HomeTest < ActiveSupport::TestCase
-  test 'valid home has foster_id' do
+  test 'valid home has person_id' do
     attrs = create_home_attributes({ has_fenced_yard: true })
     home = Home.new(attrs)
 

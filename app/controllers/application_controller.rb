@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  def current_foster
-    @current_foster ||= PresentableFoster.build(nil, view_context)
+  def current_person
+    @current_person ||= PresentablePerson.build(nil, view_context)
   end
-  helper_method :current_foster
+  helper_method :current_person
 end
