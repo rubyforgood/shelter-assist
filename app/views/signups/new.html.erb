@@ -1,12 +1,12 @@
 <h1 class="sign_up_title">Sign Up</h1>
 
-<% if @foster.errors.any? %>
-  <% @foster.errors.full_messages.each do |message| %>
+<% if @person.errors.any? %>
+  <% @person.errors.full_messages.each do |message| %>
      <h3><%= message %> </h3>
   <% end %>
 <% end %>
 
-<%= form_for @foster, url: signup_path do |f| %>
+<%= form_for @person, url: signup_path do |f| %>
     <div class="field">
       <%= f.label :full_name %> <%= f.text_field :full_name %>
     </div>
@@ -29,7 +29,7 @@
   <%= render "application_section", f: f %>
     <div class="transportation-field">
       <h4><%= f.label :transportation, 'Transportation' %></h4>
-      <%= f.select :transportation, options_for_select(Foster.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></h4>
+      <%= f.select :transportation, options_for_select(Person.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></h4>
     </div>
     <br>
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>

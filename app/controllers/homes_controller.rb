@@ -35,7 +35,7 @@ class HomesController < ApplicationController
   # DELETE /homes/1 or /homes/1.json
   def destroy
     Home.transaction do
-      FosterHome.where(home_id: params[:id]).destroy_all
+      PersonHome.where(home_id: params[:id]).destroy_all
       @home.destroy
     end
     

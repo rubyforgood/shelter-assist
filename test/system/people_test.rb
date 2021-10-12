@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class FostersTest < ApplicationSystemTestCase
+class PeopleTest < ApplicationSystemTestCase
   test "signing up" do
     visit new_signup_url
 

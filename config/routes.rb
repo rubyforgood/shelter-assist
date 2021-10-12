@@ -2,22 +2,22 @@ Rails.application.routes.draw do
   resources :rescues
   resources :animal_applications
   resources :homes
-  devise_scope :foster do
-    resources :fosters
+  devise_scope :person do
+    resources :people
   end
 
   # admin
-  devise_for :fosters, only: [:sessions, :passwords], module: :admin, path_prefix: :admin
-  # non-admin fosters
-  passwordless_for :fosters, at: '/', as: :auth
+  devise_for :people, only: [:sessions, :passwords], module: :admin, path_prefix: :admin
+  # non-admin people
+  passwordless_for :people, at: '/', as: :auth
 
   post 'signup', to: 'signups#create', as: :signup
   get 'signup', to: 'signups#new', as: :new_signup
 
-  get '/status', to: 'status#show', as: :foster_root
+  get '/status', to: 'status#show', as: :person_root
 
   authenticated :admin do
-    root "fosters#index", as: :admin_root
+    root "people#index", as: :admin_root
   end
 
   root to: 'signups#new'
