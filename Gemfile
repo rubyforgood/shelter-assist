@@ -66,4 +66,6 @@ end
 gem 'devise'
 gem "passwordless", "~> 0.10.0"
 
+gem 'sass-rails'
+
 gem "pg", "~> 1.2"

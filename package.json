@@ -1,11 +1,15 @@
 {
   "name": "shelter-assist",
-  "private": true,
+  "private": false,
   "dependencies": {
-    "@rails/ujs": "^6.0.0",
-    "turbolinks": "^5.2.0",
+    "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
-    "@rails/actioncable": "^6.0.0"
+    "@rails/ujs": "^6.0.0",
+    "tailwindcss": "^2.2.16",
+    "turbolinks": "^5.2.0"
   },
-  "version": "0.1.0"
+  "version": "0.1.0-alpha",
+  "repository": "git@github.com:rubyforgood/shelter-assist.git",
+  "author": "",
+  "license": "MIT"
 }

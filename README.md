@@ -49,8 +49,15 @@ Records like Foster and Application will likely need a way of tracking _status_ 
 ## Set up
 
 * `git clone `
-* `rvm install 2.7.2`
+* `rvm install 3.0.2`
 * `bundle install`
+
+## Optional ASDF-VM Support
+
+Note: a `.tool-versions` file exists which contains the current supported ruby version
+
+* `asdf plugin-add ruby`
+* `asdf install`
 
 ## Running the app
 

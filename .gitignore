@@ -33,3 +33,5 @@
 
 # Ignore Rubymine files
 .idea
+
+/node_modules

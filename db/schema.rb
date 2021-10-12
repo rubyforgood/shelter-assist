@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_205905) do
+ActiveRecord::Schema.define(version: 2021_10_11_194446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 2021_10_03_205905) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
+  end
+
+  create_table "rescues", force: :cascade do |t|
+    t.string "file_name"
+    t.string "email"
+    t.string "name"
+    t.string "phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "foster_homes", "fosters"
