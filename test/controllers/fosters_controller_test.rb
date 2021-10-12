@@ -27,7 +27,7 @@ class FostersControllerTest < ActionDispatch::IntegrationTest
           street: 'Yo',
           apt: 'unit A',
           is_home_during_day: true,
-          transportation: "car"
+          transportation: "car",
         } 
       }
     end
@@ -53,14 +53,14 @@ class FostersControllerTest < ActionDispatch::IntegrationTest
         phone: '5714128473',
         street: 'Yo',
         apt: 'unit A',
-        is_home_during_day:true, 
+        is_home_during_day: true, 
         transportation: Foster.transportations()
       }
     }
     assert_redirected_to foster_url(@foster)
   end
 
-  test "should destroy foster" do
+  test "should destroy foster and associated foster_homes" do
     assert_difference("Foster.count", -1) do
       delete foster_url(@foster)
     end
