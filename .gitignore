@@ -35,3 +35,5 @@
 .idea
 
 /node_modules
+
+/app/assets/builds
