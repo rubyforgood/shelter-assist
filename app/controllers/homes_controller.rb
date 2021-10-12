@@ -53,6 +53,6 @@ class HomesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def home_params
-      params.fetch(:home, {})
+      params.fetch(:home, {}).permit(:home_type)
     end
 end
