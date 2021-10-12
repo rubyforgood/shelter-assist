@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_143507) do
+ActiveRecord::Schema.define(version: 2021_10_12_174146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 2021_10_12_143507) do
     t.datetime "end_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "animals", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "animal_kind", null: false
+    t.string "gender", null: false
+    t.string "age", null: false
+    t.string "size", null: false
+    t.bigint "person_id", null: false
+    t.bigint "rescue_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_animals_on_person_id"
+    t.index ["rescue_id"], name: "index_animals_on_rescue_id"
   end
 
   create_table "homes", force: :cascade do |t|
@@ -36,14 +50,14 @@ ActiveRecord::Schema.define(version: 2021_10_12_143507) do
   create_table "passwordless_sessions", force: :cascade do |t|
     t.string "authenticatable_type"
     t.bigint "authenticatable_id"
-    t.datetime "timeout_at", precision: 6, null: false
-    t.datetime "expires_at", precision: 6, null: false
-    t.datetime "claimed_at", precision: 6
+    t.datetime "timeout_at", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "claimed_at"
     t.text "user_agent", null: false
     t.string "remote_addr", null: false
     t.string "token", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
   end
 
@@ -85,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_10_12_143507) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "animals", "people"
+  add_foreign_key "animals", "rescues"
   add_foreign_key "person_homes", "homes"
   add_foreign_key "person_homes", "people"
 end
