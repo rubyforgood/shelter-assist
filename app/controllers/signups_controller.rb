@@ -39,7 +39,12 @@ class SignupsController < PasswordlessController
         :has_fenced_yard,
         :has_other_adults,
         :has_other_dog,
-        :has_other_cat
+        :has_other_cat,
+        :street, 
+        :apt, 
+        :state, 
+        :city, 
+        :zip_code
       ]
     )
   end
