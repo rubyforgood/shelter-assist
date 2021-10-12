@@ -249,7 +249,6 @@ DEPENDENCIES
   rails (~> 7.0.0.alpha2)
   react-rails (~> 2.6.1)
   rexml (~> 3.2.5)
-  rexml (~> 3.2.5)
   rolify
   sass-rails
   sassc-rails (~> 2.1)
