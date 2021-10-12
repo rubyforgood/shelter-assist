@@ -17,6 +17,7 @@ class SignupsController < PasswordlessController
 
   def new
     @foster = Foster.new
+    @foster.homes.build
   end
 
   private
@@ -30,7 +31,8 @@ class SignupsController < PasswordlessController
       :street,
       :apt,
       :is_home_during_day,
-      :transportation
+      :transportation,
+      homes_attributes: [:id, :street, :apt, :state, :city, :zip_code, :foster_id]
     )
   end
 

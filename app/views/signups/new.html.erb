@@ -23,7 +23,26 @@
       <%= f.label :apt %> <%= f.text_field :apt %>
     </div>
 
-  <%= f.label :phone %> <%= f.text_field :phone %>
+    <%= f.label :phone %> <%= f.text_field :phone %>
+
+    <h1>Address</h1>
+      <%= f.fields_for :homes do |home| %>
+        <div>
+          <%= home.label :street %> <%= home.text_field :street%>
+        </div>
+        <div>
+          <%= home.label :apt %> <%= home.text_field :apt%>
+        </div>
+        <div>
+          <%= home.label :state %> <%= home.text_field :state%>
+        </div>
+        <div>
+          <%= home.label :city %> <%= home.text_field :city%>
+        </div>
+        <div>
+          <%= home.label :zip_code %> <%= home.text_field :zip_code%>
+        </div>
+      <% end %>
 
   <%= render "home_section", f: f %>
   <%= render "application_section", f: f %>

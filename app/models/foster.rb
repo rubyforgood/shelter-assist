@@ -1,6 +1,9 @@
 class Foster < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :homes
+  accepts_nested_attributes_for :homes, allow_destroy: true
+
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   passwordless_with :email
