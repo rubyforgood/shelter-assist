@@ -3,6 +3,10 @@
 Be sure to edit this file as things change…
 
 ## Current mental model and direction of development:
+
+A Rescue is an organization made up of People who are
+Volunteers and/or Fosters.
+
 Anyone caring for an Animal is a Foster.
 Fosters must have a Home. Animals must have a Home.
 
@@ -22,8 +26,9 @@ When an Adoption event occurs, the Animal may change Fosters and/or Homes but wo
 
 ### Animal Needs
 
-The system should enable admins to manage the Needs of 1 or more Animals. An Animal may need to move from one Home to another quickly. Multiple animals may need to move from one Home to another by a certain date.
-The system should help admins make decsions about what Fosters are available and appropriate (e.g. barring exclusions) for the Animal(s) Needs.
+The system should enable admins to manage the Needs of 1 or more Animals for a Rescue. An Animal may need to move from one Home to another quickly. Multiple animals may need to move from one Home to another by a certain date.
+
+The system should help admins make decisions about what Fosters are available and appropriate (e.g. barring exclusions) for the Animal(s) Needs.
 
 ### Exclusions
 
@@ -40,11 +45,12 @@ The system should provide a way to send a message about Animal Needs to a group 
 Each Foster should have an admin (or other role) primary point of contact with whom the Foster would have a good relationship.
 
 ### Likely to change…
+
 Fosters currently have a boolean `admin` column. It's likely this should instead become some way of managing a "role".
 
-Records like Foster and Application will likely need a way of tracking _status_ (approved, rejected, etc.).
+Records like a Person who is a Foster and Application will likely need a way of tracking _status_ (approved, rejected, etc.).
 
-**Multitenancy** should be added ASAP. There are currently 2 organizations looking to use this software.
+**Multitenancy** should be added ASAP. There are currently 2 organizations looking to use this software. Data for one Rescue should not be visible to other Rescue's.
 
 ## Set up
 
