@@ -70,8 +70,8 @@ Rails.application.configure do
     port: ENV["SHELTERASSIST_SMTP_PORT"],
     user_name: ENV["SHELTERASSIST_SMTP_USER"],
     password: ENV["SHELTERASSIST_SMTP_PASSWORD"],
-    authentication: :plain
-    enable_starttls_auto: true
+    authentication: :plain,
+    enable_starttls_auto: true,
     openssl_verify_mode: "none"
   }
 
