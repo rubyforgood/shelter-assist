@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_10_13_151254) do
-=======
-ActiveRecord::Schema.define(version: 2021_10_12_191129) do
->>>>>>> 69d9e296463e3983a2439a75f6ddd3662f0a781b
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,14 +144,6 @@ ActiveRecord::Schema.define(version: 2021_10_12_191129) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-<<<<<<< HEAD
-  add_foreign_key "animal_age_preferences", "people"
-  add_foreign_key "animal_gender_preferences", "people"
-  add_foreign_key "animal_kind_preferences", "people"
-  add_foreign_key "animal_size_preferences", "people"
-  add_foreign_key "animals", "people"
-  add_foreign_key "animals", "rescues"
-=======
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -166,7 +154,12 @@ ActiveRecord::Schema.define(version: 2021_10_12_191129) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
->>>>>>> 69d9e296463e3983a2439a75f6ddd3662f0a781b
+  add_foreign_key "animal_age_preferences", "people"
+  add_foreign_key "animal_gender_preferences", "people"
+  add_foreign_key "animal_kind_preferences", "people"
+  add_foreign_key "animal_size_preferences", "people"
+  add_foreign_key "animals", "people"
+  add_foreign_key "animals", "rescues"
   add_foreign_key "person_homes", "homes"
   add_foreign_key "person_homes", "people"
 end

@@ -31,19 +31,15 @@ class SignupsController < PasswordlessController
       :is_home_during_day,
       :transportation,
       animal_kind_preferences_attributes: [
-        :id,
         :animal_value,
       ],
       animal_gender_preferences_attributes: [
-        :id,
         :animal_value,
       ],
       animal_age_preferences_attributes: [
-        :id,
         :animal_value,
       ],
       animal_size_preferences_attributes: [
-        :id,
         :animal_value,
       ],
       homes_attributes: [
