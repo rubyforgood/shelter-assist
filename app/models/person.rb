@@ -5,8 +5,18 @@ class Person < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   passwordless_with :email
-  
+
   enum transportation: [ :access_to_car, :car, :no_car ]
+
+  has_many :animal_kind_preferences
+  has_many :animal_gender_preferences
+  has_many :animal_age_preferences
+  has_many :animal_size_preferences
+
+  accepts_nested_attributes_for :animal_kind_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
+  accepts_nested_attributes_for :animal_gender_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
+  accepts_nested_attributes_for :animal_age_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
+  accepts_nested_attributes_for :animal_size_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
 
   has_many :person_homes, inverse_of: :person
   has_many :homes, through: :person_homes
