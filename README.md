@@ -72,7 +72,7 @@ rails s
 ```
 ## Setting up and testing mail delivery using Mailhog 
 
-The following is how to setup mailhog which intercepts e-mails in a local environment. The following steps only apply to Mac OS users. For non MacOS users, please visit `https://mailtrap.io/blog/mailhog-explained/` for further instructions on how to use Mailhog. 
+The following is how to setup mailhog, which is a tool to intercept e-mails in a local environment for e-mail testing purposes. The following steps only apply to MacOS users. For non MacOS users, please refer to `https://mailtrap.io/blog/mailhog-explained/`
 
 1.  Set up Mailhog using Homebrew. Run the following command in the terminal: 
 
@@ -82,12 +82,10 @@ The following is how to setup mailhog which intercepts e-mails in a local enviro
 
   * `brew services start mailhog`
 
-3. This will launch Mailhog and restart it at login. If you don't need a background service, in the console you can just run: 
-
-  * `mailhog`
-
-4. After sending an e-mail locally in a test environment, visit the following link: 
+3. After sending an e-mail locally in a test environment, visit the following link: 
 
   * `http://localhost:8025/`
 
-Fin
+4. To stop Mailhog use:
+
+  * `brew services stop mailhog`
