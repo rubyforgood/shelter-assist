@@ -61,6 +61,10 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.9.1)
@@ -76,7 +80,10 @@ GEM
       xpath (~> 3.2)
     childprocess (3.0.0)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crass (1.0.6)
+    cssbundling-rails (0.2.4)
+      railties (>= 6.0.0)
     debug (1.1.0)
       irb
       reline (>= 0.2.7)
@@ -87,6 +94,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.10.0)
+    execjs (2.8.1)
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -99,6 +107,8 @@ GEM
       reline (>= 0.2.7)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    jsbundling-rails (0.1.9)
+      railties (>= 6.0.0)
     loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -158,6 +168,12 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5.0.beta3)
     rake (13.0.6)
+    react-rails (2.6.1)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     regexp_parser (2.1.1)
     reline (0.2.7)
       io-console (~> 0.5)
@@ -221,18 +237,23 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   capybara (>= 3.26)
+  cssbundling-rails (>= 0.1.0)
   debug (>= 1.0.0)
   devise
   importmap-rails (>= 0.3.4)
   jbuilder (~> 2.7)
+  jsbundling-rails (~> 0.1.0)
   passwordless (~> 0.10.0)
   pg (~> 1.2)
   puma (~> 5.5)
   rails (~> 7.0.0.alpha2)
+  react-rails (~> 2.6.1)
   rexml (~> 3.2.5)
   rolify
   sass-rails
+  sassc-rails (~> 2.1)
   selenium-webdriver
+  sprockets-rails (>= 2.0.0)
   stimulus-rails (>= 0.4.0)
   turbo-rails (>= 0.7.11)
   tzinfo-data

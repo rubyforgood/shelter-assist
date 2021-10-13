@@ -1,0 +1,6 @@
+@import "flash";
+@import "signup";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
