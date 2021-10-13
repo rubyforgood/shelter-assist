@@ -5,7 +5,7 @@ class SignupsController < PasswordlessController
     @person = Person.new(person_params)
     @home = Home.new(person_params['home'])
     @person.homes << @home
-
+    
     if @person.save
       session = build_passwordless_session(@person)
       session.token = Passwordless.token_generator.call(session)
@@ -33,6 +33,22 @@ class SignupsController < PasswordlessController
       :apt,
       :is_home_during_day,
       :transportation,
+      animal_kind_preferences_attributes: [
+        :id,
+        :animal_value,
+      ],
+      animal_gender_preferences_attributes: [
+        :id,
+        :animal_value,
+      ],
+      animal_age_preferences_attributes: [
+        :id,
+        :animal_value,
+      ],
+      animal_size_preferences_attributes: [
+        :id,
+        :animal_value,
+      ],
       homes_attributes: [
         :id,
         :has_children,

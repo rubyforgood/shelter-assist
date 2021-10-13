@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_174146) do
+ActiveRecord::Schema.define(version: 2021_10_13_151254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animal_age_preferences", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.integer "animal_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_animal_age_preferences_on_person_id"
+  end
 
   create_table "animal_applications", force: :cascade do |t|
     t.text "inspiration", null: false
@@ -21,6 +29,30 @@ ActiveRecord::Schema.define(version: 2021_10_12_174146) do
     t.datetime "end_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "animal_gender_preferences", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.integer "animal_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_animal_gender_preferences_on_person_id"
+  end
+
+  create_table "animal_kind_preferences", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.integer "animal_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_animal_kind_preferences_on_person_id"
+  end
+
+  create_table "animal_size_preferences", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.integer "animal_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_animal_size_preferences_on_person_id"
   end
 
   create_table "animals", force: :cascade do |t|
@@ -104,6 +136,10 @@ ActiveRecord::Schema.define(version: 2021_10_12_174146) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "animal_age_preferences", "people"
+  add_foreign_key "animal_gender_preferences", "people"
+  add_foreign_key "animal_kind_preferences", "people"
+  add_foreign_key "animal_size_preferences", "people"
   add_foreign_key "animals", "people"
   add_foreign_key "animals", "rescues"
   add_foreign_key "person_homes", "homes"
