@@ -31,6 +31,12 @@
       <h4><%= f.label :transportation, 'Transportation' %></h4>
       <%= f.select :transportation, options_for_select(Person.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></h4>
     </div>
+    <div class="availability-area">
+    <h5><%=f.label :from, 'How soon are you able to take home your foster pet?'%></h5>
+    <%= f.text_field :from, "data-provide" => 'datepicker' %>
+    <h5><%=f.label :extra_availability_info, 'Are there things we need to know about your schedule?'%></h5>
+    <%= f.text_field :extra_availability_info, size: '30' %>
+    </div>
     <br>
   <%= f.submit "Fetch!", class: 'sign_up_submit' %>
 <% end %>

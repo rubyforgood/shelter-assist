@@ -33,6 +33,8 @@ class SignupsController < PasswordlessController
       :apt,
       :is_home_during_day,
       :transportation,
+      :from,
+      :extra_availability_info,
       homes_attributes: [
         :id,
         :has_children,
