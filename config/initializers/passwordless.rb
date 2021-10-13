@@ -1,4 +1,4 @@
-Passwordless.default_from_address = "CHANGE_ME@example.com"
+Passwordless.default_from_address = ENV["SHELTERASSIST_EMAIL_ADDRESS"] || "CHANGE_ME@example.com"
 Passwordless.parent_mailer = "ActionMailer::Base"
 Passwordless.token_generator = Passwordless::UrlSafeBase64Generator.new # Used to generate magic link tokens.
 Passwordless.restrict_token_reuse = false # By default a magic link token can be used multiple times.
