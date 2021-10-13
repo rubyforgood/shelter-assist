@@ -52,6 +52,11 @@
 
   <%= home_attributes.check_box :has_other_cat, :value => true  %>
   <%= home_attributes.label :has_other_cat, "Cat(s)" %>
+  
+  <div>
+    <%= home_attributes.label :home_type, "Home Type" %>
+    <%= home_attributes.select :home_type, options_for_select(Home.home_types.map { |k, _| [k, k] }) %>
+  </div>
 <% end %>
 
 <br />

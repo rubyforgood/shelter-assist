@@ -3,9 +3,6 @@ class SignupsController < PasswordlessController
 
   def create
     @person = Person.new(person_params)
-    @home = Home.new(person_params['home'])
-    @person.homes << @home
-    
     if @person.save
       session = build_passwordless_session(@person)
       session.token = Passwordless.token_generator.call(session)
@@ -56,11 +53,12 @@ class SignupsController < PasswordlessController
         :has_other_adults,
         :has_other_dog,
         :has_other_cat,
+        :home_type,
         :street, 
         :apt, 
         :state, 
         :city, 
-        :zip_code
+        :zip_code,
       ]
     )
   end

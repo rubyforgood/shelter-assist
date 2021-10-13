@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -17,7 +18,7 @@ class Person < ApplicationRecord
   accepts_nested_attributes_for :animal_age_preferences
   accepts_nested_attributes_for :animal_size_preferences
 
-  has_many :person_homes
+  has_many :person_homes, inverse_of: :person
   has_many :homes, through: :person_homes
   accepts_nested_attributes_for :homes
 
@@ -28,6 +29,7 @@ class Person < ApplicationRecord
   validates :phone, format: { with: /\A\d+\z/, message: "Numbers only, please." }
 
   before_validation :prep_phone
+  after_create :assign_default_role
 
   def prep_phone
     self.phone = self.phone.to_s.gsub(/[^0-9A-Za-z]/, '')
@@ -39,5 +41,11 @@ class Person < ApplicationRecord
 
   def password_required?
     false
+  end
+
+private
+
+  def assign_default_role
+    self.add_role(:foster) if self.roles.blank?
   end
 end
