@@ -72,34 +72,22 @@ rails s
 ```
 ## Setting up and testing mail delivery using Mailhog 
 
-The  following instructions explain how to use Mailhog e-mail delivery capabilities within the application without sending an e-mail to a real address. The following steps only apply to Mac OS users. For non MacOS users, please visit `https://mailtrap.io/blog/mailhog-explained/` for further instructions on how to use Mailhog. 
+The following is how to setup mailhog which intercepts e-mails in a local environment. The following steps only apply to Mac OS users. For non MacOS users, please visit `https://mailtrap.io/blog/mailhog-explained/` for further instructions on how to use Mailhog. 
 
-1. Mac owners can set up Mailhog using Homebrew. Run the following command in the terminal: 
+1.  Set up Mailhog using Homebrew. Run the following command in the terminal: 
 
-  * brew install mailhog
+  * `brew install mailhog`
 
 2. Then start Mailhog in the terminal with:
 
-  * brew services start mailhog 
+  * `brew services start mailhog`
 
-3. This will launch Mailhog and restart it at login. If you don't need a background service, in the   console you can just run: 
+3. This will launch Mailhog and restart it at login. If you don't need a background service, in the console you can just run: 
 
-  * mailhog
+  * `mailhog`
 
-4. The user must then configure the port address so Mailhog knows where to receive the test e-mail from. This can be added within the `development.rb` file. To get there, follow:
-
-  * config > environments > development.rb
-
-Once you reach the development.rb file, add the following line of code beneath line 40 in the code base to choose the correct port. 
-
-  * `config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }`
-
- You should now be set up to test out Mailhog.
-
- 5. To send an e-mail in a test environment, once Mailhog is installed and configured, visit the following link: 
+4. After sending an e-mail locally in a test environment, visit the following link: 
 
   * `http://localhost:8025/`
 
-Then send an email from your application and Mailhog should recieve it. 
-
-Fin 
+Fin
