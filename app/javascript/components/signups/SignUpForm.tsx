@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+import styles from './styles.module.css'
+
 function getForm() {
   return fetch('/signup.json')
     .then((response: any) => response.json())
@@ -34,10 +36,6 @@ const SignIn = () => {
       .then((data) => setFormData(data))
   }
 
-  const handleOnSubmit = (t) => {
-    return false
-  }
-
   return (
     <div>
       { formData && (
@@ -46,8 +44,8 @@ const SignIn = () => {
           <form
               action={`${formData.path}`}
               acceptCharset="UTF-8"
+              className={styles.form}
               method="post"
-              onSubmitCapture={handleOnSubmit}
               >
                 <input type="hidden" name="authenticity_token" value={formData.token} />
                 <TextInput value={formData.full_name} name="foster[full_name]" label="Full Name:" />
