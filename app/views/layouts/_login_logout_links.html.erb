@@ -1,0 +1,12 @@
+<% if current_person.logged_in? %>
+  <%= render 'layouts/person_menu' %>
+  <% if current_person.has_role?(:admin) %>
+    <%= render 'layouts/admin_menu' %>
+  <% end %>
+<% end %>
+<% if !current_person.logged_in? %>
+  <%= render 'layouts/visitor_menu' %>
+<% end %>
+<% if !current_person.logged_in? %>
+  <%= render 'layouts/admin_login_menu' %>
+<% end %>

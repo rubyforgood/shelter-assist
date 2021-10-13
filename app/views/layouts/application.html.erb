@@ -9,23 +9,12 @@
   </head>
 
   <body>
-    <% if current_person.logged_in? %>
-      <%= render 'layouts/person_menu' %>
-      <% if current_person.has_role?(:admin) %>
-        <%= render 'layouts/admin_menu' %>
-      <% end %>
-    <% end %>
-    <% if !current_person.logged_in? %>
-      <%= render 'layouts/visitor_menu' %>
-    <% end %>
     <% if flash.keys.any? %>
       <% flash.keys.each do |key| %>
-      <p class="flash flash_<%= key %>"><%= flash[key] %></p>
+        <p class="flash flash_<%= key %>"><%= flash[key] %></p>
       <% end %>
     <% end %>
+    <%= render 'layouts/login_logout_links' %>
     <%= yield %>
-    <% if !current_person.logged_in? %>
-      <%= render 'layouts/admin_login_menu' %>
-    <% end %>
   </body>
 </html>
