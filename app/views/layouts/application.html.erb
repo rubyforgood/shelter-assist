@@ -4,18 +4,17 @@
     <title>ShelterAssist</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
-    <% if current_person.logged_in? %>
+    <% if person_signed_in? %>
       <%= render 'layouts/person_menu' %>
       <% if current_person.has_role?(:admin) %>
         <%= render 'layouts/admin_menu' %>
       <% end %>
     <% end %>
-    <% if !current_person.logged_in? %>
+    <% if !person_signed_in? %>
       <%= render 'layouts/visitor_menu' %>
     <% end %>
     <% if flash.keys.any? %>
@@ -24,7 +23,7 @@
       <% end %>
     <% end %>
     <%= yield %>
-    <% if !current_person.logged_in? %>
+    <% if !person_signed_in? %>
       <%= render 'layouts/admin_login_menu' %>
     <% end %>
   </body>
