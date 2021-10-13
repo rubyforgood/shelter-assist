@@ -44,7 +44,7 @@ const SignIn = () => {
         <div>
           <h1>Sign In</h1>
           <form
-              action={`${formData.path}.json`}
+              action={`${formData.path}`}
               acceptCharset="UTF-8"
               method="post"
               onSubmitCapture={handleOnSubmit}

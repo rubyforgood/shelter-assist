@@ -11,19 +11,18 @@ class SignupsController < PasswordlessController
       Passwordless::Mailer.magic_link(session).deliver_now
       redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
     else
-      respond_to do |format|
-        format.html { render :new }
-        format.json { render json: json_form(nil, signup_path, @person.errors) }
-      end
+      render :new
     end
   end
 
   def new
     @person = Person.new
 
+    person_errors = @person.valid? ? nil : @person.errors
+
     respond_to do |format|
       format.html {}
-      format.json { render json: json_form(@person, signup_path) }
+      format.json { render json: json_form(@person, signup_path, person_errors) }
     end
   end
 
