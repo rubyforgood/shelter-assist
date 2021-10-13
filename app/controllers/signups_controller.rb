@@ -16,12 +16,11 @@ class SignupsController < PasswordlessController
   end
 
   def new
-    # person_errors = @person.errors
     @person = Person.new
 
     respond_to do |format|
       format.html {}
-      format.json { render json: json_form(@person, signup_path) }
+      format.json { render json: json_form(@person, signup_path, @person.errors) }
     end
   end
 

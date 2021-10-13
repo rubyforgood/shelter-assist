@@ -22,5 +22,8 @@
   "version": "0.1.0-alpha",
   "repository": "git@github.com:rubyforgood/shelter-assist.git",
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "yarn": "1.22.14"
+  }
 }

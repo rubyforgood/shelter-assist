@@ -1,8 +1,8 @@
-<%= javascript_include_tag "components/SignUpForm", "data-turbo-track": "reload", defer: true %>
+<%= javascript_include_tag "components/signups/SignUpForm", "data-turbo-track": "reload", defer: true %>
 
 <% if @person.errors.any? %>
-  <% @person.errors.full_messages.each do |message| %>
-     <h3><%= message %></h3>
+  <%= javascript_tag do %>
+    var signupFormErrors = <%= raw(@person.errors.to_json) %>
   <% end %>
 <% end %>
 

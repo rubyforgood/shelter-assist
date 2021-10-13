@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom'
 
 import styles from './styles.module.css'
 
+const formTarget = document.getElementById('signup-form')
+
+const FORM_ERRORS = window['signupFormErrors']
+window['signupFormErrors'] = undefined
+
 function getForm() {
   return fetch('/signup.json')
     .then((response: any) => response.json())
@@ -33,7 +38,7 @@ const SignIn = () => {
 
   if (!formData) {
     getForm()
-      .then((data) => setFormData(data))
+      .then((data) => setFormData({...data, errors: FORM_ERRORS}))
   }
 
   return (
@@ -88,4 +93,4 @@ const SignIn = () => {
   )
 }
 
-ReactDOM.render(<SignIn/>, document.getElementById('signup-form'))
+ReactDOM.render(<SignIn/>, formTarget)
