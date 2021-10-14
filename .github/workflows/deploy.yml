@@ -3,7 +3,7 @@
 name: Deploy
 on:
   workflow_run:
-    workflows: ["Test"]
+    workflows: ["Tests"]
     types: [completed]
 jobs:
   on-success:
