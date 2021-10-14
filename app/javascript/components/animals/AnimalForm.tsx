@@ -9,10 +9,7 @@ import {
   Form,
   Input,
   Divider,
-  Checkbox,
   Radio,
-  Cascader,
-  DatePicker,
   Row,
   Typography,
   Select,
@@ -45,13 +42,16 @@ const AnimalForm = () => {
     <div>
       {formData && (
         <Row>
-          <Col span={12} offset={6} >
-            <Title>Add a Pet</Title>
-            <Paragraph>
-              This will allow you to create a profile for a pet needing a Foster home.
-            </Paragraph>
-          </Col>
           <Col span={12} offset={6}>
+          <Row>
+            <Col span={24} align="center">
+              <Title>Add a Pet</Title>
+              <Paragraph>
+                This will allow you to create a profile for a pet needing a Foster home.
+              </Paragraph>
+            </Col>
+          </Row>
+            <Col span={16} offset={4}>
             <Form
               name="person"
               labelCol={{ span: 6 }}
@@ -100,6 +100,7 @@ const AnimalForm = () => {
                   >
                     <Input />
                   </Form.Item>
+                  <div>
                   <Form.Item
                       name="sterilized"
                       label="Sterilized"
@@ -109,6 +110,7 @@ const AnimalForm = () => {
                       <Radio value={false}>No</Radio>
                     </Radio.Group>
                   </Form.Item>
+                  </div>
                 </Col>
                 <Col span={12}>
                   <Form.Item
@@ -157,7 +159,13 @@ const AnimalForm = () => {
                   </Form.Item>
                 </Col>
               </Row>
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type="primary" htmlType="submit">
+                  Add Pet
+                </Button>
+              </Form.Item>
             </Form>
+            </Col>
           </Col>
         </Row>
       )}
