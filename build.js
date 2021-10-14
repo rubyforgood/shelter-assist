@@ -12,7 +12,7 @@ fs.rmdir(COMPONENTS_OUTPUT_DIR, () => console.log('Removed ' + COMPONENTS_OUTPUT
 fs.mkdir(COMPONENTS_OUTPUT_DIR, () => console.log('Created ' + COMPONENTS_OUTPUT_DIR));
 
 const components = fg.sync([
-  path.resolve(__dirname, COMPONENTS_SRC_DIR) + '/**/*.{jsx,tsx}'
+  path.resolve(__dirname, COMPONENTS_SRC_DIR) + '/**/*.{js,jsx,ts,tsx}'
 ], { dot: true });
 
 const outputComponents = components.map((component) => {
