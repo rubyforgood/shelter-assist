@@ -23,6 +23,9 @@ class SignupsController < PasswordlessController
     end
   end
 
+  def confirmation
+  end
+
   private
 
   def person_params
