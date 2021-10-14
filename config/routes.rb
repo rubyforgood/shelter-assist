@@ -19,5 +19,7 @@ Rails.application.routes.draw do
     root "people#index", as: :admin_root
   end
 
+  resources :animal
+
   root to: 'signups#new'
 end

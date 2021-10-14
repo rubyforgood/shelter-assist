@@ -1,0 +1,8 @@
+<%= form_with(model: animal) do |form| %>
+  <%= form.text_area(:inspiration, id: "inspiration") %>
+  <%= form.text_field(:start_date, id: "start_date") %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
