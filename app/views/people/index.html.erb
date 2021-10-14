@@ -12,7 +12,7 @@
   </tr>
   <% @people.each do |person| %>
     <tr>
-      <td><%= person.full_name%></td>
+      <td><%= person.name%></td>
       <td>The Little Black Dog</td>
       <td><%=number_to_phone(person.phone, area_code: true )%></td>
       <td><%=person.email %></td>
