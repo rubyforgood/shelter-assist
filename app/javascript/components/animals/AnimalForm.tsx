@@ -86,7 +86,6 @@ const AnimalForm = () => {
                       <Option value="dog">Dog</Option>
                       <Option value="cat">Cat</Option>
                     </Select>
-
                   </Form.Item>
                   <Form.Item
                     label="Pet Name"
@@ -134,7 +133,6 @@ const AnimalForm = () => {
                   >
                     <Input />
                   </Form.Item>
-
                   <Form.Item
                     label="Weight"
                     name="weight"
@@ -147,7 +145,6 @@ const AnimalForm = () => {
                   >
                     <Input />
                   </Form.Item>
-
                   <Form.Item
                       name="microchiped"
                       label="Microchiped"
