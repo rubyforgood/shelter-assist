@@ -77,12 +77,12 @@ ActiveRecord::Schema.define(version: 2021_10_13_151254) do
     t.boolean "has_other_cat", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "home_type"
     t.string "street"
     t.string "apt"
     t.string "state"
     t.string "city"
     t.string "zip_code"
+    t.integer "home_type"
   end
 
   create_table "passwordless_sessions", force: :cascade do |t|
