@@ -8,7 +8,7 @@ class SignupsController < PasswordlessController
       session.token = Passwordless.token_generator.call(session)
       session.save!
       Passwordless::Mailer.magic_link(session).deliver_now
-      redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
+      redirect_to confirmation_signup_path
     else
       render :new
     end
