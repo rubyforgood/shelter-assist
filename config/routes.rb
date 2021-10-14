@@ -19,5 +19,5 @@ Rails.application.routes.draw do
     root "people#index", as: :admin_root
   end
 
-  root to: 'signups#new'
+  root to: "home_page#index"
 end
