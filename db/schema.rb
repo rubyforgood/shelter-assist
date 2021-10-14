@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_142021) do
+ActiveRecord::Schema.define(version: 2021_10_14_185424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_142021) do
     t.string "breed"
     t.float "weight"
     t.boolean "sterilized", default: false
-    t.boolean "microchiped", default: false
+    t.boolean "microchipped", default: false
     t.index ["person_id"], name: "index_animals_on_person_id"
     t.index ["rescue_id"], name: "index_animals_on_rescue_id"
   end
@@ -128,6 +128,13 @@ ActiveRecord::Schema.define(version: 2021_10_14_142021) do
     t.index ["person_id", "role_id"], name: "index_people_roles_on_person_id_and_role_id"
     t.index ["person_id"], name: "index_people_roles_on_person_id"
     t.index ["role_id"], name: "index_people_roles_on_role_id"
+  end
+
+  create_table "person_animals", force: :cascade do |t|
+    t.integer "animal_id"
+    t.integer "person_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "person_homes", force: :cascade do |t|
