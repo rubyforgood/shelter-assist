@@ -1,77 +1,9 @@
-<h1 class="sign_up_title">Sign Up</h1>
+<%= javascript_include_tag "components/signups/SignUpForm", "data-turbo-track": "reload", defer: true %>
 
 <% if @person.errors.any? %>
-  <% @person.errors.full_messages.each do |message| %>
-     <h3><%= message %></h3>
+  <%= javascript_tag do %>
+    var signupFormErrors = <%= raw(@person.errors.to_json) %>
   <% end %>
 <% end %>
 
-<%= form_for @person, url: signup_path do |f| %>
-  <div class="field">
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
-  </div>
-  <div class="field">
-    <%= f.label :nick_name %>
-    <%= f.text_field :nick_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :street %>
-    <%= f.text_field :street %>
-  </div> 
-  <div class="field">
-    <%= f.label :apt %>
-    <%= f.text_field :apt %>
-  </div>
-  
-  <%= f.label :phone %>
-  <%= f.text_field :phone %>
-
-  <%= render "home_section", f: f %>
-  
-  <br>
-
-  <h1>Pet Preferences</h1>
-
-  <%= f.fields_for :animal_kind_preferences, AnimalKindPreference.new() do |animal_kind| %>
-    <label>Animal kind</label><br>
-    <%= animal_kind.collection_check_boxes(:animal_value, AnimalKindPreference.animal_values, :first, :first) %>
-  <% end %>
-
-  <br>
-
-  <%= f.fields_for :animal_gender_preferences, AnimalGenderPreference.new() do |animal_gender| %>
-    <label>Sex preference</label><br>
-    <%= animal_gender.collection_check_boxes(:animal_value, AnimalGenderPreference.animal_values, :first, :first) %>
-  <% end %>
-
-  <br>
-
-  <%= f.fields_for :animal_age_preferences, AnimalAgePreference.new() do |animal_age| %>
-    <label>Age preference</label><br>
-    <%= animal_age.collection_check_boxes(:animal_value, AnimalAgePreference.animal_values, :first, :first) %>
-  <% end %>
-
-  <br>
-
-  <%= f.fields_for :animal_size_preferences, AnimalSizePreference.new() do |animal_size| %>
-    <label>Size preference</label><br>
-    <%= animal_size.collection_check_boxes(:animal_value, AnimalSizePreference.animal_values, :first, :first) %>
-  <% end %>
-
-  <%= render "application_section", f: f %>
-  <div class="transportation-field">
-    <h4><%= f.label :transportation, 'Transportation' %></h4>
-    <%= f.select :transportation, options_for_select(Person.transportations.map {|k, _| [k.humanize.capitalize, k]}) %>
-  </div>
-  <br>
-  <%= f.submit "Fetch!", class: 'sign_up_submit' %>
-<% end %>
-
-<script>
-  document.getElementById("person_animal_kind_preferences_attributes_0_animal_value_cat").disabled=true;
-</script>
+<div id="signup-form"></div>

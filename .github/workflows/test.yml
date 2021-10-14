@@ -41,6 +41,7 @@ jobs:
           cp config/database.github.yml config/database.yml
           bundle exec rails db:create
           bundle exec rails db:migrate
+          bundle exec rails assets:precompile
           yarn --frozen-lockfile
       - name: Run unit tests
         run: bundle exec rails test

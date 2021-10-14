@@ -16,6 +16,11 @@ class SignupsController < PasswordlessController
 
   def new
     @person = Person.new
+
+    respond_to do |format|
+      format.html {}
+      format.json { render json: json_form(@person, signup_path, @person.errors) }
+    end
   end
 
   private
@@ -24,7 +29,7 @@ class SignupsController < PasswordlessController
     params.fetch(:person, {}).permit(
       :full_name,
       :nick_name,
-      :email, 
+      :email,
       :phone,
       :street,
       :apt,
@@ -50,10 +55,10 @@ class SignupsController < PasswordlessController
         :has_other_dog,
         :has_other_cat,
         :home_type,
-        :street, 
-        :apt, 
-        :state, 
-        :city, 
+        :street,
+        :apt,
+        :state,
+        :city,
         :zip_code,
       ]
     )
