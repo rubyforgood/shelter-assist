@@ -2,7 +2,7 @@
 # github repo's Settings -> Secrets area.
 name: Deploy
 on:
-  workflow_run::
+  workflow_run:
     workflows: ["Test"]
     types: [completed]
 jobs:
