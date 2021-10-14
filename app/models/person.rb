@@ -43,6 +43,10 @@ class Person < ApplicationRecord
     false
   end
 
+  def name
+    nick_name.presence || full_name
+  end
+
 private
 
   def assign_default_role
