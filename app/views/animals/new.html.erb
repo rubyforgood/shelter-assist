@@ -1,4 +1,9 @@
-<h1>New Animal Form</h1>
+<%= javascript_include_tag "components/animals/AnimalForm", "data-turbo-track": "reload", defer: true %>
 
-<%= render "form", animal: @animal %>
+<% if @animal.errors.any? %>
+  <%= javascript_tag do %>
+    var signupFormErrors = <%= raw(@animal.errors.to_json) %>
+  <% end %>
+<% end %>
 
+<div id="animal-form"></div>
