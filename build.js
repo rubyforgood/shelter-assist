@@ -32,7 +32,7 @@ components.forEach((c, i) => {
       plugins: [
         cssModulesPlugin()
       ],
-      watch: env !== 'production',
+      watch: env === 'development',
     })
     .catch((error) => {
       console.log('*** Failed to build "' + out + '"')
