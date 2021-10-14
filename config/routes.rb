@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
+  resources :animal
   devise_scope :person do
     resources :people
   end
@@ -19,7 +20,5 @@ Rails.application.routes.draw do
     root "people#index", as: :admin_root
   end
 
-  resources :animal
-
-  root to: 'signups#new'
+  root to: "home_page#index"
 end
