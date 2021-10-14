@@ -1,4 +1,4 @@
-class AnimalController < ApplicationRecord
+class AnimalsController < ApplicationController
   def index
   end
 

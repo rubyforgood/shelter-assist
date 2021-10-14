@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
-  resources :animal
+  resources :animals
   devise_scope :person do
     resources :people
   end
