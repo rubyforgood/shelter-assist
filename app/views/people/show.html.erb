@@ -3,6 +3,7 @@
 <%= render @person %>
 
 <div>
+  <h1><%= @person.full_name%></h1>
   <%= link_to "Edit this person", edit_person_path(@person) %> |
   <%= link_to "Back to people", people_path %>
 
