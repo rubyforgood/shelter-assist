@@ -57,6 +57,9 @@ Records like a Person who is a Foster and Application will likely need a way of 
 * `git clone `
 * `rvm install 3.0.2`
 * `bundle install`
+* `gem install foreman`
+
+Make sure to check `.tool-versions` for nodejs versions.
 
 ## Optional ASDF-VM Support
 
@@ -68,13 +71,13 @@ Note: a `.tool-versions` file exists which contains the current supported ruby v
 ## Running the app
 
 ```
-rails s
+bin/dev
 ```
 ## Setting up and testing mail delivery using Mailhog in local development
 
 The following is how to setup mailhog, which is a tool to intercept e-mails in a local environment for e-mail testing purposes. The following steps only apply to MacOS users. For non MacOS users, please refer to `https://mailtrap.io/blog/mailhog-explained/`
 
-1.  Set up Mailhog using Homebrew. Run the following command in the terminal: 
+1.  Set up Mailhog using Homebrew. Run the following command in the terminal:
 
   * `brew install mailhog`
 
@@ -82,7 +85,7 @@ The following is how to setup mailhog, which is a tool to intercept e-mails in a
 
   * `brew services start mailhog`
 
-3. After sending an e-mail locally in a test environment, visit the following link: 
+3. After sending an e-mail locally in a test environment, visit the following link:
 
   * `http://localhost:8025/`
 
