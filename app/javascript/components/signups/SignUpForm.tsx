@@ -9,8 +9,6 @@ import {
   Divider,
   Checkbox,
   Radio,
-  Cascader,
-  DatePicker,
   Row,
   Typography,
 } from "antd"
@@ -18,6 +16,8 @@ import {
 const { Title, Paragraph } = Typography
 
 import * as options from './fields'
+import FormContext from "rc-field-form/es/FormContext"
+import { formatMessages } from "esbuild"
 
 const formTarget = document.getElementById("signup-form")
 
@@ -39,6 +39,25 @@ const SignIn = () => {
       .then((data) => setFormData({ ...data, errors: FORM_ERRORS }))
   }, [])
 
+  const homeOptions = [
+    { label: "Apartment/Condo", value: "apt/condo" },
+    { label: "House", value: "house" },
+    { label: "Townhome", value: "townhome" }
+  ];
+
+  const options = [
+    { label: 'Apple', value: '1', name: 'apple' },
+    { label: 'Pear', value: '2', name: 'pear' },
+    { label: 'Orange', value: '3', name: 'orange' },
+  ];
+
+  const onFinish = (values) => {
+    const payload = {
+      person: values
+    }
+    console.log("Success:", payload);
+  }
+
   return (
     <div>
       {formData && (
@@ -56,7 +75,7 @@ const SignIn = () => {
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 10 }}
               initialValues={{ remember: true }}
-              // onFinish={onFinish}
+              onFinish={onFinish}
               autoComplete="off"
             >
               <input
@@ -65,36 +84,61 @@ const SignIn = () => {
                 value={formData.token}
               />
               <Divider>Contact Info</Divider>
-              <Form.Item
-                label="Name"
-                name="full_name"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your first name!"
-                  }
-                ]}
-              >
-                <Input />
+              <Row>
+                <Col span={12}>
+                  <Form.Item
+                    label="Name"
+                    name="full_name"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your first name!"
+                      }
+                    ]}
+                  > 
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    label="Nickname"
+                    name="nick_name"
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+                </Row>
+                <Row>
+                  <Col span={12}>
+                    <Form.Item
+                      label="Email"
+                      name="email"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your email!"
+                        }
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item
+                      label="Phone Number"
+                      name="phone_number"
+                      rules={[
+                    {
+                      required: true,
+                      message: "Please input your phone number!"
+                    }
+                    ]}
+                    >
+                  <Input />
               </Form.Item>
-              <Form.Item
-                label="Nickname"
-                name="nick_name"
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your email!"
-                  }
-                ]}
-              >
-                <Input />
-              </Form.Item>
+                </Col>
+              </Row>
+              
               <Divider>Address</Divider>
               <Form.Item
                 label="Street"
@@ -114,18 +158,7 @@ const SignIn = () => {
               >
                 <Input />
               </Form.Item>
-              <Form.Item
-                label="Phone Number"
-                name="apt"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your phone number!"
-                  }
-                ]}
-              >
-                <Input />
-              </Form.Item>
+              
               <Form.Item
                 label="City"
                 name="city"
@@ -163,146 +196,199 @@ const SignIn = () => {
                 <Input />
               </Form.Item>
 
-              <Title level={2}>Home Information</Title>
+              <Divider>Home Information</Divider>
               <Paragraph>Are you or another adult home during the day?</Paragraph>
 
               <Form.Item name="transportation">
                 <Radio.Group>
-                  <Radio value={true}>Yes</Radio>
-                  <Radio value={false}>No</Radio>
-                </Radio.Group>
-              </Form.Item>
-              {/* <fieldset>
                 <Radio
                   value={true}
                   label="Yes"
-                  name="person[is_home_during_day]"
-                />
+                  name="is_home_during_day"
+                >Yes</Radio>
                 <Radio
                   value={false}
                   label="No"
-                  name="person[is_home_during_day]"
-                />
-              </fieldset>
+                  name="is_home_during_day"
+                >No</Radio>
+                </Radio.Group>
+              </Form.Item>
+              
+              <Divider>Tell us about your household</Divider>
+              {/* <Form.Item> */}
+              {/* <Checkbox.Group> */}
 
-              <h2>Tell us about your household</h2>
-              <fieldset>
-                <Checkbox
-                  label="Fenced Yard"
-                  name="person[homes_attributes][0][has_fenced_yard]"
-                />
-                <Checkbox
-                  label="Kids"
-                  name="person[homes_attributes][0][has_children]"
-                />
-                <Checkbox
-                  label="Other Adults"
-                  name="person[homes_attributes][0][has_other_adults]"
-                />
-                <Checkbox
-                  label="Dog(s)"
-                  name="person[homes_attributes][0][has_other_dog]"
-                />
-                <Checkbox
-                  label="Cat(s)"
-                  name="person[homes_attributes][0][has_other_cat]"
-                />
-              </fieldset>
+              <Form.Item name='food'>
+                <Checkbox.Group options={options} defaultValue={['Pear']}/>
+              </Form.Item>
 
-              <h2>Home Type</h2>
-              <select name="person[homes_attributes][0][home_type]">
+                <Form.Item name={['home_attributes', 'has_fenced_yard']}>
+                  <Checkbox
+                    label='Fenced Yard'
+                    value={1}
+                  >
+                    Fenced Yard
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item name={['home_attributes', 'has_children']}>
+                  <Checkbox
+                    label='Kids'
+                    value={1}
+                  >
+                    Kids
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item name={['home_attributes', 'has_other_adults']}>
+                  <Checkbox
+                    label='Other Adults'
+                    value={1}
+                  >
+                    Other Adults
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item name={['home_attributes', 'has_other_dog']}>
+                  <Checkbox
+                    label='Dog(s)'
+                    value={1}
+                  >
+                    Dog(s)
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item name={['home_attributes', 'has_other_cat']}>
+                  <Checkbox
+                    label='Cat(s)'
+                    value={1}
+                  >
+                    Cat(s)
+                  </Checkbox>
+                </Form.Item>
+              {/* </Checkbox.Group> */}
+              {/* </Form.Item> */}
+
+              <Divider>Home Type</Divider>
+              <Form.Item name='home_type'>
+              <select>
                 <option value="Apartment/Condo">Apartment/Condo</option>
                 <option value="Townhouse">Townhouse</option>
                 <option value="House">House</option>
               </select>
-
-              <h2>Animal Kind</h2>
-              <fieldset>
+              </Form.Item>
+              
+              <Divider>Animal Kind</Divider>
+              <Form.Item name='animal_kind_preferences_attributes'>
+              <Checkbox.Group>
                 <Checkbox
                   label="Dog"
                   value="Dog"
-                  name="person[animal_kind_preferences_attributes][0][animal_value][]"
-                />
+                >
+                  Dog
+                </Checkbox>
                 <Checkbox
                   label="Cat"
                   value="Cat"
-                  name="person[animal_kind_preferences_attributes][0][animal_value][]"
-                  disabled
-                />
-              </fieldset>
+                >
+                  Cat
+                </Checkbox>
+              </Checkbox.Group>
+              </Form.Item>
 
-              <h2>Sex Preference</h2>
-              <fieldset>
-                <Checkbox
+              <Divider>Sex Preference</Divider>
+              <Form.Item name='animal_gender_preferences'>
+              <Checkbox.Group>
+              <Checkbox
                   label="Male"
                   value="Male"
-                  name="person[animal_gender_preferences_attributes][0][animal_value][]"
-                />
+                >
+                  Male
+                </Checkbox>
                 <Checkbox
                   label="Female"
                   value="Female"
-                  name="person[animal_gender_preferences_attributes][0][animal_value][]"
-                />
-              </fieldset>
-
-              <h2>Age Preference</h2>
-              <fieldset>
-                <Checkbox
+                >
+                  Female
+                </Checkbox> 
+              </Checkbox.Group>
+              </Form.Item>
+              
+              <Divider>Age Preference</Divider>
+              <Form.Item name='animal_age_prefernces_attributes'>
+              <Checkbox.Group>
+              <Checkbox
                   label="Puppy (up to 3 months)"
                   value="Puppy (up to 3 months)"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
+              >
+                Puppy (up to 3 months)
+              </Checkbox>
+              <Checkbox
                   label="Young (3 months - 2 years)"
                   value="Young (3 months - 2 years)"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
+                >
+                  Young (3 months - 2 years)
+                </Checkbox>
                 <Checkbox
                   label="Adult (2 - 5 years)"
                   value="Adult (2 - 5 years)"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
+                >
+                  Adult (2 - 5 years)
+                </Checkbox>
                 <Checkbox
                   label="Senior (5 years + )"
                   value="Senior (5 years + )"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-              </fieldset>
-
-              <h2>Size Preference</h2>
-              <fieldset>
+                >
+                  Senior (5 years +)
+                </Checkbox>
+              </Checkbox.Group>
+              </Form.Item>
+              
+              <Divider>Size Preference</Divider>
+              <Form.Item name='animal_size_preferences'>
+              <Checkbox.Group>
                 <Checkbox
                   label="less than 20 lbs"
                   value="less than 20 lbs"
-                  name="person[animal_size_preferences_attributes][0][animal_value][]"
-                />
+                >
+                  Less than 20 lbs
+                </Checkbox>
                 <Checkbox
                   label="20 - 40 lbs"
                   value="20 - 40 lbs"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
+                >
+                  20 - 40 lbs
+                </Checkbox>
                 <Checkbox
                   label="40 - 60 lbs"
                   value="40 - 60 lbs"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
+                >
+                  40 - 60 lbs
+                </Checkbox>
                 <Checkbox
                   label="60 +"
                   value="60 +"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-              </fieldset>
-
-              <h2>Application</h2>
-              <textarea name="person[animal_application][inspiration]"></textarea>
-
-              <h2>Transportation</h2>
-              <select name="person[transportation]">
+                >
+                  60 +
+                </Checkbox>
+              </Checkbox.Group>
+              </Form.Item>
+                  
+              <Divider>Application</Divider>
+              <Input.TextArea name="person[animal_application][inspiration]" rows={4} />
+              <Divider>Transportation</Divider>
+              <select name="transportation"
+                rules={[
+                  {
+                    required: true,
+                    message: "!"
+                  }
+                ]}
+              >
                 <option value="access_to_car">Access to car</option>
                 <option value="car">Car</option>
                 <option value="no_car">No car</option>
               </select>
-              <input type="submit" value="Fetch!" /> */}
+              <input type="submit" value="Fetch!" />
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
             </Form>
           </Col>
         </Row>
