@@ -22,7 +22,7 @@ export const sex = [
   { label: "Female", value: "female" }
 ]
 export const age = [
-  { label: "Puppy (up to 3 months)", value: "puppy" },
+  { label: "Newborn (up to 3 months)", value: "puppy" },
   { label: "Young (3 months to 2 years)", value: "young" },
   { label: "Adult (2 to 5 years)", value: "adult" },
   { label: "Senior (5 years+)", value: "senior" }
