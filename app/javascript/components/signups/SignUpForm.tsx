@@ -24,7 +24,7 @@ const formTarget = document.getElementById("signup-form");
 const FORM_ERRORS = window["signupFormErrors"];
 window["signupFormErrors"] = undefined;
 
-const SignIn = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState();
 
   useEffect(() => {
@@ -34,16 +34,16 @@ const SignIn = () => {
   }, []);
 
   const homeOptions = [
-    { label: "Apartment/Condo", value: "Apartment/Condo" },
-    { label: "House", value: "House" },
-    { label: "Townhome", value: "Townhome" },
+    { label: "Apartment/Condo", value: 1 },
+    { label: "House", value: 2 },
+    { label: "Townhome", value: 3 },
   ];
 
   const sizeOptions = [
-    { label: "less than 20 lbs", value: "less than 20 lbs" },
-    { label: "20 - 40 lbs", value: "20 - 40 lbs" },
-    { label: "40 - 60 lbs", value: "40 - 60 lbs" },
-    { label: "60lbs +", value: "60lbs +" },
+    { label: "less than 20 lbs", value: 1 },
+    { label: "20 - 40 lbs", value: 2 },
+    { label: "40 - 60 lbs", value: 3 },
+    { label: "60lbs +", value: 4 },
   ];
 
   const ageOptions = [
@@ -54,18 +54,19 @@ const SignIn = () => {
   ];
 
   const genderOptions = [
-    { label: "Male", value: "Male" },
-    { label: "Female", value: "Female" },
+    { label: "Male", value: 1 },
+    { label: "Female", value: 2 },
   ];
 
   const kindOptions = [
-    { label: "Dog", value: "Dog" },
-    { label: "Cat", value: "Cat" },
+    { label: "Dog", value: 1 },
+    { label: "Cat", value: 2 },
   ];
 
   const onFinish = (values) => {
     const home = {}, {
-      home_attributes,
+      homes_attributes,
+      home_type,
       street,
       apt,
       city,
@@ -73,23 +74,26 @@ const SignIn = () => {
       zip,
     } = values
 
-    home_attributes.forEach((value) => {
+    homes_attributes.forEach((value) => {
       home[value] = 1
     })
 
     const addressAttributes = {street, apt, city, state, zip_code: zip},
-          newHomeAttributes = {...home, ...addressAttributes}
+          newHomeAttributes = {...home, ...addressAttributes, home_type}
 
     const payload = {
       authenticity_token: formData.token,
-      person: {...values, home_attributes: newHomeAttributes},
+      person: {...values, homes_attributes: newHomeAttributes},
     }
 
+    delete payload.person['home_type']
     delete payload.person['street']
     delete payload.person['apt']
     delete payload.person['city']
     delete payload.person['state']
     delete payload.person['zip']
+
+    console.dir(payload)
 
     axios.post(`${formData.path}.json`, payload)
   };
@@ -237,7 +241,7 @@ const SignIn = () => {
               </Form.Item>
 
               <Divider>Tell us about your household</Divider>
-              <Form.Item name="home_attributes">
+              <Form.Item name="homes_attributes">
                 <Checkbox.Group>
                   <Checkbox value="has_fenced_yard">
                     Fenced Yard
@@ -293,9 +297,9 @@ const SignIn = () => {
 
               <Divider>Application</Divider>
 
-              <Form.Item name="inspiration">
+              {/* <Form.Item name="inspiration">
                 <Input.TextArea rows={4} />
-              </Form.Item>
+              </Form.Item> */}
 
               <Button type="primary" htmlType="submit">
                 Submit
@@ -308,4 +312,4 @@ const SignIn = () => {
   );
 };
 
-ReactDOM.render(<SignIn />, formTarget);
+ReactDOM.render(<SignUp />, formTarget);
