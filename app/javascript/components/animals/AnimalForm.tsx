@@ -109,7 +109,7 @@ const AnimalForm = () => {
                     rules={[
                       {
                         required: true,
-                        message: "Please input the pet age!"
+                        message: "Please input the pet's birthdate!"
                       }
                     ]}
                   >
