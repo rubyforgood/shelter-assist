@@ -4,6 +4,7 @@ class SignupsController < PasswordlessController
   def create
     person = Person.new(person_params)
 
+    response_status = :success
     respond_to do |format|
       format.json do
         if person.save
@@ -12,14 +13,16 @@ class SignupsController < PasswordlessController
           session.save!
           Passwordless::Mailer.magic_link(session).deliver_now
           redirect_to confirmation_signup_path 
+        else
+          response_status = :bad_request
         end
         render(json: {
           person: person,
           errors: person.errors,
-          path: signup_path
-        }, status: :bad_request)
-        format.any { render :new }
+          path: confirmation_signup_path
+        }, status: response_status)
       end
+      format.html { render :new }
     end
   end
 

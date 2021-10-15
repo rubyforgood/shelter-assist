@@ -2,6 +2,9 @@
 # github repo's Settings -> Secrets area.
 name: Deploy
 on:
+  push:
+    branches:    
+      - main
   workflow_run:
     workflows: ["Tests"]
     types: [completed]
@@ -22,4 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
-      - run: echo "Skipped deployment. Test failure."
+      - uses: actions/github-script@v3
+        with:
+          script: |
+              core.setFailed('Skipped deployment. Test failure.')
