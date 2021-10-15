@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_150227) do
     t.string "breed"
     t.float "weight"
     t.boolean "sterilized", default: false
-    t.boolean "microchiped", default: false
+    t.boolean "microchipped", default: false
     t.date "birthdate"
   end
 
