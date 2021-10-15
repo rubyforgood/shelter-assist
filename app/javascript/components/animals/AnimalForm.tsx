@@ -22,8 +22,6 @@ const { Option } = Select;
 
 const formTarget = document.getElementById("animal-form")
 
-const FORM_ERRORS = window["animalFormErrors"]
-window["animalFormErrors"] = undefined
 
 
 const AnimalForm = () => {
@@ -32,7 +30,7 @@ const AnimalForm = () => {
   useEffect(() => {
     fetch("/animals/new.json")
       .then((response) => response.json())
-      .then((data) => setFormData({ ...data, errors: FORM_ERRORS }));
+      .then((data) => setFormData({...data}));
   }, []);
 
   const onFinish = (values) => {
@@ -42,7 +40,7 @@ const AnimalForm = () => {
       animal: values,
     }
 
-    axios.post("/animals.json", payload)
+    axios.post("/animals.json", payload).then((result: any) => window.location.href = result.data.path)
   };
 
   return (
@@ -133,6 +131,12 @@ const AnimalForm = () => {
                   <Form.Item
                       name="gender"
                       label="Gender"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please select a pet type!"
+                        }
+                      ]}
                   >
                     <Radio.Group>
                       <Radio value="male">Male</Radio>
