@@ -26,7 +26,6 @@ class Person < ApplicationRecord
   accepts_nested_attributes_for :homes
 
   validates :full_name, presence: true
-  validates :street, presence: true
   validates :is_home_during_day, presence: true
   validates :transportation, presence: true
   validates :phone, format: { with: /\A\d+\z/, message: "Numbers only, please." }

@@ -2,24 +2,36 @@ class SignupsController < PasswordlessController
   prepend_before_action :require_no_person, only: [:new]
 
   def create
-    @person = Person.new(person_params)
-    if @person.save
-      session = build_passwordless_session(@person)
-      session.token = Passwordless.token_generator.call(session)
-      session.save!
-      Passwordless::Mailer.magic_link(session).deliver_now
-      redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
-    else
-      render :new
+    person = Person.new(person_params)
+
+    response_status = :success
+    respond_to do |format|
+      format.json do
+        if person.save
+          session = build_passwordless_session(person)
+          session.token = Passwordless.token_generator.call(session)
+          session.save!
+          Passwordless::Mailer.magic_link(session).deliver_now
+          # redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
+        else
+          response_status = :bad_request
+        end
+        render(json: {
+          person: person,
+          errors: person.errors,
+          path: signup_path
+        }, status: response_status)
+      end
+      format.html { render :new }
     end
   end
 
   def new
-    @person = Person.new
+    person = Person.new
 
     respond_to do |format|
       format.html {}
-      format.json { render json: json_form(@person, signup_path, @person.errors) }
+      format.json { render json: json_form(person, signup_path, person.errors) }
     end
   end
 

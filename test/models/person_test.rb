@@ -18,14 +18,6 @@ class PersonTest < ActiveSupport::TestCase
     assert person.valid?
   end
 
-  test 'a person can be rejected for an empty street' do
-    bad_parameters = @valid_parameters
-    bad_parameters['street'] = ''
-    person = Person.new(bad_parameters)
-
-    assert person.invalid?
-  end
-
   test 'does add a person without apt' do
     valid_parameters = @valid_parameters
     valid_parameters['apt'] = ''
