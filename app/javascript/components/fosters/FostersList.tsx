@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import ReactDOM from "react-dom"
 
 import {
@@ -6,14 +6,10 @@ import {
   Space,
   Button,
   Col,
-  Row,
-  Typography,
-  Select,
+  Row
 } from "antd"
 
-const { Title, Paragraph } = Typography
-
-const { Column, ColumnGroup } = Table;
+const { Column } = Table;
 
 const formTarget = document.getElementById("fosters-index")
 
@@ -35,9 +31,22 @@ const FostersList = () => {
       <Col span={20} offset={2}>
         { formData && (
           <div>
-            <Row>
+            <Row style={{ marginBottom: 16 }}>
               <Col span={24}>
-                <Title>Fosters</Title>
+                <Button
+                    type="primary"
+                    size='large'
+                    href={"/people"}
+                >
+                  Fosters
+                </Button>
+                <Button
+                    type="default"
+                    size='large'
+                    href={"/animals"}
+                >
+                  Pets
+                </Button>
               </Col>
             </Row>
             <Table dataSource={formData}>
@@ -64,12 +73,6 @@ const FostersList = () => {
                 type="link"
             >
               New Foster
-            </Button>
-            <Button
-                href={"/animals/new"}
-                type="link"
-            >
-              Add Pet
             </Button>
           </div>
         )}

@@ -26,3 +26,26 @@ person = Person.create!(
 #   name: "Jon smith",
 #   phone_number: "123-456-7892"
 # )
+
+#   Animal.create!(
+#   name: "Canoli",
+#   animal_kind: "dog",
+#   gender: "female",
+#   breed: "Akita",
+#   birthdate: Date.new(2019, 5, 12)
+# )
+# Animal.create!(
+#   name: "Rafo",
+#   animal_kind: "dog",
+#   gender: "male",
+#   breed: "Beagle",
+#   birthdate: Date.new(2020, 7, 16)
+
+# )
+# Animal.create!(
+#   name: "Nalo",
+#   animal_kind: "cat",
+#   gender: "male",
+#   breed: "Burmese",
+#   birthdate: Date.new(2018, 6, 2)
+# )
