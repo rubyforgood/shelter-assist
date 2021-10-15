@@ -13,6 +13,7 @@ import {
   Row,
   Typography,
   Select,
+  DatePicker
 } from "antd"
 
 const { Title, Paragraph } = Typography
@@ -35,34 +36,13 @@ const AnimalForm = () => {
   }, []);
 
   const onFinish = (values) => {
-    const home = {}, {
-      home_attributes,
-      street,
-      apt,
-      city,
-      state,
-      zip,
-    } = values
-
-    home_attributes.forEach((value) => {
-      home[value] = 1
-    })
-
-    const addressAttributes = {street, apt, city, state, zip_code: zip},
-          newHomeAttributes = {...home, ...addressAttributes}
 
     const payload = {
       authenticity_token: formData.token,
-      person: {...values, home_attributes: newHomeAttributes},
+      animal: values,
     }
 
-    delete payload.person['street']
-    delete payload.person['apt']
-    delete payload.person['city']
-    delete payload.person['state']
-    delete payload.person['zip']
-
-    axios.post(`${formData.path}.json`, payload)
+    axios.post("/animals/create.json", payload)
   };
 
   return (
@@ -135,7 +115,7 @@ const AnimalForm = () => {
                       }
                     ]}
                   >
-                    <Input />
+                    <DatePicker />
                   </Form.Item>
                   <div>
                   <Form.Item
