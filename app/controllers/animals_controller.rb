@@ -27,7 +27,9 @@ class AnimalsController < ApplicationController
       :age,
       :breed,
       :sterilized,
-      :microchipped
+      :microchipped,
+      :weight,
+      :birthdate
     )
   end
 end

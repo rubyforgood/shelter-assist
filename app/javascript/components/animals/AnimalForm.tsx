@@ -42,7 +42,7 @@ const AnimalForm = () => {
       animal: values,
     }
 
-    axios.post("/animals/create.json", payload)
+    axios.post("/animals.json", payload)
   };
 
   return (
@@ -164,8 +164,8 @@ const AnimalForm = () => {
                     <Input />
                   </Form.Item>
                   <Form.Item
-                      name="microchiped"
-                      label="Microchiped"
+                      name="microchipped"
+                      label="Microchipped"
                   >
                     <Radio.Group>
                       <Radio value={true}>Yes</Radio>
