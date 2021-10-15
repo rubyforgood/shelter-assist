@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react"
-import ReactDOM from "react-dom"
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+
+import axios from 'axios'
 
 import {
   Button,
@@ -9,35 +11,88 @@ import {
   Divider,
   Checkbox,
   Radio,
-  Cascader,
-  DatePicker,
   Row,
+  Select,
   Typography,
-} from "antd"
+} from "antd";
 
-const { Title, Paragraph } = Typography
+const { Option } = Select
+const { Title, Paragraph } = Typography;
 
-import * as options from './fields'
+const formTarget = document.getElementById("signup-form");
 
-const formTarget = document.getElementById("signup-form")
+const FORM_ERRORS = window["signupFormErrors"];
+window["signupFormErrors"] = undefined;
 
-const FORM_ERRORS = window["signupFormErrors"]
-window["signupFormErrors"] = undefined
-
-const TextInput = ({ value, label, name }) => (
-  <label>
-    <input type="text" name={name} placeholder={label} value={value} />
-  </label>
-)
-
-const SignIn = () => {
-  const [formData, setFormData] = useState()
+const SignUp = () => {
+  const [formData, setFormData] = useState();
 
   useEffect(() => {
     fetch("/signup.json")
       .then((response) => response.json())
-      .then((data) => setFormData({ ...data, errors: FORM_ERRORS }))
-  }, [])
+      .then((data) => setFormData({ ...data, errors: FORM_ERRORS }));
+  }, []);
+
+  const homeOptions = [
+    { label: "Apartment/Condo", value: "Apartment/Condo" },
+    { label: "House", value: "House" },
+    { label: "Townhome", value: "Townhome" },
+  ];
+
+  const sizeOptions = [
+    { label: "less than 20 lbs", value: "less than 20 lbs" },
+    { label: "20 - 40 lbs", value: "20 - 40 lbs" },
+    { label: "40 - 60 lbs", value: "40 - 60 lbs" },
+    { label: "60lbs +", value: "60lbs +" },
+  ];
+
+  const ageOptions = [
+    { label: "Puppy (up to 3 months)", value: 1 },
+    { label: "Young (3 months - 2 years)", value: 2 },
+    { label: "Adult (2 - 5 years)", value: 3 },
+    { label: "Senior (5 years + )", value: 4 },
+  ];
+
+  const genderOptions = [
+    { label: "Male", value: "Male" },
+    { label: "Female", value: "Female" },
+  ];
+
+  const kindOptions = [
+    { label: "Dog", value: "Dog" },
+    { label: "Cat", value: "Cat" },
+  ];
+
+  const onFinish = (values) => {
+    const home = {}, {
+      home_attributes,
+      street,
+      apt,
+      city,
+      state,
+      zip,
+    } = values
+
+    home_attributes.forEach((value) => {
+      home[value] = 1
+    })
+
+    const addressAttributes = {street, apt, city, state, zip_code: zip},
+          newHomeAttributes = {...home, ...addressAttributes}
+
+    const payload = {
+      authenticity_token: formData.token,
+      person: {...values, home_attributes: newHomeAttributes},
+    }
+
+    delete payload.person['street']
+    delete payload.person['apt']
+    delete payload.person['city']
+    delete payload.person['state']
+    delete payload.person['zip']
+
+    axios.post(`${formData.path}.json`, payload)
+  };
 
   return (
     <div>
@@ -46,17 +101,18 @@ const SignIn = () => {
           <Col span={12} offset={6}>
             <Title>Foster Application</Title>
             <Paragraph>
-              Thank you for your interest in becoming a Foster! Please fill out the
-              below application and someone from our team will be in touched as soon
-              as possible. Once approved, you will be able to access your Foster
-              Profile and be able to edit your informtion as you need.
+              Thank you for your interest in becoming a Foster! Please fill out
+              the below application and someone from our team will be in touched
+              as soon as possible. Once approved, you will be able to access
+              your Foster Profile and be able to edit your informtion as you
+              need.
             </Paragraph>
             <Form
               name="person"
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 10 }}
               initialValues={{ remember: true }}
-              // onFinish={onFinish}
+              onFinish={onFinish}
               autoComplete="off"
             >
               <input
@@ -65,36 +121,58 @@ const SignIn = () => {
                 value={formData.token}
               />
               <Divider>Contact Info</Divider>
-              <Form.Item
-                label="Name"
-                name="full_name"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your first name!"
-                  }
-                ]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                label="Nickname"
-                name="nick_name"
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your email!"
-                  }
-                ]}
-              >
-                <Input />
-              </Form.Item>
+              <Row>
+                <Col span={12}>
+                  <Form.Item
+                    label="Name"
+                    name="full_name"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your first name!",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item label="Nickname" name="nick_name">
+                    <Input />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={12}>
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your email!",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    label="Phone Number"
+                    name="phone"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your phone number!",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+              </Row>
+
               <Divider>Address</Divider>
               <Form.Item
                 label="Street"
@@ -102,38 +180,24 @@ const SignIn = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your street address!"
-                  }
+                    message: "Please input your street address!",
+                  },
                 ]}
               >
                 <Input />
               </Form.Item>
-              <Form.Item
-                label="Apartment"
-                name="apt"
-              >
+              <Form.Item label="Apartment" name="apt">
                 <Input />
               </Form.Item>
-              <Form.Item
-                label="Phone Number"
-                name="apt"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your phone number!"
-                  }
-                ]}
-              >
-                <Input />
-              </Form.Item>
+
               <Form.Item
                 label="City"
                 name="city"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your city!"
-                  }
+                    message: "Please input your city!",
+                  },
                 ]}
               >
                 <Input />
@@ -144,8 +208,8 @@ const SignIn = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your state!"
-                  }
+                    message: "Please input your state!",
+                  },
                 ]}
               >
                 <Input />
@@ -156,159 +220,92 @@ const SignIn = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your zip code!"
-                  }
+                    message: "Please input your zip code!",
+                  },
                 ]}
               >
                 <Input />
               </Form.Item>
 
-              <Title level={2}>Home Information</Title>
-              <Paragraph>Are you or another adult home during the day?</Paragraph>
+              <Divider>Home Information</Divider>
+              <Paragraph>
+                Are you or another adult home during the day?
+              </Paragraph>
 
-              <Form.Item name="transportation">
-                <Radio.Group>
-                  <Radio value={true}>Yes</Radio>
-                  <Radio value={false}>No</Radio>
-                </Radio.Group>
+              <Form.Item name="is_home_during_day">
+                <Radio.Group options={[{label: "Yes", value: "1"}, {label: "No", value: "0"}]} />
               </Form.Item>
-              {/* <fieldset>
-                <Radio
-                  value={true}
-                  label="Yes"
-                  name="person[is_home_during_day]"
-                />
-                <Radio
-                  value={false}
-                  label="No"
-                  name="person[is_home_during_day]"
-                />
-              </fieldset>
 
-              <h2>Tell us about your household</h2>
-              <fieldset>
-                <Checkbox
-                  label="Fenced Yard"
-                  name="person[homes_attributes][0][has_fenced_yard]"
-                />
-                <Checkbox
-                  label="Kids"
-                  name="person[homes_attributes][0][has_children]"
-                />
-                <Checkbox
-                  label="Other Adults"
-                  name="person[homes_attributes][0][has_other_adults]"
-                />
-                <Checkbox
-                  label="Dog(s)"
-                  name="person[homes_attributes][0][has_other_dog]"
-                />
-                <Checkbox
-                  label="Cat(s)"
-                  name="person[homes_attributes][0][has_other_cat]"
-                />
-              </fieldset>
+              <Divider>Tell us about your household</Divider>
+              <Form.Item name="home_attributes">
+                <Checkbox.Group>
+                  <Checkbox value="has_fenced_yard">
+                    Fenced Yard
+                  </Checkbox>
+                  <Checkbox value="has_children">
+                    Kids
+                  </Checkbox>
+                  <Checkbox value="has_other_adults">
+                    Other Adults
+                  </Checkbox>
+                  <Checkbox value="has_other_dog">
+                    Dog(s)
+                  </Checkbox>
+                  <Checkbox value="has_other_cat">
+                    Cat(s)
+                  </Checkbox>
+                </Checkbox.Group>
+              </Form.Item>
 
-              <h2>Home Type</h2>
-              <select name="person[homes_attributes][0][home_type]">
-                <option value="Apartment/Condo">Apartment/Condo</option>
-                <option value="Townhouse">Townhouse</option>
-                <option value="House">House</option>
-              </select>
+              <Divider>Home Type</Divider>
+              <Form.Item name="home_type">
+                <Select options={homeOptions} />
+              </Form.Item>
 
-              <h2>Animal Kind</h2>
-              <fieldset>
-                <Checkbox
-                  label="Dog"
-                  value="Dog"
-                  name="person[animal_kind_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="Cat"
-                  value="Cat"
-                  name="person[animal_kind_preferences_attributes][0][animal_value][]"
-                  disabled
-                />
-              </fieldset>
+              <Divider>Animal Kind</Divider>
+              <Form.Item name="animal_kind_preferences_attributes">
+                <Checkbox.Group options={kindOptions} />
+              </Form.Item>
 
-              <h2>Sex Preference</h2>
-              <fieldset>
-                <Checkbox
-                  label="Male"
-                  value="Male"
-                  name="person[animal_gender_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="Female"
-                  value="Female"
-                  name="person[animal_gender_preferences_attributes][0][animal_value][]"
-                />
-              </fieldset>
+              <Divider>Gender Preference</Divider>
+              <Form.Item name="animal_gender_preferences_attributes">
+                <Checkbox.Group options={genderOptions} />
+              </Form.Item>
 
-              <h2>Age Preference</h2>
-              <fieldset>
-                <Checkbox
-                  label="Puppy (up to 3 months)"
-                  value="Puppy (up to 3 months)"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="Young (3 months - 2 years)"
-                  value="Young (3 months - 2 years)"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="Adult (2 - 5 years)"
-                  value="Adult (2 - 5 years)"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="Senior (5 years + )"
-                  value="Senior (5 years + )"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-              </fieldset>
+              <Divider>Age Preference</Divider>
+              <Form.Item name="animal_age_preferences_attributes">
+                <Checkbox.Group options={ageOptions} />
+              </Form.Item>
 
-              <h2>Size Preference</h2>
-              <fieldset>
-                <Checkbox
-                  label="less than 20 lbs"
-                  value="less than 20 lbs"
-                  name="person[animal_size_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="20 - 40 lbs"
-                  value="20 - 40 lbs"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="40 - 60 lbs"
-                  value="40 - 60 lbs"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-                <Checkbox
-                  label="60 +"
-                  value="60 +"
-                  name="person[animal_age_preferences_attributes][0][animal_value][]"
-                />
-              </fieldset>
+              <Divider>Size Preference</Divider>
+              <Form.Item name="animal_size_preferences_attributes">
+                <Checkbox.Group options={sizeOptions} />
+              </Form.Item>
 
-              <h2>Application</h2>
-              <textarea name="person[animal_application][inspiration]"></textarea>
+              <Divider>Transportation</Divider>
+              <Form.Item name="transportation">
+                <Select>
+                  <Option value="access_to_car">Access to car</Option>
+                  <Option value="car">Car</Option>
+                  <Option value="no_car">No car</Option>
+                </Select>
+              </Form.Item>
 
-              <h2>Transportation</h2>
-              <select name="person[transportation]">
-                <option value="access_to_car">Access to car</option>
-                <option value="car">Car</option>
-                <option value="no_car">No car</option>
-              </select>
-              <input type="submit" value="Fetch!" /> */}
+              <Divider>Application</Divider>
+
+              <Form.Item name="inspiration">
+                <Input.TextArea rows={4} />
+              </Form.Item>
+
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
             </Form>
           </Col>
         </Row>
       )}
     </div>
-  )
-}
+  );
+};
 
-ReactDOM.render(<SignIn />, formTarget)
+ReactDOM.render(<SignUp />, formTarget);
