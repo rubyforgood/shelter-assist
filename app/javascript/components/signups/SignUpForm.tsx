@@ -108,8 +108,6 @@ const SignUp = () => {
       size[i] = {animal_value: value}
     })
 
-    debugger
-
     const addressAttributes = {street, apt, city, state, zip_code: zip},
           newHomeAttributes = {...home, ...addressAttributes, home_type}
 
@@ -124,8 +122,6 @@ const SignUp = () => {
         animal_size_preferences_attributes: size,
       },
     }
-
-    console.dir(payload)
 
     delete payload.person['home_type']
     delete payload.person['street']
