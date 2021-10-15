@@ -4,6 +4,10 @@ class PeopleController < PasswordProtectedController
   # GET /people or /people.json
   def index
     @people = Person.with_role(:foster)
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @people }
+    end
   end
 
   # GET /people/1 or /people/1.json
