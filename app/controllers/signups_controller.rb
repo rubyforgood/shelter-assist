@@ -4,7 +4,7 @@ class SignupsController < PasswordlessController
   def create
     person = Person.new(person_params)
 
-    response_status = :success
+    response_status = 200
     respond_to do |format|
       format.json do
         if person.save

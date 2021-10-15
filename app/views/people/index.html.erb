@@ -1,25 +1,5 @@
+<%= javascript_include_tag "components/fosters/FostersList", "data-turbo-track": "reload", defer: true %>
+<div id="fosters-index"></div>
+
+
 <p id="notice"><%= notice %></p>
-
-<h1>Fosters</h1>
-
-<table border="1">
-  <tr>
-    <th>Name</th>
-    <th>Rescue</th>
-    <th>Phone Number</th>
-    <th>Email</th>
-    <th></th>
-  </tr>
-  <% @people.each do |person| %>
-    <tr>
-      <td><%= person.name%></td>
-      <td>The Little Black Dog</td>
-      <td><%=number_to_phone(person.phone, area_code: true )%></td>
-      <td><%=person.email %></td>
-      <td><%= link_to "Edit", edit_person_path(person)%></td>
-    </tr>
-  <% end %>
-</table>
-<br>
-<%= link_to "New person", new_person_path %>
-<%= link_to "Add Pet", new_animal_path %>

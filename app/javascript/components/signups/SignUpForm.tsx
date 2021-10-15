@@ -117,7 +117,7 @@ const SignUp = () => {
       authenticity_token: formData.token,
       person: {
         ...values,
-        homes_attributes: newHomeAttributes,
+        homes_attributes: [newHomeAttributes],
         animal_age_preferences_attributes: age,
         animal_gender_preferences_attributes: gender,
         animal_kind_preferences_attributes: kind,
