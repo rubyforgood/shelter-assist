@@ -1,9 +1,7 @@
 <%= javascript_include_tag "components/signups/SignUpForm", "data-turbo-track": "reload", defer: true %>
 
-<% if @person.errors.any? %>
-  <%= javascript_tag do %>
-    var signupFormErrors = <%= raw(@person.errors.to_json) %>
-  <% end %>
+<%= javascript_tag do %>
+  var signupFormErrors
 <% end %>
 
 <div id="signup-form"></div>
