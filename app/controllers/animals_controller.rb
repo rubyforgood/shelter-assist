@@ -1,9 +1,9 @@
 class AnimalsController < ApplicationController
   def index
-    @animals = Animal.all
+    animals = Animal.all
     respond_to do |format|
       format.html {}
-      format.json { render json: @animals }
+      format.json { render json: animals }
     end
   end
 
@@ -16,7 +16,7 @@ class AnimalsController < ApplicationController
     end
     render(json: {
       errors: animal.errors,
-      path: people_path
+      path: animals_path
     })
   end
 
