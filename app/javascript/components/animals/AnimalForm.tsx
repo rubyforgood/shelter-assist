@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom"
 
-const { Option } = Select;
+import axios from 'axios'
 
 import {
   Button,
@@ -17,26 +17,53 @@ import {
 
 const { Title, Paragraph } = Typography
 
+const { Option } = Select;
+
 const formTarget = document.getElementById("animal-form")
 
-const FORM_ERRORS = window["signupFormErrors"]
-window["signupFormErrors"] = undefined
+const FORM_ERRORS = window["animalFormErrors"]
+window["animalFormErrors"] = undefined
 
-const TextInput = ({ value, label, name }) => (
-  <label>
-    <input type="text" name={name} placeholder={label} value={value} />
-  </label>
-)
 
 const AnimalForm = () => {
   const [formData, setFormData] = useState()
-  const handleChange = (value) => (console.log(`selected ${value}`))
 
   useEffect(() => {
-    fetch("/signup.json")
+    fetch("/animals/new.json")
       .then((response) => response.json())
-      .then((data) => setFormData({ ...data, errors: FORM_ERRORS }))
-  }, [])
+      .then((data) => setFormData({ ...data, errors: FORM_ERRORS }));
+  }, []);
+
+  const onFinish = (values) => {
+    const home = {}, {
+      home_attributes,
+      street,
+      apt,
+      city,
+      state,
+      zip,
+    } = values
+
+    home_attributes.forEach((value) => {
+      home[value] = 1
+    })
+
+    const addressAttributes = {street, apt, city, state, zip_code: zip},
+          newHomeAttributes = {...home, ...addressAttributes}
+
+    const payload = {
+      authenticity_token: formData.token,
+      person: {...values, home_attributes: newHomeAttributes},
+    }
+
+    delete payload.person['street']
+    delete payload.person['apt']
+    delete payload.person['city']
+    delete payload.person['state']
+    delete payload.person['zip']
+
+    axios.post(`${formData.path}.json`, payload)
+  };
 
   return (
     <div>
@@ -57,7 +84,7 @@ const AnimalForm = () => {
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 10 }}
               initialValues={{ remember: true }}
-              // onFinish={onFinish}
+              onFinish={onFinish}
               autoComplete="off"
             >
               <input
@@ -80,7 +107,6 @@ const AnimalForm = () => {
                   >
                     <Select
                         style={{ width: 120 }}
-                        onChange={handleChange}
                         placeholder="Please Select"
                     >
                       <Option value="dog">Dog</Option>
@@ -94,6 +120,18 @@ const AnimalForm = () => {
                       {
                         required: true,
                         message: "Please input the pet name!"
+                      }
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label="Birthdate"
+                    name="birthdate"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the pet age!"
                       }
                     ]}
                   >
