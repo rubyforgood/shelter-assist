@@ -24,7 +24,7 @@ const formTarget = document.getElementById("signup-form");
 const FORM_ERRORS = window["signupFormErrors"];
 window["signupFormErrors"] = undefined;
 
-const SignIn = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState();
 
   useEffect(() => {
@@ -308,4 +308,4 @@ const SignIn = () => {
   );
 };
 
-ReactDOM.render(<SignIn />, formTarget);
+ReactDOM.render(<SignUp />, formTarget);

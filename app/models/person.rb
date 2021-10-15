@@ -13,6 +13,9 @@ class Person < ApplicationRecord
   has_many :animal_age_preferences
   has_many :animal_size_preferences
 
+  has_many :person_animals
+  has_many :animals, through: :person_animals
+
   accepts_nested_attributes_for :animal_kind_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
   accepts_nested_attributes_for :animal_gender_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
   accepts_nested_attributes_for :animal_age_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
@@ -40,6 +43,10 @@ class Person < ApplicationRecord
 
   def password_required?
     false
+  end
+
+  def name
+    nick_name.presence || full_name
   end
 
 private

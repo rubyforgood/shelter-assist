@@ -89,3 +89,28 @@ The following is how to setup mailhog, which is a tool to intercept e-mails in a
 4. To stop Mailhog use:
 
   * `brew services stop mailhog`
+
+## Production/Staging Setup
+
+### Environment Variables
+
+For the hosting environment, you'll need the following environment variables setup to point to your SMTP/Email service.
+
+```
+SHELTERASSIST_HOSTNAME = "https://shelterassist.herokuapp.com
+SHELTERASSIST_SMTP_SERVER = "smtp.example.com"
+SHELTERASSIST_SMTP_PORT = 587
+SHELTERASSIST_SMTP_USER = "myusername"
+SHELTERASSIST_SMTP_PASSWORD = "password"
+SHELTERASSIST_EMAIL_ADDRESS = "support@shelterassist.org"
+```
+
+`SHELTERASSIST_EMAIL_ADDRESS` is the _from_ address used for outgoing email like password reminders and magic-link emails.
+
+For automated deployment via Github Actions to a heroku environment, you will need to setup the following variables via the repo's Settings -> Secrets.
+
+```
+HEROKU_API_KEY = "Heroku account API key"
+HEROKU_APP_NAME = "shelterassist"
+HEROKU_EMAIL = "email address of Heroku account holder"
+```

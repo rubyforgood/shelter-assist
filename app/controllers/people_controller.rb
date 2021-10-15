@@ -3,7 +3,7 @@ class PeopleController < PasswordProtectedController
 
   # GET /people or /people.json
   def index
-    @people = Person.all
+    @people = Person.with_role(:foster)
   end
 
   # GET /people/1 or /people/1.json
