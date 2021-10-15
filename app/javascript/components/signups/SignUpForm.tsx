@@ -13,6 +13,7 @@ import {
   Radio,
   Row,
   Select,
+  Space,
   Typography,
 } from "antd";
 
@@ -47,7 +48,7 @@ const SignUp = () => {
   ];
 
   const ageOptions = [
-    { label: "Puppy (up to 3 months)", value: 1 },
+    { label: "Newborn (up to 3 months)", value: 1 },
     { label: "Young (3 months - 2 years)", value: 2 },
     { label: "Adult (2 - 5 years)", value: 3 },
     { label: "Senior (5 years + )", value: 4 },
@@ -60,11 +61,20 @@ const SignUp = () => {
 
   const kindOptions = [
     { label: "Dog", value: 1 },
-    { label: "Cat", value: 2 },
+    { label: "Cat", value: 2, disabled: true },
   ];
 
   const onFinish = (values) => {
-    const home = {}, {
+    const age = [],
+    gender = [],
+    kind = [],
+    size = [],
+    home = {},
+    {
+      animal_age_preferences_attributes,
+      animal_gender_preferences_attributes,
+      animal_kind_preferences_attributes,
+      animal_size_preferences_attributes,
       homes_attributes,
       home_type,
       street,
@@ -74,8 +84,22 @@ const SignUp = () => {
       zip,
     } = values
 
-    homes_attributes.forEach((value) => {
-      home[value] = 1
+    homes_attributes.forEach((value, i) => {
+      home[i] = {animal_value: value}
+    })
+
+    // debugger
+    animal_age_preferences_attributes.forEach((value, i) => {
+      age[i] = {animal_value: value}
+    })
+    animal_gender_preferences_attributes.forEach((value, i) => {
+      gender[i] = {animal_value: value}
+    })
+    animal_kind_preferences_attributes.forEach((value, i) => {
+      kind[i] = {animal_value: value}
+    })
+    animal_size_preferences_attributes.forEach((value, i) => {
+      size[i] = {animal_value: value}
     })
 
     const addressAttributes = {street, apt, city, state, zip_code: zip},
@@ -83,8 +107,17 @@ const SignUp = () => {
 
     const payload = {
       authenticity_token: formData.token,
-      person: {...values, homes_attributes: newHomeAttributes},
+      person: {
+        ...values,
+        homes_attributes: newHomeAttributes,
+        animal_age_preferences_attributes: age,
+        animal_gender_preferences_attributes: gender,
+        animal_kind_preferences_attributes: kind,
+        animal_size_preferences_attributes: size,
+      },
     }
+
+    console.dir(payload)
 
     delete payload.person['home_type']
     delete payload.person['street']
@@ -93,9 +126,9 @@ const SignUp = () => {
     delete payload.person['state']
     delete payload.person['zip']
 
-    console.dir(payload)
-
     axios.post(`${formData.path}.json`, payload)
+      .then(({path}: any) => window.location.href = path)
+      .catch((error) => console.dir(error))
   };
 
   return (
@@ -301,9 +334,11 @@ const SignUp = () => {
                 <Input.TextArea rows={4} />
               </Form.Item> */}
 
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
+              <Space align="top" direction="vertical">
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Space>
             </Form>
           </Col>
         </Row>
