@@ -57,9 +57,6 @@ Records like a Person who is a Foster and Application will likely need a way of 
 * `git clone `
 * `rvm install 3.0.2`
 * `bundle install`
-* `gem install foreman`
-
-Make sure to check `.tool-versions` for nodejs versions.
 
 ## Optional ASDF-VM Support
 
@@ -71,13 +68,13 @@ Note: a `.tool-versions` file exists which contains the current supported ruby v
 ## Running the app
 
 ```
-bin/dev
+rails s
 ```
 ## Setting up and testing mail delivery using Mailhog in local development
 
 The following is how to setup mailhog, which is a tool to intercept e-mails in a local environment for e-mail testing purposes. The following steps only apply to MacOS users. For non MacOS users, please refer to `https://mailtrap.io/blog/mailhog-explained/`
 
-1.  Set up Mailhog using Homebrew. Run the following command in the terminal:
+1.  Set up Mailhog using Homebrew. Run the following command in the terminal: 
 
   * `brew install mailhog`
 
@@ -85,10 +82,35 @@ The following is how to setup mailhog, which is a tool to intercept e-mails in a
 
   * `brew services start mailhog`
 
-3. After sending an e-mail locally in a test environment, visit the following link:
+3. After sending an e-mail locally in a test environment, visit the following link: 
 
   * `http://localhost:8025/`
 
 4. To stop Mailhog use:
 
   * `brew services stop mailhog`
+
+## Production/Staging Setup
+
+### Environment Variables
+
+For the hosting environment, you'll need the following environment variables setup to point to your SMTP/Email service.
+
+```
+SHELTERASSIST_HOSTNAME = "https://shelterassist.herokuapp.com
+SHELTERASSIST_SMTP_SERVER = "smtp.example.com"
+SHELTERASSIST_SMTP_PORT = 587
+SHELTERASSIST_SMTP_USER = "myusername"
+SHELTERASSIST_SMTP_PASSWORD = "password"
+SHELTERASSIST_EMAIL_ADDRESS = "support@shelterassist.org"
+```
+
+`SHELTERASSIST_EMAIL_ADDRESS` is the _from_ address used for outgoing email like password reminders and magic-link emails.
+
+For automated deployment via Github Actions to a heroku environment, you will need to setup the following variables via the repo's Settings -> Secrets.
+
+```
+HEROKU_API_KEY = "Heroku account API key"
+HEROKU_APP_NAME = "shelterassist"
+HEROKU_EMAIL = "email address of Heroku account holder"
+```
