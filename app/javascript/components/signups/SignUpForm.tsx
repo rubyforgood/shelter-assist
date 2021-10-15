@@ -65,10 +65,10 @@ const SignUp = () => {
   ];
 
   const onFinish = (values) => {
-    const age = [],
-    gender = [],
-    kind = [],
-    size = [],
+    let age,
+    gender,
+    kind,
+    size,
     home = {},
     {
       animal_age_preferences_attributes,
@@ -84,23 +84,31 @@ const SignUp = () => {
       zip,
     } = values
 
-    homes_attributes.forEach((value, i) => {
-      home[i] = {animal_value: value}
+    homes_attributes?.forEach((value) => {
+      home[value] = 1
     })
 
-    // debugger
-    animal_age_preferences_attributes.forEach((value, i) => {
+    if (animal_age_preferences_attributes?.length) age = []
+    animal_age_preferences_attributes?.forEach((value, i) => {
       age[i] = {animal_value: value}
     })
-    animal_gender_preferences_attributes.forEach((value, i) => {
+
+    if (animal_gender_preferences_attributes?.length) gender = []
+    animal_gender_preferences_attributes?.forEach((value, i) => {
       gender[i] = {animal_value: value}
     })
-    animal_kind_preferences_attributes.forEach((value, i) => {
+
+    if (animal_kind_preferences_attributes?.length) kind = []
+    animal_kind_preferences_attributes?.forEach((value, i) => {
       kind[i] = {animal_value: value}
     })
-    animal_size_preferences_attributes.forEach((value, i) => {
+
+    if (animal_size_preferences_attributes?.length) size = []
+    animal_size_preferences_attributes?.forEach((value, i) => {
       size[i] = {animal_value: value}
     })
+
+    debugger
 
     const addressAttributes = {street, apt, city, state, zip_code: zip},
           newHomeAttributes = {...home, ...addressAttributes, home_type}
@@ -339,6 +347,9 @@ const SignUp = () => {
                   Submit
                 </Button>
               </Space>
+              <br/>
+              <br/>
+              <br/>
             </Form>
           </Col>
         </Row>
