@@ -1,2 +1,3 @@
-<h1><%= current_person.name %></h1>
-<p><%= current_person %></p>
+<%= javascript_include_tag "components/statuses/PersonProfile", "data-turbo-track": "reload", defer: true %>
+
+<div id="person-profile"></div>
