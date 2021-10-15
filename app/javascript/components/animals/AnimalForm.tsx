@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom"
 
-const { Option } = Select;
+import axios from 'axios'
 
 import {
   Button,
@@ -13,30 +13,35 @@ import {
   Row,
   Typography,
   Select,
+  DatePicker
 } from "antd"
 
 const { Title, Paragraph } = Typography
 
+const { Option } = Select;
+
 const formTarget = document.getElementById("animal-form")
 
-const FORM_ERRORS = window["signupFormErrors"]
-window["signupFormErrors"] = undefined
 
-const TextInput = ({ value, label, name }) => (
-  <label>
-    <input type="text" name={name} placeholder={label} value={value} />
-  </label>
-)
 
 const AnimalForm = () => {
   const [formData, setFormData] = useState()
-  const handleChange = (value) => (console.log(`selected ${value}`))
 
   useEffect(() => {
-    fetch("/signup.json")
+    fetch("/animals/new.json")
       .then((response) => response.json())
-      .then((data) => setFormData({ ...data, errors: FORM_ERRORS }))
-  }, [])
+      .then((data) => setFormData({...data}));
+  }, []);
+
+  const onFinish = (values) => {
+
+    const payload = {
+      authenticity_token: formData.token,
+      animal: values,
+    }
+
+    axios.post("/animals.json", payload).then((result: any) => window.location.href = result.data.path)
+  };
 
   return (
     <div>
@@ -57,7 +62,7 @@ const AnimalForm = () => {
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 10 }}
               initialValues={{ remember: true }}
-              // onFinish={onFinish}
+              onFinish={onFinish}
               autoComplete="off"
             >
               <input
@@ -80,7 +85,6 @@ const AnimalForm = () => {
                   >
                     <Select
                         style={{ width: 120 }}
-                        onChange={handleChange}
                         placeholder="Please Select"
                     >
                       <Option value="dog">Dog</Option>
@@ -99,6 +103,18 @@ const AnimalForm = () => {
                   >
                     <Input />
                   </Form.Item>
+                  <Form.Item
+                    label="Birthdate"
+                    name="birthdate"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the pet's birthdate!"
+                      }
+                    ]}
+                  >
+                    <DatePicker />
+                  </Form.Item>
                   <div>
                   <Form.Item
                       name="sterilized"
@@ -115,6 +131,12 @@ const AnimalForm = () => {
                   <Form.Item
                       name="gender"
                       label="Gender"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please select a pet type!"
+                        }
+                      ]}
                   >
                     <Radio.Group>
                       <Radio value="male">Male</Radio>
@@ -146,8 +168,8 @@ const AnimalForm = () => {
                     <Input />
                   </Form.Item>
                   <Form.Item
-                      name="microchiped"
-                      label="Microchiped"
+                      name="microchipped"
+                      label="Microchipped"
                   >
                     <Radio.Group>
                       <Radio value={true}>Yes</Radio>
