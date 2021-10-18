@@ -70,6 +70,21 @@ Note: a `.tool-versions` file exists which contains the current supported ruby v
 ```
 rails s
 ```
+
+## Design
+
+|                          |                                                              |
+| ------------------------ | ------------------------------------------------------------ |
+| Design system            | [Ant Design](https://ant.design)                             |
+| Components in Figma File | [Ant Design Open Source Figma Library](https://www.figma.com/community/file/831698976089873405) |
+| Homepage Illustrations   | [unDraw](https://undraw.co/search) illustrations, free for commercial use. |
+| Fonts Used               | _Speech Bubble Text_ - Sue Ellen Francisco<br />_Roboto_ (Regular, Bold) |
+
+### Design Prototypes
+
+- [Foster Application](https://www.figma.com/proto/RIfWeZXYmQJEA9Tuwxewzy/Design-File?node-id=86%3A27199&viewport=241%2C48%2C0.69&scaling=min-zoom&starting-point-node-id=86%3A27475&show-proto-sidebar=1)
+- [Volunteer Sign In / Add a Pet / Pet Profile / User Profile](https://www.figma.com/proto/RIfWeZXYmQJEA9Tuwxewzy/Design-File?node-id=86%3A27199&viewport=241%2C48%2C0.69&scaling=min-zoom&starting-point-node-id=86%3A27203&show-proto-sidebar=1)
+
 ## Setting up and testing mail delivery using Mailhog in local development
 
 The following is how to setup mailhog, which is a tool to intercept e-mails in a local environment for e-mail testing purposes. The following steps only apply to MacOS users. For non MacOS users, please refer to `https://mailtrap.io/blog/mailhog-explained/`
