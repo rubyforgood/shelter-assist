@@ -14,4 +14,6 @@
  *= require_self
  */
 
- @import "../../../node_modules/tailwindcss/tailwind.css";
+ @import "../../../node_modules/tailwindcss/base";
+ @import "../../../node_modules/tailwindcss/components";
+ @import "../../../node_modules/tailwindcss/utilities";
