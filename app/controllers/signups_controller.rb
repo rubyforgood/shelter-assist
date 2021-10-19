@@ -5,6 +5,7 @@ class SignupsController < PasswordlessController
     person = Person.new(person_params)
 
     response_status = :success
+
     respond_to do |format|
       format.json do
         if person.save
@@ -50,18 +51,10 @@ class SignupsController < PasswordlessController
       :apt,
       :is_home_during_day,
       :transportation,
-      animal_kind_preferences_attributes: [
-        :animal_value,
-      ],
-      animal_gender_preferences_attributes: [
-        :animal_value,
-      ],
-      animal_age_preferences_attributes: [
-        :animal_value,
-      ],
-      animal_size_preferences_attributes: [
-        :animal_value,
-      ],
+      animal_kind_preferences_attributes: [:animal_value],
+      animal_gender_preferences_attributes: [:animal_value],
+      animal_age_preferences_attributes: [:animal_value],
+      animal_size_preferences_attributes: [:animal_value],
       homes_attributes: [
         :id,
         :has_children,
