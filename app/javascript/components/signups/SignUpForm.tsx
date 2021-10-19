@@ -22,16 +22,18 @@ const { Title, Paragraph } = Typography;
 
 const formTarget = document.getElementById("signup-form");
 
-const FORM_ERRORS = window["signupFormErrors"];
-window["signupFormErrors"] = undefined;
-
 const SignUp = () => {
   const [formData, setFormData] = useState();
+  const [errors, setErrors] = useState();
+
+  debugger
 
   useEffect(() => {
-    fetch("/signup.json")
-      .then((response) => response.json())
-      .then((data) => setFormData({ ...data, errors: FORM_ERRORS }));
+    axios.get("/signup.json")
+      .then(({data}) => {
+        setFormData(data)
+      })
+      .catch((errors) => setErrors(errors))
   }, []);
 
   const homeOptions = [
@@ -131,12 +133,19 @@ const SignUp = () => {
     delete payload.person['zip']
 
     axios.post(`${formData.path}.json`, payload)
-      .then(({path}: any) => window.location.href = path)
+      .then(({data, status}: any) => {
+        if (status === 201) {
+          window.location.href = data.path
+        } else {
+          alert('Failed to create foster application')
+        }
+      })
       .catch((error) => console.dir(error))
   };
 
   return (
     <div>
+      {errors ? JSON.stringify(errors) : null}
       {formData && (
         <Row>
           <Col span={12} offset={6}>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   post 'signup', to: 'signups#create', as: :signup
   get 'signup', to: 'signups#new', as: :new_signup
+  get 'signup/confirmation', to: 'signups#confirmation', as: :confirmation_signup
 
   get '/status', to: 'status#show', as: :person_root
 
