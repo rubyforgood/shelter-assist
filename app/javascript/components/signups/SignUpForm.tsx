@@ -108,8 +108,6 @@ const SignUp = () => {
       size[i] = {animal_value: value}
     })
 
-    debugger
-
     const addressAttributes = {street, apt, city, state, zip_code: zip},
           newHomeAttributes = {...home, ...addressAttributes, home_type}
 
@@ -117,15 +115,13 @@ const SignUp = () => {
       authenticity_token: formData.token,
       person: {
         ...values,
-        homes_attributes: newHomeAttributes,
+        homes_attributes: [newHomeAttributes],
         animal_age_preferences_attributes: age,
         animal_gender_preferences_attributes: gender,
         animal_kind_preferences_attributes: kind,
         animal_size_preferences_attributes: size,
       },
     }
-
-    console.dir(payload)
 
     delete payload.person['home_type']
     delete payload.person['street']
