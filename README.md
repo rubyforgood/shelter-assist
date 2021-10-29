@@ -56,9 +56,11 @@ All commands in code font are to be copied and pasted onto command line.
 1. `rbenv init`   
 1. `rbenv local 3.0.2`
 1. Close the CLI tab and open a new one
-1. `cd path/tp/shelter-assist`
+1. `brew install yarn`
+1. `cd path/to/shelter-assist`
 1. `brew install postgresql` (idk, bundle didn't work until I installed this first)
 1. `bundle install`
+1. `yarn install`
 1. `brew services restart postgresql`
 1. `bin/rails db:create`
 1. `bin/rails db:migrate RAILS_ENV=development`
