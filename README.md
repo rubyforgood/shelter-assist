@@ -50,7 +50,7 @@ Records like Foster and Application will likely need a way of tracking _status_ 
 
 All commands in code font are to be copied and pasted onto command line.
 
-1. `https://github.com/rubyforgood/shelter-assist.git`
+1. `git clone https://github.com/rubyforgood/shelter-assist.git`
 1. `brew install rbenv`
 1. `rbenv install 3.0.2`
 1. `rbenv init`   
