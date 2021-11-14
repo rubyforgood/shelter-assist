@@ -6,8 +6,20 @@ ruby "3.0.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.0.alpha2"
 
+# The traditional bundling and transpiling asset pipeline for Rails.
+gem "sprockets-rails", ">= 2.0.0"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.5"
+
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem "jsbundling-rails", "~> 0.1.0"
+
+# Easy React view integration
+gem "react-rails", "~> 2.6.1"
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails", ">= 0.1.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", ">= 0.3.4"

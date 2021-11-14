@@ -61,6 +61,8 @@ Note: a `.tool-versions` file exists which contains the current supported ruby v
 
 ## Running the app
 
+To develop locally with hot-module-reloading for javascripts and stylesheets assets, use the following:
+
 ```
-rails s
+bin/dev
 ```

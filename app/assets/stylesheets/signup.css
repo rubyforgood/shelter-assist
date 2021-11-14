@@ -14,10 +14,11 @@
 }
 
 .sign_up_form > input {
-    font-size: 3rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    border-color: #d9d9d9;
     border-radius: .5rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
 }
 
 .home_info {
@@ -29,7 +30,7 @@
     margin-top: 1.5rem;
 }
 
-.foster_is_home_container > input {
+.foster_is_home_container > input, .person_is_home_container > input {
     width: 2rem;
     height: 2rem;
 }
