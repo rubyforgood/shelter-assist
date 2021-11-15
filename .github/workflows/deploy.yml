@@ -3,7 +3,7 @@
 name: Deploy
 on:
   push:
-    branches:    
+    branches:
       - main
   workflow_run:
     workflows: ["Tests"]
