@@ -73,3 +73,10 @@ Note: a `.tool-versions` file exists which contains the current supported ruby v
 * `asdf plugin-add ruby`
 * `asdf install`
 
+## Running the app
+
+To develop locally with hot-module-reloading for javascripts and stylesheets assets, use the following:
+
+```
+bin/dev
+```

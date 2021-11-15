@@ -1,15 +1,35 @@
 {
   "name": "shelter-assist",
   "private": false,
+  "scripts": {
+    "build": "./build.js",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+  },
   "dependencies": {
+    "@ant-design/colors": "6.0.0",
+    "@ant-design/icons": "4.7.0",
+    "@hotwired/turbo-rails": "^7.0.1",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
+    "antd": "^4.16.13",
+    "axios": "^0.23.0",
+    "esbuild": "^0.13.4",
+    "esbuild-css-modules-plugin": "^2.0.9",
+    "fast-glob": "^3.2.7",
+    "postcss": "^8.3.9",
+    "postcss-import": "^14.0.2",
+    "postcss-nesting": "^8.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "tailwindcss": "^2.2.16",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0-alpha",
   "repository": "git@github.com:rubyforgood/shelter-assist.git",
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "yarn": "1.22.15"
+  }
 }

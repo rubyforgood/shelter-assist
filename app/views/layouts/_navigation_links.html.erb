@@ -1,0 +1,13 @@
+<% if foster_signed_in? %>
+  <%= render 'layouts/person_menu' %>
+  <% if current_person.has_role?(:admin) %>
+    <%= render 'layouts/admin_menu' %>
+  <% end %>
+<% end %>
+<% if !foster_signed_in? %>
+  <%= render 'layouts/visitor_menu' %>
+<% end %>
+<% if !foster_signed_in? %>
+  <%= render 'layouts/admin_login_menu' %>
+  <%= link_to "Apply to Foster", new_signup_path %>
+<% end %>

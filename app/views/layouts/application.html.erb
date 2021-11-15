@@ -4,28 +4,17 @@
     <title>ShelterAssist</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/antd/4.17.0-alpha.6/antd.compact.min.css" %>
   </head>
 
   <body>
-    <% if current_foster.logged_in? %>
-      <%= render 'layouts/foster_menu' %>
-      <% if current_foster.admin? %>
-        <%= render 'layouts/admin_menu' %>
-      <% end %>
-    <% end %>
-    <% if !current_foster.logged_in? %>
-      <%= render 'layouts/visitor_menu' %>
-    <% end %>
     <% if flash.keys.any? %>
       <% flash.keys.each do |key| %>
-      <p class="flash flash_<%= key %>"><%= flash[key] %></p>
+        <p class="flash flash_<%= key %>"><%= flash[key] %></p>
       <% end %>
     <% end %>
+    <%= render 'layouts/navigation_links' %>
     <%= yield %>
-    <% if !current_foster.logged_in? %>
-      <%= render 'layouts/admin_login_menu' %>
-    <% end %>
   </body>
 </html>

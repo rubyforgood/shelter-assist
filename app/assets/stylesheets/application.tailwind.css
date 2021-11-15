@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sign_up_form {
+  display: flex;
+  flex-direction: column;
+  margin: .5rem 1rem;
+}
+
+.sign_up_title {
+  font-size: 2rem;
+}
+
+.sign_up_form h3 {
+  font-size: 1.5rem;
+}
+
+table.personal_signup_fields td {
+  padding: 0.25rem;
+}
+table.personal_signup_fields td:first-child {
+  width: 5rem;
+}
+
+table.personal_signup_fields td label {
+  display: block;
+  text-align: right;
+}
+
+h2.home_info {
+  margin-top: .5rem;
+  font-size: 1.5rem;
+}
+
+.sign_up_form h4 {
+  font-size: 1.1rem;
+}
+
+.sign_up_form > label {
+  margin-bottom: .3rem;
+}
+.sign_up_form .field input, .sign_up_form .field textarea {
+  border-width: 1px;
+  border-color: #d9d9d9;
+  border-radius: .5rem;
+}
+
+.sign_up_form .field textarea {
+  height: 5rem;
+  width: 30rem;
+}
+
+.sign_up_submit {
+  margin-bottom: 3rem;
+  margin-top: 1.5rem;
+  padding: 5px 10px;
+}
