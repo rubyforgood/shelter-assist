@@ -1,8 +1,5 @@
 <% if foster_signed_in? %>
   <%= render 'layouts/person_menu' %>
-  <% if current_person.has_role?(:admin) %>
-    <%= render 'layouts/admin_menu' %>
-  <% end %>
 <% end %>
 <% if !foster_signed_in? %>
   <%= render 'layouts/visitor_menu' %>
