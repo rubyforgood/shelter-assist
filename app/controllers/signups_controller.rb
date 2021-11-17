@@ -18,7 +18,7 @@ class SignupsController < PasswordlessController
           }, status: 201)
         else
           render(json: {
-            errors: person.errors,
+            errors: person.errors.full_messages,
           }, status: :bad_request)
         end
       end

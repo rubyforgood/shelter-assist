@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-
-import axios from 'axios'
+import axios from "axios";
 
 import {
+  Alert,
   Button,
   Col,
   Form,
@@ -17,101 +17,86 @@ import {
   Typography,
 } from "antd";
 
-const { Option } = Select
+const { Option } = Select;
 const { Title, Paragraph } = Typography;
+
+import {
+  homeOptions,
+  sizeOptions,
+  ageOptions,
+  genderOptions,
+  kindOptions,
+} from "./fields";
 
 const formTarget = document.getElementById("signup-form");
 
 const SignUp = () => {
   const [formData, setFormData] = useState();
-  const [errors, setErrors] = useState();
-
-  debugger
+  const [showErrorMessage, setShowErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState(
+    "Failed to create foster signup!"
+  );
+  const [errorDescription, setErrorDescription] = useState(
+    "Please check the form and try again!"
+  );
 
   useEffect(() => {
-    axios.get("/signup.json")
-      .then(({data}) => {
-        setFormData(data)
+    axios
+      .get("/signup.json")
+      .then(({ data }) => {
+        setFormData(data);
       })
-      .catch((errors) => setErrors(errors))
+      .catch(() =>
+        console.error("Could not retrieve form data from the server.")
+      );
   }, []);
-
-  const homeOptions = [
-    { label: "Apartment/Condo", value: 1 },
-    { label: "House", value: 2 },
-    { label: "Townhome", value: 3 },
-  ];
-
-  const sizeOptions = [
-    { label: "less than 20 lbs", value: 1 },
-    { label: "20 - 40 lbs", value: 2 },
-    { label: "40 - 60 lbs", value: 3 },
-    { label: "60lbs +", value: 4 },
-  ];
-
-  const ageOptions = [
-    { label: "Newborn (up to 3 months)", value: 1 },
-    { label: "Young (3 months - 2 years)", value: 2 },
-    { label: "Adult (2 - 5 years)", value: 3 },
-    { label: "Senior (5 years + )", value: 4 },
-  ];
-
-  const genderOptions = [
-    { label: "Male", value: 1 },
-    { label: "Female", value: 2 },
-  ];
-
-  const kindOptions = [
-    { label: "Dog", value: 1 },
-    { label: "Cat", value: 2, disabled: true },
-  ];
 
   const onFinish = (values) => {
     let age,
-    gender,
-    kind,
-    size,
-    home = {},
-    {
-      animal_age_preferences_attributes,
-      animal_gender_preferences_attributes,
-      animal_kind_preferences_attributes,
-      animal_size_preferences_attributes,
-      homes_attributes,
-      home_type,
-      street,
-      apt,
-      city,
-      state,
-      zip,
-    } = values
+      gender,
+      kind,
+      size,
+      home = {},
+      {
+        animal_age_preferences_attributes,
+        animal_gender_preferences_attributes,
+        animal_kind_preferences_attributes,
+        animal_size_preferences_attributes,
+        homes_attributes,
+        home_type,
+        street,
+        apt,
+        city,
+        state,
+        zip,
+      } = values;
 
     homes_attributes?.forEach((value) => {
-      home[value] = 1
-    })
+      home[value] = 1;
+    });
 
-    if (animal_age_preferences_attributes?.length) age = []
+    if (animal_age_preferences_attributes?.length) age = [];
     animal_age_preferences_attributes?.forEach((value, i) => {
-      age[i] = {animal_value: value}
-    })
+      age[i] = { animal_value: value };
+    });
 
-    if (animal_gender_preferences_attributes?.length) gender = []
+    if (animal_gender_preferences_attributes?.length) gender = [];
     animal_gender_preferences_attributes?.forEach((value, i) => {
-      gender[i] = {animal_value: value}
-    })
+      gender[i] = { animal_value: value };
+    });
 
-    if (animal_kind_preferences_attributes?.length) kind = []
+    if (animal_kind_preferences_attributes?.length) kind = [];
     animal_kind_preferences_attributes?.forEach((value, i) => {
-      kind[i] = {animal_value: value}
-    })
+      kind[i] = { animal_value: value };
+    });
 
-    if (animal_size_preferences_attributes?.length) size = []
+    if (animal_size_preferences_attributes?.length) size = [];
     animal_size_preferences_attributes?.forEach((value, i) => {
-      size[i] = {animal_value: value}
-    })
+      size[i] = { animal_value: value };
+    });
 
-    const addressAttributes = {street, apt, city, state, zip_code: zip},
-          newHomeAttributes = {...home, ...addressAttributes, home_type}
+    const addressAttributes = { street, apt, city, state, zip_code: zip },
+      newHomeAttributes = { ...home, ...addressAttributes, home_type };
 
     const payload = {
       authenticity_token: formData.token,
@@ -123,40 +108,52 @@ const SignUp = () => {
         animal_kind_preferences_attributes: kind,
         animal_size_preferences_attributes: size,
       },
-    }
+    };
 
-    delete payload.person['home_type']
-    delete payload.person['street']
-    delete payload.person['apt']
-    delete payload.person['city']
-    delete payload.person['state']
-    delete payload.person['zip']
+    delete payload.person["home_type"];
+    delete payload.person["street"];
+    delete payload.person["apt"];
+    delete payload.person["city"];
+    delete payload.person["state"];
+    delete payload.person["zip"];
 
-    axios.post(`${formData.path}.json`, payload)
-      .then(({data, status}: any) => {
-        if (status === 201) {
-          window.location.href = data.path
-        } else {
-          alert('Failed to create foster application')
-        }
+    axios
+      .post(`${formData.path}.json`, payload)
+      .then(({ data, status }: any) => {
+        if (status === 201) window.location.href = data.path;
       })
-      .catch((error) => console.dir(error))
+      .catch(({ response }) => {
+        const { data } = response;
+        setErrorDescription(data.errors.join("\n"));
+        setShowErrorMessage(true);
+      });
   };
 
   return (
     <div>
-      {errors ? JSON.stringify(errors) : null}
       {formData && (
         <Row>
           <Col span={12} offset={6}>
             <Title>Foster Application</Title>
-            <Paragraph>
-              Thank you for your interest in becoming a Foster! Please fill out
-              the below application and someone from our team will be in touched
-              as soon as possible. Once approved, you will be able to access
-              your Foster Profile and be able to edit your informtion as you
-              need.
-            </Paragraph>
+            {showErrorMessage && (
+              <Alert
+                className="mb-2"
+                message={errorMessage}
+                description={errorDescription}
+                type="error"
+                closable
+                onClose={() => setShowErrorMessage(false)}
+              />
+            )}
+            <Space direction="horizontal" size="large" align="center">
+              <Paragraph>
+                {`Thank you for your interest in becoming a Foster! Please fill out
+                the below application and someone from our team will be in touched
+                as soon as possible. Once approved, you will be able to access
+                your Foster Profile and be able to edit your informtion as you
+                need.`}
+              </Paragraph>
+            </Space>
             <Form
               name="person"
               labelCol={{ span: 6 }}
@@ -277,84 +274,99 @@ const SignUp = () => {
                 <Input />
               </Form.Item>
 
-              <Divider>Home Information</Divider>
+              <Divider>{`Home Information`}</Divider>
               <Paragraph>
-                Are you or another adult home during the day?
+                {`Are you or another adult home during the day?`}
               </Paragraph>
 
-              <Form.Item name="is_home_during_day">
-                <Radio.Group options={[{label: "Yes", value: "1"}, {label: "No", value: "0"}]} />
+              <Form.Item
+                name="is_home_during_day"
+                rules={[
+                  {
+                    required: true,
+                    message: "Are you home during the day?",
+                  },
+                ]}
+              >
+                <Radio.Group
+                  options={[
+                    { label: "Yes", value: "1" },
+                    { label: "No", value: "0" },
+                  ]}
+                />
               </Form.Item>
 
-              <Divider>Tell us about your household</Divider>
+              <Divider>{`Tell us about your household`}</Divider>
               <Form.Item name="homes_attributes">
                 <Checkbox.Group>
-                  <Checkbox value="has_fenced_yard">
-                    Fenced Yard
-                  </Checkbox>
-                  <Checkbox value="has_children">
-                    Kids
-                  </Checkbox>
-                  <Checkbox value="has_other_adults">
-                    Other Adults
-                  </Checkbox>
-                  <Checkbox value="has_other_dog">
-                    Dog(s)
-                  </Checkbox>
-                  <Checkbox value="has_other_cat">
-                    Cat(s)
-                  </Checkbox>
+                  <Checkbox value="has_fenced_yard">{`Fenced Yard`}</Checkbox>
+                  <Checkbox value="has_children">{`Kids`}</Checkbox>
+                  <Checkbox value="has_other_adults">{`Other Adults`}</Checkbox>
+                  <Checkbox value="has_other_dog">{`Dog(s)`}</Checkbox>
+                  <Checkbox value="has_other_cat">{`Cat(s)`}</Checkbox>
                 </Checkbox.Group>
               </Form.Item>
 
-              <Divider>Home Type</Divider>
-              <Form.Item name="home_type">
+              <Divider>{`Home Type`}</Divider>
+              <Form.Item
+                name="home_type"
+                rules={[
+                  {
+                    required: true,
+                    message: "Home type cannot be blank!",
+                  },
+                ]}
+              >
                 <Select options={homeOptions} />
               </Form.Item>
 
-              <Divider>Animal Kind</Divider>
+              <Divider>{`Animal Kind`}</Divider>
               <Form.Item name="animal_kind_preferences_attributes">
                 <Checkbox.Group options={kindOptions} />
               </Form.Item>
 
-              <Divider>Gender Preference</Divider>
+              <Divider>{`Gender Preference`}</Divider>
               <Form.Item name="animal_gender_preferences_attributes">
                 <Checkbox.Group options={genderOptions} />
               </Form.Item>
 
-              <Divider>Age Preference</Divider>
+              <Divider>{`Age Preference`}</Divider>
               <Form.Item name="animal_age_preferences_attributes">
                 <Checkbox.Group options={ageOptions} />
               </Form.Item>
 
-              <Divider>Size Preference</Divider>
+              <Divider>{`Size Preference`}</Divider>
               <Form.Item name="animal_size_preferences_attributes">
                 <Checkbox.Group options={sizeOptions} />
               </Form.Item>
 
-              <Divider>Transportation</Divider>
-              <Form.Item name="transportation">
+              <Divider>{`Transportation`}</Divider>
+              <Form.Item
+                name="transportation"
+                rules={[
+                  {
+                    required: true,
+                    message: "Do you have reliable transportation?",
+                  },
+                ]}
+              >
                 <Select>
-                  <Option value="access_to_car">Access to car</Option>
-                  <Option value="car">Car</Option>
-                  <Option value="no_car">No car</Option>
+                  <Option value="access_to_car">{`Access to car`}</Option>
+                  <Option value="car">{`Car`}</Option>
+                  <Option value="no_car">{`No car`}</Option>
                 </Select>
               </Form.Item>
 
-              <Divider>Application</Divider>
-
-              {/* <Form.Item name="inspiration">
-                <Input.TextArea rows={4} />
-              </Form.Item> */}
+              <Divider>{`Application`}</Divider>
 
               <Space align="top" direction="vertical">
                 <Button type="primary" htmlType="submit">
-                  Submit
+                  {`Submit`}
                 </Button>
               </Space>
-              <br/>
-              <br/>
-              <br/>
+              <br />
+              <br />
+              <br />
             </Form>
           </Col>
         </Row>
