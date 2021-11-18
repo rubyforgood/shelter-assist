@@ -54,35 +54,49 @@ Records like a Person who is a Foster and Application will likely need a way of 
 
 ## Set up
 
-All commands in code font are to be copied and pasted onto command line.
+All commands in code font are to be copied and pasted onto command line. 
+
+It is suggested
+to only choose **only one of the following version managers**:
+
+### Using ASDF-VM (recommended)
+
+Note: a `.tool-versions` file exists which contains the current supported ruby version
+
+1. `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1`
+1. add `. $HOME/.asdf/asdf.sh` to your `~/.bashrc`
+1. add `. $HOME/.asdf/completions/asdf.bash` to your `~/.bashrc`
+1. `source ~/.bashrc`
+1. `cd path/to/shelter-assist`
+1. `asdf plugin add ruby`
+1. `asdf plugin add yarn`
+1. `asdf plugin add nodejs`
+1. `asdf install`
+
+### Or Using rbenv
 
 1. `git clone https://github.com/rubyforgood/shelter-assist.git`
 1. `brew install rbenv`
 1. `rbenv install 3.0.2`
-1. `rbenv init`   
+1. `rbenv init`
 1. `rbenv local 3.0.2`
 1. Close the CLI tab and open a new one
 1. `brew install yarn`
+
+### Finishing Up..
+
 1. `cd path/to/shelter-assist`
 1. `brew install postgresql` (idk, bundle didn't work until I installed this first)
-1. `bundle install`
-1. `yarn install`
+1. `bundle && yarn`
 1. `brew services restart postgresql`
-1. `bin/rails db:create`
-1. `bin/rails db:migrate RAILS_ENV=development`
-1. `rails s`
-
-## Optional ASDF-VM Support
-
-Note: a `.tool-versions` file exists which contains the current supported ruby version
-
-* `asdf plugin-add ruby`
-* `asdf install`
+1. `RAILS_ENV=development bin/rails db:create db:migrate`
+1. `RAILS_ENV=development bin/rails db:seed` (optional)
+1. `gem install foreman`
 
 ## Running the app
 
 ```
-rails s
+bin/dev
 ```
 
 ## Design
@@ -90,6 +104,7 @@ rails s
 |                          |                                                              |
 | ------------------------ | ------------------------------------------------------------ |
 | Design system            | [Ant Design](https://ant.design)                             |
+| CSS                      | [TailwindCSS](https://tailwindcss.com/)                      |
 | Components in Figma File | [Ant Design Open Source Figma Library](https://www.figma.com/community/file/831698976089873405) |
 | Homepage Illustrations   | [unDraw](https://undraw.co/search) illustrations, free for commercial use. |
 | Fonts Used               | _Speech Bubble Text_ - Sue Ellen Francisco<br />_Roboto_ (Regular, Bold) |
