@@ -121,11 +121,3 @@ SHELTERASSIST_EMAIL_ADDRESS = "support@shelterassist.org"
 ```
 
 `SHELTERASSIST_EMAIL_ADDRESS` is the _from_ address used for outgoing email like password reminders and magic-link emails.
-
-For automated deployment via Github Actions to a heroku environment, you will need to setup the following variables via the repo's Settings -> Secrets.
-
-```
-HEROKU_API_KEY = "Heroku account API key"
-HEROKU_APP_NAME = "shelterassist"
-HEROKU_EMAIL = "email address of Heroku account holder"
-```
