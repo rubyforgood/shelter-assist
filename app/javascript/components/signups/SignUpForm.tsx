@@ -26,8 +26,6 @@ const SignUp = () => {
   const [formData, setFormData] = useState();
   const [errors, setErrors] = useState();
 
-  debugger
-
   useEffect(() => {
     axios.get("/signup.json")
       .then(({data}) => {
@@ -309,7 +307,9 @@ const SignUp = () => {
 
               <Divider>Home Type</Divider>
               <Form.Item name="home_type">
-                <Select options={homeOptions} />
+                <select name="home_type">
+                  {homeOptions.map(({label, value}) => <option>{label}</option>)}
+                </select>
               </Form.Item>
 
               <Divider>Animal Kind</Divider>
@@ -334,14 +334,14 @@ const SignUp = () => {
 
               <Divider>Transportation</Divider>
               <Form.Item name="transportation">
-                <Select>
-                  <Option value="access_to_car">Access to car</Option>
-                  <Option value="car">Car</Option>
-                  <Option value="no_car">No car</Option>
-                </Select>
+                <select name="transportation">
+                  <option value="access_to_car">Access to car</option>
+                  <option value="car">Car</option>
+                  <option value="no_car">No car</option>
+                </select>
               </Form.Item>
 
-              <Divider>Application</Divider>
+              {/* <Divider>Application</Divider> */}
 
               {/* <Form.Item name="inspiration">
                 <Input.TextArea rows={4} />

@@ -4,32 +4,45 @@ class PeopleTest < ApplicationSystemTestCase
   test "signing up" do
     visit new_signup_url
 
-    assert_selector "h1", text: "Sign Up"
+    assert_selector "h1", text: "Foster Application"
     assert_selector "label", text: "Email"
     assert_selector "label", text: "Phone"
-    assert_selector "h2", text: "HOME INFORMATION"
-    assert_selector "h3", text: "Are you or another adult home during the day?"
+    assert_selector "div", text: "Are you or another adult home during the day?"
 
-    fill_in "Full name", with: "Cookie Monster"
+    fill_in "Name", with: "Cookie Monster"
     fill_in "Email", with: "peter@github.com"
     fill_in "Street", with: "123 Sesame Street"
-    fill_in "Apt", with: "Unit A"
+    fill_in "City", with: "Chicago"
+    fill_in "State", with: "Illinois"
+    fill_in "Zip", with: "12345"
+    fill_in "Apartment", with: "Unit A"
     fill_in "Phone", with: "401-791-7482"
-    
-    check("Fenced Yard")
-    check("Kids")
-    assert_checked_field("Fenced Yard")
-    assert_checked_field("Kids")
-    
-    assert_selector "h4", text: "Tell us things we might want to know about your home and your experience with pets."
-    fill_in "inspiration", with: "I am the perfect foster"
 
-    choose "is_home_during_day_true"
-    select "No car", from: "Transportation"
+    # --- Capybara does not wait here!
+    fenced_yard_checkbox = find("input[value='has_fenced_yard']", visible: false)
+    fenced_yard_checkbox.click
+    assert fenced_yard_checkbox.checked?
+    children_checkbox = find("input[value='has_children']", visible: false)
+    children_checkbox.click
+    assert children_checkbox.checked?
 
-    click_on "Fetch!"
-    
-    assert_selector "p", text: "Check your email for a login link" # change to personal status page
+    find("#person_home_type", visible: false)
+    select "House", from: "home_type"
+
+    find("#person_is_home_during_day input[value='1']", visible: false).click
+
+    find("#person_animal_kind_preferences_attributes input[value='1']", visible: false).click
+    find("#person_animal_gender_preferences_attributes input[value='1']", visible: false).click
+    find("#person_animal_age_preferences_attributes input[value='1']", visible: false).click
+    find("#person_animal_size_preferences_attributes input[value='1']", visible: false).click
+
+    find("#person_transportation", visible: false)
+    select("Car", from: "transportation")
+
+    find("button").click
+
+    sleep 1
+    assert_selector("div", text: "Successfully Submitted")
 
     mail = ActionMailer::Base.deliveries.last
     body = Nokogiri::HTML(mail.body.raw_source)
