@@ -70,7 +70,7 @@ All commands in code font are to be copied and pasted onto command line.
 1. `brew services restart postgresql`
 1. `bin/rails db:create`
 1. `bin/rails db:migrate RAILS_ENV=development`
-1. `rails s`
+1. `bin/dev`
 
 ## Optional ASDF-VM Support
 
