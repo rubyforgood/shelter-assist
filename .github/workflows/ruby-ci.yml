@@ -37,9 +37,9 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
-    - uses: borales/actions-yarn@v2.3.0
+    - uses: sergioramos/yarn-actions/install@v6
       with:
-        cmd: install # will run `yarn install` command
+        frozen-lockfile: true
     - name: Install PostgreSQL client
       run: |
         sudo apt-get -yqq install libpq-dev
@@ -55,7 +55,8 @@ jobs:
 
     - name: Install Selenium
       run: |
-          sudo gem install selenium-webdriver
+          gem install selenium-webdriver
+
     - name: Run Tests
       env:
         PGHOST: localhost
@@ -63,4 +64,4 @@ jobs:
         PGPASSWORD: postgres
         RAILS_ENV: test
       run: |
-        bundle exec rails test:all
+        bin/rails test:all

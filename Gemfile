@@ -6,8 +6,20 @@ ruby "3.0.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.0.alpha2"
 
+# The traditional bundling and transpiling asset pipeline for Rails.
+gem "sprockets-rails", ">= 2.0.0"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.5"
+
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem "jsbundling-rails", "~> 0.1.0"
+
+# Easy React view integration
+gem "react-rails", "~> 2.6.1"
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails", ">= 0.1.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", ">= 0.3.4"
@@ -34,7 +46,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 # gem "bcrypt", "~> 3.1.7"
 
 # Use Sass to process CSS
-# gem "sassc-rails", "~> 2.1"
+gem "sassc-rails", "~> 2.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -58,13 +70,14 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", ">= 3.26"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "selenium-webdriver", ">= 4.1.0"
+  gem "webdrivers", "5.0.0"
   gem 'rexml', '~> 3.2.5'
 end
 
 gem 'devise'
 gem "passwordless", "~> 0.10.0"
+gem "rolify"
 
 gem 'sass-rails'
 

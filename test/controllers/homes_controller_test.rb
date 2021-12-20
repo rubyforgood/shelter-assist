@@ -26,11 +26,11 @@ class HomesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update home" do
-    patch home_url(@home), params: { home: {  } }
+    patch home_url(@home), params: { home: { home_type: "House" } }
     assert_redirected_to home_url(@home)
   end
 
-  test "should destroy home and associated foster_homes" do
+  test "should destroy home and associated person_homes" do
     assert_difference("Home.count", -1) do
       delete home_url(@home)
     end

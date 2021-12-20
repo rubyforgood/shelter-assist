@@ -1,36 +1,7 @@
-<h1 class="sign_up_title">Sign Up</h1>
+<%= javascript_include_tag "components/signups/SignUpForm", "data-turbo-track": "reload", defer: true %>
 
-<% if @foster.errors.any? %>
-  <% @foster.errors.full_messages.each do |message| %>
-     <h3><%= message %> </h3>
-  <% end %>
+<%= javascript_tag do %>
+  var signupFormErrors
 <% end %>
 
-<%= form_for @foster, url: signup_path do |f| %>
-    <div class="field">
-      <%= f.label :full_name %> <%= f.text_field :full_name %>
-    </div>
-    <div class="field">
-      <%= f.label :nick_name %> <%= f.text_field :nick_name %>
-    </div>
-    <div class="field">
-      <%= f.label :email %> <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :street %> <%= f.text_field :street %>
-    </div> 
-    <div class="field">
-      <%= f.label :apt %> <%= f.text_field :apt %>
-    </div>
-
-  <%= f.label :phone %> <%= f.text_field :phone %>
-
-  <%= render "home_section", f: f %>
-  <%= render "application_section", f: f %>
-    <div class="transportation-field">
-      <h4><%= f.label :transportation, 'Transportation' %></h4>
-      <%= f.select :transportation, options_for_select(Foster.transportations.map {|k, _| [k.humanize.capitalize, k]}) %></h4>
-    </div>
-    <br>
-  <%= f.submit "Fetch!", class: 'sign_up_submit' %>
-<% end %>
+<div id="signup-form"></div>

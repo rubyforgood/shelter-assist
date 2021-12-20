@@ -3,6 +3,10 @@
 Be sure to edit this file as things change…
 
 ## Current mental model and direction of development:
+
+A Rescue is an organization made up of People who are
+Volunteers and/or Fosters.
+
 Anyone caring for an Animal is a Foster.
 Fosters must have a Home. Animals must have a Home.
 
@@ -22,8 +26,9 @@ When an Adoption event occurs, the Animal may change Fosters and/or Homes but wo
 
 ### Animal Needs
 
-The system should enable admins to manage the Needs of 1 or more Animals. An Animal may need to move from one Home to another quickly. Multiple animals may need to move from one Home to another by a certain date.
-The system should help admins make decsions about what Fosters are available and appropriate (e.g. barring exclusions) for the Animal(s) Needs.
+The system should enable admins to manage the Needs of 1 or more Animals for a Rescue. An Animal may need to move from one Home to another quickly. Multiple animals may need to move from one Home to another by a certain date.
+
+The system should help admins make decisions about what Fosters are available and appropriate (e.g. barring exclusions) for the Animal(s) Needs.
 
 ### Exclusions
 
@@ -40,11 +45,12 @@ The system should provide a way to send a message about Animal Needs to a group 
 Each Foster should have an admin (or other role) primary point of contact with whom the Foster would have a good relationship.
 
 ### Likely to change…
+
 Fosters currently have a boolean `admin` column. It's likely this should instead become some way of managing a "role".
 
-Records like Foster and Application will likely need a way of tracking _status_ (approved, rejected, etc.).
+Records like a Person who is a Foster and Application will likely need a way of tracking _status_ (approved, rejected, etc.).
 
-**Multitenancy** should be added ASAP. There are currently 2 organizations looking to use this software.
+**Multitenancy** should be added ASAP. There are currently 2 organizations looking to use this software. Data for one Rescue should not be visible to other Rescues.
 
 ## Set up
 
@@ -73,3 +79,59 @@ Note: a `.tool-versions` file exists which contains the current supported ruby v
 * `asdf plugin-add ruby`
 * `asdf install`
 
+## Running the app
+
+```
+rails s
+```
+
+## Design
+
+|                          |                                                              |
+| ------------------------ | ------------------------------------------------------------ |
+| Design system            | [Ant Design](https://ant.design)                             |
+| Components in Figma File | [Ant Design Open Source Figma Library](https://www.figma.com/community/file/831698976089873405) |
+| Homepage Illustrations   | [unDraw](https://undraw.co/search) illustrations, free for commercial use. |
+| Fonts Used               | _Speech Bubble Text_ - Sue Ellen Francisco<br />_Roboto_ (Regular, Bold) |
+
+### Design Prototypes
+
+- [Foster Application](https://www.figma.com/proto/RIfWeZXYmQJEA9Tuwxewzy/Design-File?node-id=86%3A27199&viewport=241%2C48%2C0.69&scaling=min-zoom&starting-point-node-id=86%3A27475&show-proto-sidebar=1)
+- [Volunteer Sign In / Add a Pet / Pet Profile / User Profile](https://www.figma.com/proto/RIfWeZXYmQJEA9Tuwxewzy/Design-File?node-id=86%3A27199&viewport=241%2C48%2C0.69&scaling=min-zoom&starting-point-node-id=86%3A27203&show-proto-sidebar=1)
+
+## Setting up and testing mail delivery using Mailhog in local development
+
+The following is how to setup mailhog, which is a tool to intercept e-mails in a local environment for e-mail testing purposes. The following steps only apply to MacOS users. For non MacOS users, please refer to `https://mailtrap.io/blog/mailhog-explained/`
+
+1.  Set up Mailhog using Homebrew. Run the following command in the terminal: 
+
+  * `brew install mailhog`
+
+2. Then start Mailhog in the terminal with:
+
+  * `brew services start mailhog`
+
+3. After sending an e-mail locally in a test environment, visit the following link: 
+
+  * `http://localhost:8025/`
+
+4. To stop Mailhog use:
+
+  * `brew services stop mailhog`
+
+## Production/Staging Setup
+
+### Environment Variables
+
+For the hosting environment, you'll need the following environment variables setup to point to your SMTP/Email service.
+
+```
+SHELTERASSIST_HOSTNAME = "https://shelterassist.herokuapp.com
+SHELTERASSIST_SMTP_SERVER = "smtp.example.com"
+SHELTERASSIST_SMTP_PORT = 587
+SHELTERASSIST_SMTP_USER = "myusername"
+SHELTERASSIST_SMTP_PASSWORD = "password"
+SHELTERASSIST_EMAIL_ADDRESS = "support@shelterassist.org"
+```
+
+`SHELTERASSIST_EMAIL_ADDRESS` is the _from_ address used for outgoing email like password reminders and magic-link emails.

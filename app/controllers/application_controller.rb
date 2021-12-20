@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
-  def current_foster
-    @current_foster ||= PresentableFoster.build(nil, view_context)
+  def current_person
+    @current_person ||= PresentablePerson.build(nil, view_context)
   end
-  helper_method :current_foster
+
+  def json_form(model, path, errors = [])
+    {
+      errors: errors,
+      foster: model,
+      path: path,
+      token: form_authenticity_token
+    }
+  end
+  helper_method :json_form
+  helper_method :current_person
 end
