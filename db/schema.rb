@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_15_205410) do
+ActiveRecord::Schema.define(version: 2022_01_15_211102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,8 @@ ActiveRecord::Schema.define(version: 2022_01_15_205410) do
   add_foreign_key "animal_gender_preferences", "people"
   add_foreign_key "animal_kind_preferences", "people"
   add_foreign_key "animal_size_preferences", "people"
+  add_foreign_key "people_roles", "people"
+  add_foreign_key "people_roles", "roles"
   add_foreign_key "person_animals", "animals"
   add_foreign_key "person_animals", "people"
   add_foreign_key "person_homes", "homes"
