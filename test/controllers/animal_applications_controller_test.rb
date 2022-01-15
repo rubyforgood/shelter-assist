@@ -17,11 +17,11 @@ class AnimalApplicationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create animal_application" do
     assert_difference("AnimalApplication.count") do
-      post animal_applications_url, params: { 
+      post animal_applications_url, params: {
         animal_application: {
           start_date: Date.new,
-          inspiration: 'foo' 
-        } 
+          inspiration: 'foo'
+        }
       }
     end
 
