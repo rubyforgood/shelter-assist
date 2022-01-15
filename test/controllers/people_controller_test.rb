@@ -24,8 +24,6 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
           full_name: 'Chuck Norris',
           email: "hi@hi.com",
           phone: '5714128473',
-          street: 'Yo',
-          apt: 'unit A',
           is_home_during_day: true,
           transportation: "car",
         } 
@@ -51,8 +49,6 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
         full_name: 'Chuck Norris',
         email: "hi@hi.com",
         phone: '5714128473',
-        street: 'Yo',
-        apt: 'unit A',
         is_home_during_day: true, 
         transportation: Person.transportations()
       }

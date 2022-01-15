@@ -8,7 +8,6 @@ one:
   id: 1
   full_name: "Chuck Norris"
   email: "peter@gihub.com"
-  street: "123 Sesame street"
   is_home_during_day: true
   transportation: 1
   phone: 571-412-4958
@@ -16,7 +15,6 @@ two:
   id: 2
   full_name: "Edward Scissorhands"
   email: "eddie@prodigy.net"
-  street: "456 Eighties Lane"
   is_home_during_day: false
   transportation: 2
   phone: 572-333-4455
