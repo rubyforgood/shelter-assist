@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_15_204940) do
+ActiveRecord::Schema.define(version: 2022_01_15_205410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 2022_01_15_204940) do
   end
 
   create_table "person_animals", force: :cascade do |t|
-    t.integer "animal_id"
-    t.integer "person_id"
+    t.bigint "animal_id"
+    t.bigint "person_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -162,6 +162,8 @@ ActiveRecord::Schema.define(version: 2022_01_15_204940) do
   add_foreign_key "animal_gender_preferences", "people"
   add_foreign_key "animal_kind_preferences", "people"
   add_foreign_key "animal_size_preferences", "people"
+  add_foreign_key "person_animals", "animals"
+  add_foreign_key "person_animals", "people"
   add_foreign_key "person_homes", "homes"
   add_foreign_key "person_homes", "people"
 end
