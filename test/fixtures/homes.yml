@@ -11,6 +11,7 @@ one:
   has_other_adults: true
   has_other_dog: false
   has_other_cat: false
+  home_type: "House"
 two:
   id: 2
   has_children: true
@@ -18,3 +19,4 @@ two:
   has_other_adults: false
   has_other_dog: false
   has_other_cat: false
+  home_type: "House"
