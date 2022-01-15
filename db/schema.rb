@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_150227) do
+ActiveRecord::Schema.define(version: 2022_01_15_204940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,14 +87,14 @@ ActiveRecord::Schema.define(version: 2021_10_15_150227) do
   create_table "passwordless_sessions", force: :cascade do |t|
     t.string "authenticatable_type"
     t.bigint "authenticatable_id"
-    t.datetime "timeout_at", null: false
-    t.datetime "expires_at", null: false
-    t.datetime "claimed_at"
+    t.datetime "timeout_at", precision: 6, null: false
+    t.datetime "expires_at", precision: 6, null: false
+    t.datetime "claimed_at", precision: 6
     t.text "user_agent", null: false
     t.string "remote_addr", null: false
     t.string "token", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
   end
 
@@ -104,8 +104,6 @@ ActiveRecord::Schema.define(version: 2021_10_15_150227) do
     t.string "email", default: "", null: false
     t.boolean "is_home_during_day", null: false
     t.integer "transportation", null: false
-    t.string "street"
-    t.string "apt"
     t.string "phone", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
