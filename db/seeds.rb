@@ -3,7 +3,6 @@ admin = Person.create!(
   nick_name: "Admin",
   email: 'admin@test.com',
   password: 'password',
-  street: "123 main st.",
   is_home_during_day: true,
   phone: '123-555-1212',
   transportation: 'car'
@@ -14,20 +13,33 @@ admin.add_role(:admin)
 person = Person.create!(
   full_name: "Person",
   email: "foster@test.com",
-  street: "123 main st.",
   is_home_during_day: true,
   phone: '123-555-1212',
-  transportation: 'car'
+  transportation: 'car',
+  homes_attributes: [
+    {
+      has_children: false,
+      has_fenced_yard: true,
+      has_other_adults: true,
+      has_other_dog: false,
+      has_other_cat: false,
+      street: "123 main st.",
+      city: "someplace",
+      state: "MD",
+      zip_code: "20782",
+      home_type: "House"
+    }
+  ]
 )
 
 #   Rescue.create!(
 #   file_name: "cutepic.png",
 #   email: "rescue@gmail.com",
-#   name: "Jon smith",
+#   name: "Jon Smith",
 #   phone_number: "123-456-7892"
 # )
 
-#   Animal.create!(
+# Animal.create!(
 #   name: "Canoli",
 #   animal_kind: "dog",
 #   gender: "female",

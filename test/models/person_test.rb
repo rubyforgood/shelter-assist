@@ -5,8 +5,7 @@ class PersonTest < ActiveSupport::TestCase
     @valid_parameters = {
       full_name: 'Chuck Norris',
       email: 'johndoe@mail.com',
-      phone: '4017824567',
-      street: '123 Coconut Ave',
+      phone: '4017825678',
       is_home_during_day: true,
       transportation: :access_to_car,
     }
@@ -14,22 +13,6 @@ class PersonTest < ActiveSupport::TestCase
 
   test 'inserts a valid person into the people table' do
     person = Person.new(@valid_parameters)
-
-    assert person.valid?
-  end
-
-  test 'does add a person without apt' do
-    valid_parameters = @valid_parameters
-    valid_parameters['apt'] = ''
-    person = Person.new(valid_parameters)
-
-    assert person.valid?
-  end
-
-  test 'does add a person with an apt' do
-    valid_parameters = @valid_parameters
-    valid_parameters['apt'] = 'Suite #789'
-    person = Person.new(valid_parameters)
 
     assert person.valid?
   end
