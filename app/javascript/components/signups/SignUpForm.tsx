@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import axios from 'axios'
+import { DatePicker } from "antd";
 
 import {
   Button,
@@ -12,12 +13,10 @@ import {
   Checkbox,
   Radio,
   Row,
-  Select,
   Space,
   Typography,
 } from "antd";
 
-const { Option } = Select
 const { Title, Paragraph } = Typography;
 
 const formTarget = document.getElementById("signup-form");
@@ -28,7 +27,7 @@ const SignUp = () => {
 
   useEffect(() => {
     axios.get("/signup.json")
-      .then(({data}) => {
+      .then(({ data }) => {
         setFormData(data)
       })
       .catch((errors) => setErrors(errors))
@@ -66,23 +65,23 @@ const SignUp = () => {
 
   const onFinish = (values) => {
     let age,
-    gender,
-    kind,
-    size,
-    home = {},
-    {
-      animal_age_preferences_attributes,
-      animal_gender_preferences_attributes,
-      animal_kind_preferences_attributes,
-      animal_size_preferences_attributes,
-      homes_attributes,
-      home_type,
-      street,
-      apt,
-      city,
-      state,
-      zip,
-    } = values
+      gender,
+      kind,
+      size,
+      home = {},
+      {
+        animal_age_preferences_attributes,
+        animal_gender_preferences_attributes,
+        animal_kind_preferences_attributes,
+        animal_size_preferences_attributes,
+        homes_attributes,
+        home_type,
+        street,
+        apt,
+        city,
+        state,
+        zip,
+      } = values
 
     homes_attributes?.forEach((value) => {
       home[value] = 1
@@ -90,26 +89,26 @@ const SignUp = () => {
 
     if (animal_age_preferences_attributes?.length) age = []
     animal_age_preferences_attributes?.forEach((value, i) => {
-      age[i] = {animal_value: value}
+      age[i] = { animal_value: value }
     })
 
     if (animal_gender_preferences_attributes?.length) gender = []
     animal_gender_preferences_attributes?.forEach((value, i) => {
-      gender[i] = {animal_value: value}
+      gender[i] = { animal_value: value }
     })
 
     if (animal_kind_preferences_attributes?.length) kind = []
     animal_kind_preferences_attributes?.forEach((value, i) => {
-      kind[i] = {animal_value: value}
+      kind[i] = { animal_value: value }
     })
 
     if (animal_size_preferences_attributes?.length) size = []
     animal_size_preferences_attributes?.forEach((value, i) => {
-      size[i] = {animal_value: value}
+      size[i] = { animal_value: value }
     })
 
-    const addressAttributes = {street, apt, city, state, zip_code: zip},
-          newHomeAttributes = {...home, ...addressAttributes, home_type}
+    const addressAttributes = { street, apt, city, state, zip_code: zip },
+      newHomeAttributes = { ...home, ...addressAttributes, home_type }
 
     const payload = {
       authenticity_token: formData.token,
@@ -130,8 +129,9 @@ const SignUp = () => {
     delete payload.person['state']
     delete payload.person['zip']
 
+    console.log(payload)
     axios.post(`${formData.path}.json`, payload)
-      .then(({data, status}: any) => {
+      .then(({ data, status }: any) => {
         if (status === 201) {
           window.location.href = data.path
         } else {
@@ -281,7 +281,7 @@ const SignUp = () => {
               </Paragraph>
 
               <Form.Item name="is_home_during_day">
-                <Radio.Group options={[{label: "Yes", value: "1"}, {label: "No", value: "0"}]} />
+                <Radio.Group options={[{ label: "Yes", value: "1" }, { label: "No", value: "0" }]} />
               </Form.Item>
 
               <Divider>Tell us about your household</Divider>
@@ -308,7 +308,7 @@ const SignUp = () => {
               <Divider>Home Type</Divider>
               <Form.Item name="home_type">
                 <select name="home_type">
-                  {homeOptions.map(({label, value}) => <option>{label}</option>)}
+                  {homeOptions.map(({ label, value }) => <option>{label}</option>)}
                 </select>
               </Form.Item>
 
@@ -341,7 +341,29 @@ const SignUp = () => {
                 </select>
               </Form.Item>
 
-              {/* <Divider>Application</Divider> */}
+              <Divider>Availability</Divider>
+              <Row>
+                <Col span={12}>
+                  <Form.Item 
+                    name="available_from"
+                    label="From"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter a start date for your availability.",
+                      },
+                    ]}
+                  >
+                    <DatePicker></DatePicker>
+                  </Form.Item>
+                </Col>
+
+                <Col span={12}>
+                  <Form.Item name="available_to" label="To (optional)">
+                    <DatePicker></DatePicker>
+                  </Form.Item>
+                </Col>
+              </Row>
 
               {/* <Form.Item name="inspiration">
                 <Input.TextArea rows={4} />
@@ -352,9 +374,9 @@ const SignUp = () => {
                   Submit
                 </Button>
               </Space>
-              <br/>
-              <br/>
-              <br/>
+              <br />
+              <br />
+              <br />
             </Form>
           </Col>
         </Row>
