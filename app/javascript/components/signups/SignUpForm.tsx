@@ -343,7 +343,7 @@ const SignUp = () => {
               <Divider>Availability</Divider>
               <Row>
                 <Col span={12}>
-                  <Form.Item 
+                  <Form.Item
                     name="available_from"
                     label="From"
                     rules={[
