@@ -129,7 +129,6 @@ const SignUp = () => {
     delete payload.person['state']
     delete payload.person['zip']
 
-    console.log(payload)
     axios.post(`${formData.path}.json`, payload)
       .then(({ data, status }: any) => {
         if (status === 201) {
