@@ -38,8 +38,11 @@ class PeopleTest < ApplicationSystemTestCase
 
     find("#person_transportation", visible: false)
     select("Car", from: "transportation")
+    
+    find("#person_available_from").click
+    find(".ant-picker-today-btn").click
 
-    find("button").click
+    click_on "Submit"
 
     sleep 1
     assert_selector("div", text: "Successfully Submitted")
