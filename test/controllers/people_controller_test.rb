@@ -26,6 +26,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
           phone: '5714128473',
           is_home_during_day: true,
           transportation: "car",
+          available_from: 5.days.from_now,
         } 
       }
     end
@@ -50,7 +51,8 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
         email: "hi@hi.com",
         phone: '5714128473',
         is_home_during_day: true, 
-        transportation: Person.transportations()
+        transportation: Person.transportations(),
+        available_from: 5.days.from_now,
       }
     }
     assert_redirected_to person_url(@person)

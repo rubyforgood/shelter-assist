@@ -8,6 +8,7 @@ class PersonTest < ActiveSupport::TestCase
       phone: '4017825678',
       is_home_during_day: true,
       transportation: :access_to_car,
+      available_from: 5.days.from_now,
     }
   end
 

@@ -28,6 +28,7 @@ class Person < ApplicationRecord
   validates :full_name, presence: true
   validates :is_home_during_day, presence: true
   validates :transportation, presence: true
+  validates :available_from, presence: true
   validates :phone, format: { with: /\A\d+\z/, message: "Numbers only, please." }
 
   before_validation :prep_phone

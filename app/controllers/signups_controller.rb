@@ -49,6 +49,8 @@ class SignupsController < PasswordlessController
       :apt,
       :is_home_during_day,
       :transportation,
+      :available_from,
+      :available_to,
       animal_kind_preferences_attributes: [:animal_value],
       animal_gender_preferences_attributes: [:animal_value],
       animal_age_preferences_attributes: [:animal_value],

@@ -24,7 +24,7 @@ const AnimalsList = () => {
     getAnimals()
       .then((data) => setFormData([...data]))
   }
-  console.log(formData)
+  
   return (
     <Row>
       <Col span={20} offset={2}>

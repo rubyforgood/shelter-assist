@@ -5,7 +5,8 @@ admin = Person.create!(
   password: 'password',
   is_home_during_day: true,
   phone: '123-555-1212',
-  transportation: 'car'
+  transportation: 'car',
+  available_from: 4.days.from_now,
 )
 
 admin.add_role(:admin)
@@ -16,6 +17,7 @@ person = Person.create!(
   is_home_during_day: true,
   phone: '123-555-1212',
   transportation: 'car',
+  available_from: 3.days.from_now,
   homes_attributes: [
     {
       has_children: false,

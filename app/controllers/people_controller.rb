@@ -71,6 +71,16 @@ class PeopleController < PasswordProtectedController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.fetch(:person, {}).permit(:full_name, :email, :street, :apt, :phone, :is_home_during_day, :transportation)
+      params.fetch(:person, {}).permit(
+        :full_name,
+        :email,
+        :street,
+        :apt,
+        :phone,
+        :is_home_during_day,
+        :transportation,
+        :available_from,
+        :available_to
+      )
     end
 end
