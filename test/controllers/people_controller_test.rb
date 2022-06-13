@@ -27,6 +27,8 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
           is_home_during_day: true,
           transportation: "car",
           available_from: 5.days.from_now,
+          available_to: 7.days.from_now,
+          availability_notes: "I cannot do the first week of next month because I am on vacation."
         } 
       }
     end
@@ -53,6 +55,8 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
         is_home_during_day: true, 
         transportation: Person.transportations(),
         available_from: 5.days.from_now,
+        available_to: 7.days.from_now,
+        availability_notes: "I cannot do the first week of next month because I am on vacation."
       }
     }
     assert_redirected_to person_url(@person)
