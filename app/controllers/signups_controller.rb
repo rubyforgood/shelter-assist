@@ -51,6 +51,7 @@ class SignupsController < PasswordlessController
       :transportation,
       :available_from,
       :available_to,
+      :availability_notes,
       animal_kind_preferences_attributes: [:animal_value],
       animal_gender_preferences_attributes: [:animal_value],
       animal_age_preferences_attributes: [:animal_value],
