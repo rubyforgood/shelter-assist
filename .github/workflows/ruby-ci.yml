@@ -40,7 +40,7 @@ jobs:
     - uses: sergioramos/yarn-actions/install@v6
       with:
         frozen-lockfile: true
-        version: 1.22.17
+        version: "1.22.17"
     - name: Install PostgreSQL client
       run: |
         sudo apt-get -yqq install libpq-dev
