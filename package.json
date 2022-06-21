@@ -31,6 +31,6 @@
   "author": "",
   "license": "MIT",
   "engines": {
-    "yarn": "1.22.17"
+    "yarn": "1.22.19"
   }
 }
