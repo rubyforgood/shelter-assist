@@ -80,7 +80,8 @@ class PeopleController < PasswordProtectedController
         :is_home_during_day,
         :transportation,
         :available_from,
-        :available_to
+        :available_to,
+        :availability_notes,
       )
     end
 end
