@@ -57,6 +57,9 @@ Records like a Person who is a Foster and Application will likely need a way of 
 All commands in code font are to be copied and pasted onto command line.
 
 1. `git clone https://github.com/rubyforgood/shelter-assist.git`
+1. `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash`
+1. `nvm install 16.15.1`
+1. `gem install bundler:2.2.27`
 1. `brew install rbenv`
 1. `rbenv install 3.0.2`
 1. `rbenv init`   
@@ -70,6 +73,7 @@ All commands in code font are to be copied and pasted onto command line.
 1. `brew services restart postgresql`
 1. `bin/rails db:create`
 1. `bin/rails db:migrate RAILS_ENV=development`
+1. `gem install foreman`
 1. `bin/dev`
 
 ## Optional ASDF-VM Support
