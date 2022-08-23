@@ -85,8 +85,9 @@ Note: a `.tool-versions` file exists which contains the current supported ruby v
 
 ## Running the app
 
+
 ```
-rails s
+bin/dev
 ```
 
 ## Design
