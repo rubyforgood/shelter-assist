@@ -1,0 +1,13 @@
+<div class="fixed h-full w-full -z-10">
+  <div class="inset-0 bg-blue-200 h-full"></div>
+</div>
+
+<div class="relative w-full h-full">
+  <div class='max-w-[1200px] mx-auto bg-white min-h-full p-12'>
+    <div class='flex justify-end space-x-6 mb-12'>
+      <%= partial.yield :header %>
+    </div>
+
+    <%= partial.yield :content %>
+  </div>
+</div>

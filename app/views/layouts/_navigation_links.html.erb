@@ -4,9 +4,11 @@
     <%= render 'layouts/admin_menu' %>
   <% end %>
 <% end %>
+
 <% if !person_signed_in? %>
   <%= render 'layouts/visitor_menu' %>
 <% end %>
+
 <% if !person_signed_in? %>
   <%= render 'layouts/admin_login_menu' %>
   <%= link_to "Apply to Foster", new_signup_path %>

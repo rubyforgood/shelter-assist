@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
   resources :animals
+
+  resources :dogs, only: [:index]
+
   devise_scope :person do
     resources :people
   end
