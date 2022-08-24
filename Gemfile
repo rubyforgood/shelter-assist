@@ -48,9 +48,6 @@ gem "bootsnap", ">= 1.12.0", require: false
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
-# Use Sass to process CSS
-gem "sassc-rails", "~> 2.1.2"
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -81,7 +78,5 @@ end
 gem 'devise'
 gem "passwordless", "~> 0.10.0"
 gem "rolify"
-
-gem 'sass-rails'
 
 gem "pg", "~> 1.4.1"
