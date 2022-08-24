@@ -146,6 +146,8 @@ GEM
       digest
       net-protocol
       timeout
+    nice_partials (0.1.9)
+      actionview (>= 4.2.6)
     nio4r (2.5.8)
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
@@ -275,6 +277,7 @@ DEPENDENCIES
   importmap-rails (>= 1.1.2)
   jbuilder (~> 2.11.5)
   jsbundling-rails (~> 1.0.3)
+  nice_partials
   passwordless (~> 0.10.0)
   pg (~> 1.4.1)
   puma (~> 5.6.4)

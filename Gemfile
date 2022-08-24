@@ -18,6 +18,9 @@ gem "jsbundling-rails", "~> 1.0.3"
 # Easy React view integration
 gem "react-rails", "~> 2.6.1"
 
+# Upgrade partials to allow for defining slots
+gem "nice_partials"
+
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", ">= 1.1.1"
 
