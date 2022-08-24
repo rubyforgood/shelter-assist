@@ -1,0 +1,13 @@
+<div>
+  <%= render 'components/header', text: 'Fosterable Dogs' %>
+
+  <%= render 'components/textbody' do %>
+    <p> Thinking about fostering? These adorable dogs from local rescues need someone to foster them while they await their furever home. Click on a dog below to see more information about each dog. </p>
+  <% end %>
+
+  <div class='flex flex-wrap justify-center mt-6 content-between'>
+    <% @dogs.each do |dog| %>
+      <%= render 'dogs/dog', dog: dog %>
+    <% end %>
+  </div>
+</div>

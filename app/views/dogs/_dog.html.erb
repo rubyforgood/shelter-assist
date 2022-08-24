@@ -1,0 +1,35 @@
+<div class='shadow-2xl w-[300px] flex-grow mx-2 my-2 p-6 bg-white'>
+  <div class='h-62'>
+    <%= image_tag dog.image_src, class: 'object-cover w-full h-[325px]' %>
+  </div>
+
+  <div class='text-center text-4xl font-bold uppercase my-2'>
+    <%= dog.name %>
+  </div>
+
+  <div class='space-y-2'>
+    <div class='flex'>
+      <div class='w-1/2'>
+        <label class='text-gray-500'>Breed:</label>
+        <div class='text-[15px] font-medium'><%= dog.breed %></div>
+      </div>
+
+      <div class='w-1/2'>
+        <label class='text-gray-500'>Age:</label>
+        <div class='text-[15px] font-medium'><%= dog.age %></div>
+      </div>
+    </div>
+    
+    <div class='flex'>
+      <div class='w-1/2'>
+        <label class='text-gray-500'>Sex:</label>
+        <div class='text-[15px] font-medium'><%= dog.sex %></div>
+      </div>
+
+      <div class='w-1/2'>
+        <label class='text-gray-500'>Weight (lbs):</label>
+        <div class='text-[15px] font-medium'><%= dog.weight %></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="fixed h-full w-full -z-10">
-  <div class="inset-0 bg-blue-200 h-full"></div>
+  <div class="inset-0 bg-teal h-full"></div>
 </div>
 
 <div class="relative w-full h-full">
@@ -8,6 +8,8 @@
       <%= partial.yield :header %>
     </div>
 
-    <%= partial.yield :content %>
+    <div class='px-0 lg:px-16'>
+      <%= partial.yield :content %>
+    </div>
   </div>
 </div>
