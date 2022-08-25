@@ -18,6 +18,9 @@ gem "jsbundling-rails", "~> 1.0.3"
 # Easy React view integration
 gem "react-rails", "~> 2.6.1"
 
+# Upgrade partials to allow for defining slots
+gem "nice_partials"
+
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", ">= 1.1.1"
 
@@ -45,9 +48,6 @@ gem "bootsnap", ">= 1.12.0", require: false
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
-# Use Sass to process CSS
-gem "sassc-rails", "~> 2.1.2"
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -73,12 +73,13 @@ group :test do
   gem "selenium-webdriver", ">= 4.1.0"
   gem "webdrivers", "5.0.0"
   gem 'rexml', '~> 3.2.5'
+
+  # Provides extra assertions and matchers for testing controllers and views
+  gem 'rails-controller-testing'
 end
 
 gem 'devise'
 gem "passwordless", "~> 0.10.0"
 gem "rolify"
-
-gem 'sass-rails'
 
 gem "pg", "~> 1.4.1"

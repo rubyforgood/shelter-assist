@@ -104,7 +104,6 @@ GEM
     digest (3.1.0)
     erubi (1.10.0)
     execjs (2.8.1)
-    ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -146,6 +145,8 @@ GEM
       digest
       net-protocol
       timeout
+    nice_partials (0.1.9)
+      actionview (>= 4.2.6)
     nio4r (2.5.8)
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
@@ -180,6 +181,10 @@ GEM
       activesupport (= 7.0.2.4)
       bundler (>= 1.15.0)
       railties (= 7.0.2.4)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -208,16 +213,6 @@ GEM
     rexml (3.2.5)
     rolify (6.0.0)
     rubyzip (2.3.2)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selenium-webdriver (4.3.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -275,15 +270,15 @@ DEPENDENCIES
   importmap-rails (>= 1.1.2)
   jbuilder (~> 2.11.5)
   jsbundling-rails (~> 1.0.3)
+  nice_partials
   passwordless (~> 0.10.0)
   pg (~> 1.4.1)
   puma (~> 5.6.4)
   rails (~> 7.0.2.2)
+  rails-controller-testing
   react-rails (~> 2.6.1)
   rexml (~> 3.2.5)
   rolify
-  sass-rails
-  sassc-rails (~> 2.1.2)
   selenium-webdriver (>= 4.1.0)
   sprockets-rails (>= 2.0.0)
   stimulus-rails (>= 1.0.4)

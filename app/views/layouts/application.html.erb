@@ -14,7 +14,15 @@
         <p class="flash flash_<%= key %>"><%= flash[key] %></p>
       <% end %>
     <% end %>
-    <%= render 'layouts/navigation_links' %>
-    <%= yield %>
+
+    <%= render 'components/container' do |partial| %>
+      <%= partial.content_for :header do %>
+        <%= render 'layouts/navigation_links' %>
+      <% end %>
+
+      <%= partial.content_for :content do %>
+        <%= yield %>
+      <% end %>
+    <% end %>
   </body>
 </html>

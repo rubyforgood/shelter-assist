@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'teal': '#4FADBE',
         'landing': '#13C2C2',
       }
     }
