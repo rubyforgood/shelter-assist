@@ -1,6 +1,6 @@
 <div class='shadow-2xl w-[300px] flex-grow mx-2 my-2 p-6 bg-white'>
-  <div class='h-62'>
-    <%= image_tag dog.image_src, class: 'object-cover w-full h-[325px]' %>
+  <div class='h-62 overflow-hidden'>
+    <%= image_tag dog.image_src, class: 'object-cover w-full h-[325px] transition hover:scale-150 ease-in-out duration-[2000ms]' %>
   </div>
 
   <div class='text-center text-4xl font-bold uppercase my-2'>
