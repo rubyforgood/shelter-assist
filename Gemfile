@@ -73,6 +73,9 @@ group :test do
   gem "selenium-webdriver", ">= 4.1.0"
   gem "webdrivers", "5.0.0"
   gem 'rexml', '~> 3.2.5'
+
+  # Provides extra assertions and matchers for testing controllers and views
+  gem 'rails-controller-testing'
 end
 
 gem 'devise'
