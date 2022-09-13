@@ -76,6 +76,10 @@ group :test do
 
   # Provides extra assertions and matchers for testing controllers and views
   gem 'rails-controller-testing'
+
+  # Provides convenience methods for testing Rails applications
+  gem 'shoulda'
+  gem 'shoulda-matchers'
 end
 
 gem 'devise'

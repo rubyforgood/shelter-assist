@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+phido:
+  name: 'Fido'
+  gender: 'male'
+  birthdate: <%= 5.months.ago %>
+  weight: 24.3
+  size: 'large'
+  activity_needs: 'mid'
+  description: 'Possibly the most average dog ever'
+
+alexa:
+  name: 'Alexa'
+  gender: 'female'
+  birthdate: <%= 7.months.ago %>
+  weight: 18.9
+  size: 'small'
+  activity_needs: 'mid'
+  description: 'Most likely the most average dog in the world'
