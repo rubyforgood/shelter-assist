@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_13_223104) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_002300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_223104) do
     t.date "birthdate"
   end
 
+  create_table "dogs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "gender", null: false
+    t.date "birthdate", null: false
+    t.float "weight", null: false
+    t.string "size", null: false
+    t.string "activity_needs", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "homes", force: :cascade do |t|
     t.boolean "has_children", default: false
     t.boolean "has_fenced_yard", default: false
@@ -111,8 +123,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_223104) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "available_from"
-    t.datetime "available_to", null: true
-    t.string "availability_notes", null: true
+    t.datetime "available_to"
+    t.string "availability_notes"
     t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
   end
