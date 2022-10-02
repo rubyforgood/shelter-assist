@@ -4,3 +4,9 @@ Style/Documentation:
   Enabled: false
 Layout/LineLength:
   Enabled: false
+Metrics/BlockLength:
+  IgnoredMethods:
+    - test
+    - configure
+Metrics/MethodLength:
+  Max: 40
