@@ -1,0 +1,18 @@
+require:
+  - rubocop-rails
+Style/Documentation:
+  Enabled: false
+Layout/LineLength:
+  Enabled: false
+Metrics/BlockLength:
+  IgnoredMethods:
+    - test
+    - configure
+Metrics/MethodLength:
+  Max: 40
+Rails/BulkChangeTable:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/HasAndBelongsToMany:
+  Enabled: false

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   def current_person
     @current_person ||= PresentablePerson.build(nil, view_context)

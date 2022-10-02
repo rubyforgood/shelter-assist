@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PasswordProtectedController < DeviseController
   before_action :authenticate_person!
 

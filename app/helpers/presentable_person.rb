@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'delegate'
 class PresentablePerson < DelegateClass(Person)
   def self.build(person, view)
@@ -10,9 +12,8 @@ class PresentablePerson < DelegateClass(Person)
   end
 
   alias person __getobj__
-  def initialize(person, view)
+  def initialize(person, _view)
     super(person)
-    @view = view
   end
 
   def name
@@ -25,6 +26,7 @@ class PresentablePerson < DelegateClass(Person)
 
   class Visitor < self
     def name; end
+
     def admin?
       false
     end

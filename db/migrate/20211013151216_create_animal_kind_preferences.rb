@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAnimalKindPreferences < ActiveRecord::Migration[7.0]
   def change
     create_table :animal_kind_preferences do |t|

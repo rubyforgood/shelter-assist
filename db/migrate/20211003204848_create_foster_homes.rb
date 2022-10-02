@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateFosterHomes < ActiveRecord::Migration[7.0]
   def change
     create_table :foster_homes do |t|

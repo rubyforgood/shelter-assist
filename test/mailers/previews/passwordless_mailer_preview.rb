@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PasswordlessMailerPreview < ActionMailer::Preview
   def magic_link
     Passwordless::Mailer.magic_link(

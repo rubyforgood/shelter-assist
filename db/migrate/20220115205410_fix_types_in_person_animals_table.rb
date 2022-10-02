@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FixTypesInPersonAnimalsTable < ActiveRecord::Migration[7.0]
   def up
     change_column :person_animals, :person_id, :bigint

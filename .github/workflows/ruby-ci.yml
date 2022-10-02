@@ -57,6 +57,10 @@ jobs:
       run: |
           gem install selenium-webdriver
 
+    - name: Run rubocop
+      run: |
+        bundle exec rubocop
+
     - name: Run Tests
       env:
         PGHOST: localhost

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnimalsController < ApplicationController
   def index
     animals = Animal.all
@@ -7,17 +9,13 @@ class AnimalsController < ApplicationController
     end
   end
 
-
   def create
     animal = Animal.new(animal_params)
-    unless animal.save
-      response_status = :bad_request
-      render :new
-    end
+    render :new unless animal.save
     render(json: {
-      errors: animal.errors,
-      path: animals_path
-    })
+             errors: animal.errors,
+             path: animals_path
+           })
   end
 
   def new
