@@ -230,6 +230,10 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.21.0)
       parser (>= 3.1.1.0)
+    rubocop-rails (2.16.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
     selenium-webdriver (4.3.0)
@@ -306,6 +310,7 @@ DEPENDENCIES
   rexml (~> 3.2.5)
   rolify
   rubocop
+  rubocop-rails
   selenium-webdriver (>= 4.1.0)
   shoulda
   shoulda-matchers
