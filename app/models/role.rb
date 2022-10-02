@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Role < ApplicationRecord
-  has_many through: :people, join_table: :people_roles
+  has_and_belongs_to_many :people, join_table: :people_roles
 
   belongs_to :resource,
              polymorphic: true,
