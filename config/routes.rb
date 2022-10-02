@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :animal_applications
   resources :homes
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   # admin
-  devise_for :people, only: [:sessions, :passwords], module: :admin, path_prefix: :admin
+  devise_for :people, only: %i[sessions passwords], module: :admin, path_prefix: :admin
   # non-admin people
   passwordless_for :people, at: '/', as: :auth
 
@@ -21,8 +23,8 @@ Rails.application.routes.draw do
   get '/status', to: 'status#show', as: :person_root
 
   authenticated :admin do
-    root "people#index", as: :admin_root
+    root 'people#index', as: :admin_root
   end
 
-  root to: "home_page#index"
+  root to: 'home_page#index'
 end

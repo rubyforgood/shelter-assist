@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class AnimalApplicationTest < ActiveSupport::TestCase
   test 'valid application' do

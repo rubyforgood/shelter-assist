@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'delegate'
 class PresentablePerson < DelegateClass(Person)
   def self.build(person, view)
@@ -25,6 +27,7 @@ class PresentablePerson < DelegateClass(Person)
 
   class Visitor < self
     def name; end
+
     def admin?
       false
     end

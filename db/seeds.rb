@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 admin = Person.create!(
-  full_name: "Ad Ministrator",
-  nick_name: "Admin",
+  full_name: 'Ad Ministrator',
+  nick_name: 'Admin',
   email: 'admin@test.com',
   password: 'password',
   is_home_during_day: true,
   phone: '123-555-1212',
   transportation: 'car',
-  available_from: 4.days.from_now,
+  available_from: 4.days.from_now
 )
 
 admin.add_role(:admin)
 
 person = Person.create!(
-  full_name: "Person",
-  email: "foster@test.com",
+  full_name: 'Person',
+  email: 'foster@test.com',
   is_home_during_day: true,
   phone: '123-555-1212',
   transportation: 'car',
@@ -25,11 +27,11 @@ person = Person.create!(
       has_other_adults: true,
       has_other_dog: false,
       has_other_cat: false,
-      street: "123 main st.",
-      city: "someplace",
-      state: "MD",
-      zip_code: "20782",
-      home_type: "House"
+      street: '123 main st.',
+      city: 'someplace',
+      state: 'MD',
+      zip_code: '20782',
+      home_type: 'House'
     }
   ]
 )

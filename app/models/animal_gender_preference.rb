@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AnimalGenderPreference < ApplicationRecord
   belongs_to :person
 
-  enum animal_value: { "Male" => 1, "Female" => 2 }
+  enum animal_value: { 'Male' => 1, 'Female' => 2 }
 end

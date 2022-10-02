@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Person < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
@@ -6,7 +8,7 @@ class Person < ApplicationRecord
          :recoverable, :rememberable, :validatable
   passwordless_with :email
 
-  enum transportation: [ :access_to_car, :car, :no_car ]
+  enum transportation: { access_to_car: 0, car: 1, no_car: 2 }
 
   has_many :animal_kind_preferences
   has_many :animal_gender_preferences
@@ -16,10 +18,18 @@ class Person < ApplicationRecord
   has_many :person_animals
   has_many :animals, through: :person_animals
 
-  accepts_nested_attributes_for :animal_kind_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
-  accepts_nested_attributes_for :animal_gender_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
-  accepts_nested_attributes_for :animal_age_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
-  accepts_nested_attributes_for :animal_size_preferences, reject_if: proc { |attributes| attributes["animal_value"].blank? }
+  accepts_nested_attributes_for :animal_kind_preferences, reject_if: proc { |attributes|
+                                                                       attributes['animal_value'].blank?
+                                                                     }
+  accepts_nested_attributes_for :animal_gender_preferences, reject_if: proc { |attributes|
+                                                                         attributes['animal_value'].blank?
+                                                                       }
+  accepts_nested_attributes_for :animal_age_preferences, reject_if: proc { |attributes|
+                                                                      attributes['animal_value'].blank?
+                                                                    }
+  accepts_nested_attributes_for :animal_size_preferences, reject_if: proc { |attributes|
+                                                                       attributes['animal_value'].blank?
+                                                                     }
 
   has_many :person_homes, inverse_of: :person
   has_many :homes, through: :person_homes
@@ -29,13 +39,13 @@ class Person < ApplicationRecord
   validates :is_home_during_day, presence: true
   validates :transportation, presence: true
   validates :available_from, presence: true
-  validates :phone, format: { with: /\A\d+\z/, message: "Numbers only, please." }
+  validates :phone, format: { with: /\A\d+\z/, message: 'Numbers only, please.' }
 
   before_validation :prep_phone
   after_create :assign_default_role
 
   def prep_phone
-    self.phone = self.phone.to_s.gsub(/[^0-9A-Za-z]/, '')
+    self.phone = phone.to_s.gsub(/[^0-9A-Za-z]/, '')
   end
 
   def self.fetch_resource_for_passwordless(email)
@@ -50,9 +60,9 @@ class Person < ApplicationRecord
     nick_name.presence || full_name
   end
 
-private
+  private
 
   def assign_default_role
-    self.add_role(:foster) if self.roles.blank?
+    add_role(:foster) if roles.blank?
   end
 end

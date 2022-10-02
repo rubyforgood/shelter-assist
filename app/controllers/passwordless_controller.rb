@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PasswordlessController < Passwordless::ApplicationController
   include Passwordless::ControllerHelpers
   helper_method :current_person
@@ -10,6 +12,7 @@ class PasswordlessController < Passwordless::ApplicationController
 
   def require_person!
     return if current_person
+
     redirect_to root_path, flash: { error: 'Go to your crate!' }
   end
 end
