@@ -87,3 +87,5 @@ gem "passwordless", "~> 0.10.0"
 gem "rolify"
 
 gem "pg", "~> 1.4.1"
+
+gem 'rubocop', require: false
