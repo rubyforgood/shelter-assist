@@ -10,3 +10,7 @@ Metrics/BlockLength:
     - configure
 Metrics/MethodLength:
   Max: 40
+Rails/BulkChangeTable:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
