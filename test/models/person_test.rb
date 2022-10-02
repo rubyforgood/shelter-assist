@@ -32,11 +32,11 @@ class PersonTest < ActiveSupport::TestCase
   test 'a person can be rejected for bad entries' do
     bad_parameters = @valid_parameters
     bad_parameters['phone'] = '401-789-4567asdf'
-    bad_person_1 = Person.new(bad_parameters)
+    bad_person1 = Person.new(bad_parameters)
     bad_parameters['phone'] = 'ruby for bad'
-    bad_person_2 = Person.new(bad_parameters)
+    bad_person2 = Person.new(bad_parameters)
 
-    assert bad_person_1.invalid?
-    assert bad_person_2.invalid?
+    assert bad_person1.invalid?
+    assert bad_person2.invalid?
   end
 end

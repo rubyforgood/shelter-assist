@@ -11,10 +11,7 @@ class AnimalsController < ApplicationController
 
   def create
     animal = Animal.new(animal_params)
-    unless animal.save
-      response_status = :bad_request
-      render :new
-    end
+    render :new unless animal.save
     render(json: {
              errors: animal.errors,
              path: animals_path

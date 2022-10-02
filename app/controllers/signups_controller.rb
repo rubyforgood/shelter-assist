@@ -10,14 +10,7 @@ class SignupsController < PasswordlessController
       format.html {}
       format.json do
         if person.save
-          session = build_passwordless_session(person)
-          session.token = Passwordless.token_generator.call(session)
-          session.save!
-          Passwordless::Mailer.magic_link(session).deliver_now
-          # redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
-          render(json: {
-                   path: confirmation_signup_path
-                 }, status: :created)
+          confirm_signup(person)
         else
           render(json: {
                    errors: person.errors
@@ -76,5 +69,16 @@ class SignupsController < PasswordlessController
 
   def require_no_person
     redirect_to person_root_path if current_person.logged_in?
+  end
+
+  def confirm_signup(person)
+    session = build_passwordless_session(person)
+    session.token = Passwordless.token_generator.call(session)
+    session.save!
+    Passwordless::Mailer.magic_link(session).deliver_now
+    # redirect_to signup_path, notice: 'Check your email for a login link' # change to personal status page
+    render(json: {
+             path: confirmation_signup_path
+           }, status: :created)
   end
 end

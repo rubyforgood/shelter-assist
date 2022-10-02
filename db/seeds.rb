@@ -13,7 +13,7 @@ admin = Person.create!(
 
 admin.add_role(:admin)
 
-person = Person.create!(
+Person.create!(
   full_name: 'Person',
   email: 'foster@test.com',
   is_home_during_day: true,
