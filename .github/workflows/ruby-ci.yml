@@ -57,6 +57,11 @@ jobs:
       run: |
           gem install selenium-webdriver
 
+    - name: Rubocop checks
+      uses: luizfonseca/github-actions-rubocop@1.5.6
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Run Tests
       env:
         PGHOST: localhost
