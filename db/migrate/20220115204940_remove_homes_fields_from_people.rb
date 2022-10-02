@@ -7,7 +7,7 @@ class RemoveHomesFieldsFromPeople < ActiveRecord::Migration[7.0]
   end
 
   def down
-    add_column :people, :street, :string, null: false
+    add_column :people, :street, :string, null: false, default: 'Unkown'
     add_column :people, :apt, :string
   end
 end
